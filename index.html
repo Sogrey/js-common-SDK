@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>typescript webpack test</title>
+</head>
+
+<body>
+    F12 查看控制台输出。
+    <script src="./bundles/tsdk.umd.js"></script>
+    <script>
+        let greeter = new TSDK.Greeter("world");
+        console.log(greeter.greet());
+    </script>
+
+    <script type="module">
+        // import TSDK from './bundles/tsdk.modern.js'; // or
+        import TSDK from './bundles/tsdk.module.js';
+        let greeter = new TSDK.Greeter("world");
+        console.log(greeter.greet());
+    </script>
+</body>
+
+</html>

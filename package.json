@@ -1,0 +1,58 @@
+{
+  "name": "@sogrey/typescript-sdk-template",
+  "version": "0.0.2",
+  "description": "使用TypeScript开发SDK模板",
+  "main": "./bundles/tsdk.js",
+  "exports": "./bundles/tsdk.modern.js",
+  "module": "./bundles/tsdk.module.js",
+  "unpkg": "./bundles/tsdk.umd.js",
+  "jsdelivr": "./bundles/tsdk.umd.js",
+  "typings": "./typings/index.d.ts",
+  "scripts": {
+    "start": "http-server -p 8000",
+    "release": "npm run build && npm run docs",
+    "build": "npm run clean && npm run compile && npm run bundle",
+    "clean": "rm -rf bundles dist typings",
+    "compile": "npx tsc --p tsconfig.json",
+    "bundle": "npx microbundle --i dist/index.js --name TSDK --target=browser",
+    "docs": "typedoc --out docs/ src/index.ts",
+    "startDocs": "cd docs && http-server -p 8001",
+    "npm:publish": "npm publish --access public",
+    "npm:link": "npm link",
+    "postinstall": "ts-node tools/init.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "bundles",
+    "typings"
+  ],
+  "bin": {
+    "tsdk": "./bin/tsdk.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sogrey/TypeScript-SDK-Template.git"
+  },
+  "keywords": [
+    "TypeScript"
+  ],
+  "author": "Sogrey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sogrey/TypeScript-SDK-Template/issues"
+  },
+  "homepage": "https://github.com/Sogrey/TypeScript-SDK-Template#readme",
+  "devDependencies": {
+    "colors": "^1.3.2",
+    "http-server": "^13.0.1",
+    "microbundle": "^0.13.3",
+    "prompt": "^1.2.0",
+    "ts-node": "^10.2.1",
+    "typedoc": "^0.21.6",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.4",
+    "yargs": "^17.1.1"
+  }
+}
