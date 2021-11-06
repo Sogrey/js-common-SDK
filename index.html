@@ -10,16 +10,16 @@
 
 <body>
     F12 查看控制台输出。
-    <script src="./bundles/tsdk.umd.js"></script>
+    <script src="./bundles/jsc.umd.js"></script>
     <script>
-        let greeter = new TSDK.Greeter("world");
+        let greeter = new JSC.Greeter("world");
         console.log(greeter.greet());
     </script>
 
     <script type="module">
-        // import TSDK from './bundles/tsdk.modern.js'; // or
-        import TSDK from './bundles/tsdk.module.js';
-        let greeter = new TSDK.Greeter("world");
+        // import JSC from './bundles/jsc.modern.js'; // or
+        import JSC from './bundles/jsc.module.js';
+        let greeter = new JSC.Greeter("world");
         console.log(greeter.greet());
     </script>
 </body>

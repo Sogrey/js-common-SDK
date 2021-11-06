@@ -3,10 +3,10 @@
 'use strict';
 // 参照：https://www.ruanyifeng.com/blog/2015/05/command-line-with-node.html
 
-const TSDK = require("../bundles/tsdk"); // 执行shell脚本
+const JSC = require("../bundles/jsc"); // 执行shell脚本
 const shell = require("shelljs"); // 执行shell脚本
 const argv = require('yargs') // 读取参数
-    .usage('Usage: tsdk [options]')
+    .usage('Usage: jsc [options]')
     .option('n', {
         alias: 'name', // 别名
         demand: true, // 是否必选
@@ -32,11 +32,11 @@ console.log('argv.n : ', argv.n);
 console.log('argv.a : ', argv.a);
 
 /*
-$ tsdk -n Sogrey -a 18
-$ tsdk -n=Sogrey -a=18
+$ jsc -n Sogrey -a 18
+$ jsc -n=Sogrey -a=18
 argv.n :  Sogrey
 argv.a :  18
 */
 
-let greeter = new TSDK.Greeter("world!");
+let greeter = new JSC.Greeter("world!");
 console.log(greeter.greet());

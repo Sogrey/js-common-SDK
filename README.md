@@ -1,14 +1,14 @@
-# TypeScript-SDK-Template
-使用TypeScript开发SDK模板
+# js-common-SDK
+js基础通用函数工具SDK
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Sogrey/TypeScript-SDK-Template)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/Sogrey/js-common-SDK)
 
 
-- `tsdk.js` 是 CommonJS 模块。这是一种被 NodeJS 使用的模块类型，看起来像 const myModule = require('my-module')
-- `tsdk.module.js` 是 ECMAScript 模块，由 ES6 定义，看起来类似 import MyModule from 'my-module'
-- `tsdk.modern.js` modern ES2017 output (see below)
-- `tsdk.umd.js` 是 UMD 模块
-- `tsdk.d.ts` 是 TypeScript 类型描述文件
+- `jsc.js` 是 CommonJS 模块。这是一种被 NodeJS 使用的模块类型，看起来像 const myModule = require('my-module')
+- `jsc.module.js` 是 ECMAScript 模块，由 ES6 定义，看起来类似 import MyModule from 'my-module'
+- `jsc.modern.js` modern ES2017 output (see below)
+- `jsc.umd.js` 是 UMD 模块
+- `jsc.d.ts` 是 TypeScript 类型描述文件
 
 > In addition to the above formats, Microbundle also outputs a modern bundle specially designed to work in all modern browsers. This bundle preserves most modern JS features when compiling your code, but ensures the result runs in 95% of web browsers without needing to be transpiled. Specifically, it uses Babel's "bugfixes" mode (previously known as preset-modules) to target the set of browsers that support <script type="module"> - that allows syntax like async/await, tagged templates, arrow functions, destructured and rest parameters, etc. The result is generally smaller and faster to execute than the plain esm bundle.
 > 
@@ -18,30 +18,30 @@
 
 ## Install
 ``` bash
-npm i @sogrey/typescript-sdk-template
+npm i @sogrey/js-common-sdk
 ```
 ## Usage
 umd:
 ``` html
-<!-- <script src="./bundles/tsdk.umd.js"></script> -->
-<script src="./node_modules/@sogrey/typescript-sdk-template/bundles/tsdk.umd.js"></script>
+<!-- <script src="./bundles/jsc.umd.js"></script> -->
+<script src="./node_modules/@sogrey/js-common-SDK/bundles/jsc.umd.js"></script>
 <script>
-    let greeter = new TSDK.Greeter("world");
+    let greeter = new JSC.Greeter("world");
     console.log(greeter.greet());
 </script>
 ```
 module:
 ``` js
 <script type="module">
-    import TSDK from './bundles/tsdk.module.js';
-    let greeter = new TSDK.Greeter("world");
+    import JSC from './bundles/jsc.module.js';
+    let greeter = new JSC.Greeter("world");
     console.log(greeter.greet());
 </script>
 ```
 nodejs:
 ``` js
-let TSDK = require('@sogrey/typescript-sdk-template')
+let JSC = require('@sogrey/js-common-sdk')
 
-let greeter = new TSDK.Greeter("world");
+let greeter = new JSC.Greeter("world");
 console.log(greeter.greet());
 ```

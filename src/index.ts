@@ -1,6 +1,6 @@
 import { Greeter } from './model/Greeter';
 
-const TSDK = {
+const JSC = {
     VERSION:"0.0.1",
     test: () => {
         console.log("Hi,It's running.");
@@ -9,4 +9,4 @@ const TSDK = {
     Greeter: Greeter,
 }
 
-export default TSDK;
+export default JSC;

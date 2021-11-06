@@ -1,2 +1,0 @@
-!function(e,n){"object"==typeof exports&&"undefined"!=typeof module?module.exports=n():"function"==typeof define&&define.amd?define(n):(e||self).TSDK=n()}(this,function(){return{VERSION:"0.0.1",test:function(){console.log("Hi,It's running.")},Greeter:function(){function e(e){this.greeting=e}return e.prototype.greet=function(){return"Hello, "+this.greeting},e}()}});
-//# sourceMappingURL=tsdk.umd.js.map

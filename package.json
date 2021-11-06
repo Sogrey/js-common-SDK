@@ -1,12 +1,12 @@
 {
-  "name": "@sogrey/typescript-sdk-template",
-  "version": "0.0.2",
-  "description": "使用TypeScript开发SDK模板",
-  "main": "./bundles/tsdk.js",
-  "exports": "./bundles/tsdk.modern.js",
-  "module": "./bundles/tsdk.module.js",
-  "unpkg": "./bundles/tsdk.umd.js",
-  "jsdelivr": "./bundles/tsdk.umd.js",
+  "name": "@sogrey/js-common-sdk",
+  "version": "0.0.1",
+  "description": "js基础通用函数工具SDK",
+  "main": "./bundles/jsc.js",
+  "exports": "./bundles/jsc.modern.js",
+  "module": "./bundles/jsc.module.js",
+  "unpkg": "./bundles/jsc.umd.js",
+  "jsdelivr": "./bundles/jsc.umd.js",
   "typings": "./typings/index.d.ts",
   "scripts": {
     "start": "http-server -p 8000",
@@ -14,12 +14,11 @@
     "build": "npm run clean && npm run compile && npm run bundle",
     "clean": "rm -rf bundles dist typings",
     "compile": "npx tsc --p tsconfig.json",
-    "bundle": "npx microbundle --i dist/index.js --name TSDK --target=browser",
+    "bundle": "npx microbundle --i dist/index.js --name JSC --target=browser",
     "docs": "typedoc --out docs/ src/index.ts",
     "startDocs": "cd docs && http-server -p 8001",
     "npm:publish": "npm publish --access public",
     "npm:link": "npm link",
-    "postinstall": "ts-node tools/init.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
@@ -27,11 +26,11 @@
     "typings"
   ],
   "bin": {
-    "tsdk": "./bin/tsdk.js"
+    "jsc": "./bin/jsc.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sogrey/TypeScript-SDK-Template.git"
+    "url": "git+https://github.com/Sogrey/js-common-SDK.git"
   },
   "keywords": [
     "TypeScript"
@@ -39,9 +38,9 @@
   "author": "Sogrey",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Sogrey/TypeScript-SDK-Template/issues"
+    "url": "https://github.com/Sogrey/js-common-SDK/issues"
   },
-  "homepage": "https://github.com/Sogrey/TypeScript-SDK-Template#readme",
+  "homepage": "https://github.com/Sogrey/js-common-SDK#readme",
   "devDependencies": {
     "colors": "^1.3.2",
     "http-server": "^13.0.1",
