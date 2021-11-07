@@ -10,17 +10,18 @@
 
 <body>
     F12 查看控制台输出。
-    <script src="./bundles/jsc.umd.js"></script>
+    <!-- <script src="./bundles/jsc.umd.js"></script>
     <script>
-        let greeter = new JSC.Greeter("world");
-        console.log(greeter.greet());
-    </script>
+        // let greeter = new JSC.Greeter("world");
+        // console.log(greeter.greet());
+    </script> -->
 
     <script type="module">
-        // import JSC from './bundles/jsc.modern.js'; // or
-        import JSC from './bundles/jsc.module.js';
-        let greeter = new JSC.Greeter("world");
-        console.log(greeter.greet());
+        import {CMath3D} from './bundles/jsc.modern.js'; // or
+        // import JSC from './bundles/jsc.module.js';
+        // let greeter = new JSC.Greeter("world");
+        // console.log(greeter.greet());
+        console.log(CMath3D)
     </script>
 </body>
 

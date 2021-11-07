@@ -9,13 +9,13 @@
   "jsdelivr": "./bundles/jsc.umd.js",
   "typings": "./typings/index.d.ts",
   "scripts": {
-    "start": "http-server -p 8000",
+    "start": "npm run build && http-server -p 8000",
     "release": "npm run build && npm run docs",
     "build": "npm run clean && npm run compile && npm run bundle",
     "clean": "rm -rf bundles dist typings",
     "compile": "npx tsc --p tsconfig.json",
     "bundle": "npx microbundle --i dist/index.js --name JSC --target=browser",
-    "docs": "typedoc --out docs/ src/index.ts",
+    "docs": "typedoc --out docs/ src/index.ts && cp favicon.ico docs/favicon.ico",
     "startDocs": "cd docs && http-server -p 8001",
     "npm:publish": "npm publish --access public",
     "npm:link": "npm link",
@@ -43,11 +43,13 @@
   "homepage": "https://github.com/Sogrey/js-common-SDK#readme",
   "devDependencies": {
     "colors": "^1.3.2",
+    "gulp": "^4.0.2",
+    "gulp-typedoc": "^3.0.1",
     "http-server": "^13.0.1",
     "microbundle": "^0.13.3",
     "prompt": "^1.2.0",
     "ts-node": "^10.2.1",
-    "typedoc": "^0.21.6",
+    "typedoc": "^0.22.8",
     "typescript": "^4.3.5"
   },
   "dependencies": {
