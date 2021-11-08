@@ -1,0 +1,1 @@
+{"version":3,"file":"Vector3.d.ts","sourceRoot":"","sources":["../../src/CMath3D/Vector3.ts"],"names":[],"mappings":"AAWA,qBAAa,OAAO;IAChB,CAAC,EAAE,MAAM,CAAK;IAAC,CAAC,EAAE,MAAM,CAAK;IAAC,CAAC,EAAE,MAAM,CAAK;gBAChC,CAAC,CAAC,EAAE,MAAM,EAAE,CAAC,CAAC,EAAE,MAAM,EAAE,CAAC,CAAC,EAAE,MAAM;CAsBjD"}

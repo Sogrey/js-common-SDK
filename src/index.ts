@@ -2,6 +2,48 @@
  * This is the doc comment for @sogrey/js-common-sdk
  *
  */
+import { defined } from "./defined"
+import { defaultValue } from "./defaultValue"
+
+import { CNumber } from './CNumber/CNumber';
+import { CArray } from './CArray/CArray';
+import { CString } from './CString/CString';
+import { CFormat } from './CFormat/CFormat';
+import { CStorage } from './CStorage/CStorage';
+import { CCookie } from './CCookie/CCookie';
+import { CRegular } from './CRegular/CRegular';
+import { CUrl } from './CUrl/CUrl';
+import { CDevice } from './CDevice/CDevice';
+import { CBrowser } from './CBrowser/CBrowser';
+import { CDataTime } from './CDataTime/CDataTime';
+import { CMath3D } from './CMath3D/CMath3D';
+
+/**
+ * @type {JSC}
+ */
+const JSC = {
+    VERSION: "0.0.1",
+    test: () => {
+        console.log("Hi,It's running.");
+    },
+
+    defined: defined,
+    defaultValue: defaultValue,
+    CNumber: CNumber,
+    CArray: CArray,
+    CString: CString,
+    CFormat: CFormat,
+    CStorage: CStorage,
+    CCookie: CCookie,
+    CRegular: CRegular,
+    CUrl: CUrl,
+    CDevice: CDevice,
+    CBrowser: CBrowser,
+    CDataTime: CDataTime,
+    CMath3D: CMath3D,
+}
+
+export default JSC;
 
 export { defined } from "./defined"
 export { defaultValue } from "./defaultValue"

@@ -21,22 +21,22 @@ umd:
 <!-- <script src="./bundles/jsc.umd.js"></script> -->
 <script src="./node_modules/@sogrey/js-common-SDK/bundles/jsc.umd.js"></script>
 <script>
-    let greeter = new JSC.Greeter("world");
-    console.log(greeter.greet());
+    console.log(JSC);
+    console.log(JSC.CNumber.randomNum(1,100000));
+    console.log(JSC.CNumber.format(19829680412));
 </script>
 ```
 module:
 ``` js
 <script type="module">
-    import JSC from './bundles/jsc.module.js';
-    let greeter = new JSC.Greeter("world");
-    console.log(greeter.greet());
+    import {CNumber} from './bundles/jsc.modern.js';
+    console.log(CNumber)
 </script>
 ```
 nodejs:
 ``` js
 let JSC = require('@sogrey/js-common-sdk')
 
-let greeter = new JSC.Greeter("world");
-console.log(greeter.greet());
+console.log(JSC.CNumber.randomNum(1,100000));
+console.log(JSC.CNumber.format(19829680412));
 ```
