@@ -1,4 +1,5 @@
-let TSDK = require('@sogrey/typescript-sdk-template')
+let {
+    CNumber
+} = require('@sogrey/js-common-sdk')
 
-let greeter = new TSDK.Greeter("world");
-console.log(greeter.greet());
+console.log(CNumber.randomNum(1, 10));

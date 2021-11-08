@@ -9,17 +9,16 @@
 </head>
 
 <body>F12 查看控制台输出。
-    <script src="./node_modules/@sogrey/typescript-sdk-template/bundles/tsdk.umd.js"></script>
+    <!-- <script src="./node_modules/@sogrey/js-common-sdk/bundles/jsc.umd.js"></script>
     <script>
-        let greeter = new TSDK.Greeter("world");
+        let greeter = new JSC.Greeter("world");
         console.log(greeter.greet());
-    </script>
+    </script> -->
 
 
     <script type="module">
-        import TSDK from './node_modules/@sogrey/typescript-sdk-template/bundles/tsdk.m.js';
-        let greeter = new TSDK.Greeter("world");
-        console.log(greeter.greet());
+        import {CNumber} from './node_modules/@sogrey/js-common-sdk/bundles/jsc.module.js';
+        console.log(CNumber.randomNum(1,10));
     </script>
 </body>
 
