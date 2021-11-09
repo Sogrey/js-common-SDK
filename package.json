@@ -1,6 +1,6 @@
 {
   "name": "@sogrey/js-common-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "js基础通用函数工具SDK",
   "main": "./bundles/jsc.js",
   "exports": "./bundles/jsc.modern.js",

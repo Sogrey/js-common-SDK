@@ -38,7 +38,7 @@ export class Vector2 {
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided.
      */
-    static fromElements = function (x: number, y: number, result: Vector2) {
+    static fromElements = function (x: number, y: number, result: Vector2): Vector2 {
         if (!defined(result)) {
             return new Vector2(x, y);
         }
@@ -55,7 +55,7 @@ export class Vector2 {
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided. (Returns undefined if cartesian is undefined)
      */
-    static clone = function (v2: Vector2 | Vector3 | Vector4, result: Vector2) {
+    static clone = function (v2: Vector2 | Vector3 | Vector4, result: Vector2): undefined | Vector2 {
         if (!defined(v2)) {
             return undefined;
         }

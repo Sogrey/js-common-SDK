@@ -29,14 +29,14 @@ umd:
 module:
 ``` js
 <script type="module">
-    import {CNumber} from './bundles/jsc.modern.js';
-    console.log(CNumber)
+    // import {CNumber} from './bundles/jsc.modern.js';
+    // or
+    import {CNumber} from './node_modules/@sogrey/js-common-sdk/bundles/jsc.module.js';
+    console.log(CNumber.randomNum(1,10));
 </script>
 ```
 nodejs:
 ``` js
-let JSC = require('@sogrey/js-common-sdk')
-
-console.log(JSC.CNumber.randomNum(1,100000));
-console.log(JSC.CNumber.format(19829680412));
+var JSC = require('./node_modules/@sogrey/js-common-sdk/bundles/jsc.js');
+console.log(JSC.CNumber.randomNum(1, 10));
 ```
