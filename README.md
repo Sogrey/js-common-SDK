@@ -13,25 +13,25 @@ npm i @sogrey/typescript-sdk-template
 ## Usage
 umd:
 ``` html
-<!-- <script src="./bundles/tsdk.umd.js"></script> -->
-<script src="./node_modules/@sogrey/typescript-sdk-template/bundles/tsdk.umd.js"></script>
+<!-- <script src="./bundles/jsc.umd.js"></script> -->
+<script src="./node_modules/@sogrey/js-common-SDK/bundles/jsc.umd.js"></script>
 <script>
-    let greeter = new TSDK.Greeter("world");
-    console.log(greeter.greet());
+    console.log(JSC);
+    console.log(JSC.CNumber.randomNum(1,100000));
+    console.log(JSC.CNumber.format(19829680412));
 </script>
 ```
 module:
 ``` js
 <script type="module">
-    import TSDK from './bundles/tsdk.module.js';
-    let greeter = new TSDK.Greeter("world");
-    console.log(greeter.greet());
+    // import {CNumber} from './bundles/jsc.modern.js';
+    // or
+    import {CNumber} from './node_modules/@sogrey/js-common-sdk/bundles/jsc.module.js';
+    console.log(CNumber.randomNum(1,10));
 </script>
 ```
 nodejs:
 ``` js
-let TSDK = require('@sogrey/typescript-sdk-template')
-
-let greeter = new TSDK.Greeter("world");
-console.log(greeter.greet());
+var JSC = require('./node_modules/@sogrey/js-common-sdk/bundles/jsc.js');
+console.log(JSC.CNumber.randomNum(1, 10));
 ```

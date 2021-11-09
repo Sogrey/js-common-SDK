@@ -1,5 +1,2 @@
-let {
-    CNumber
-} = require('@sogrey/js-common-sdk')
-
-console.log(CNumber.randomNum(1, 10));
+var JSC = require('./node_modules/@sogrey/js-common-sdk/bundles/jsc.js');
+console.log(JSC.CNumber.randomNum(1, 10));

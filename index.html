@@ -9,12 +9,12 @@
 </head>
 
 <body>F12 查看控制台输出。
-    <!-- <script src="./node_modules/@sogrey/js-common-sdk/bundles/jsc.umd.js"></script>
+    <script src="./node_modules/@sogrey/js-common-sdk/bundles/jsc.umd.js"></script>
     <script>
-        let greeter = new JSC.Greeter("world");
-        console.log(greeter.greet());
-    </script> -->
-
+        console.log(JSC);
+        console.log(JSC.CNumber.randomNum(1, 100000));
+        console.log(JSC.CNumber.format(19829680412));
+    </script>
 
     <script type="module">
         import {CNumber} from './node_modules/@sogrey/js-common-sdk/bundles/jsc.module.js';

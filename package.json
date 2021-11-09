@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Sogrey/js-common-SDK#readme",
   "dependencies": {
-    "@sogrey/js-common-sdk": "^0.0.1"
+    "@sogrey/js-common-sdk": "^0.0.2"
   },
   "devDependencies": {
     "http-server": "^13.0.1"
