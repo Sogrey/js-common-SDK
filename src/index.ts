@@ -4,6 +4,7 @@
  */
 import { defined } from "./defined"
 import { defaultValue } from "./defaultValue"
+import { DeveloperError } from './DeveloperError';
 
 import { CNumber } from './CNumber/CNumber';
 import { CArray } from './CArray/CArray';
@@ -29,6 +30,7 @@ const JSC = {
 
     defined: defined,
     defaultValue: defaultValue,
+    DeveloperError:DeveloperError,
     CNumber: CNumber,
     CArray: CArray,
     CString: CString,
@@ -47,6 +49,7 @@ export default JSC;
 
 export { defined } from "./defined"
 export { defaultValue } from "./defaultValue"
+export { DeveloperError } from './DeveloperError';
 
 export { CNumber } from './CNumber/CNumber';
 export { CArray } from './CArray/CArray';

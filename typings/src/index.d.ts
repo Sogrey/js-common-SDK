@@ -1,5 +1,6 @@
 import { defined } from "./defined";
 import { defaultValue } from "./defaultValue";
+import { DeveloperError } from './DeveloperError';
 import { CNumber } from './CNumber/CNumber';
 import { CArray } from './CArray/CArray';
 import { CString } from './CString/CString';
@@ -17,6 +18,7 @@ declare const JSC: {
     test: () => void;
     defined: typeof defined;
     defaultValue: typeof defaultValue;
+    DeveloperError: typeof DeveloperError;
     CNumber: typeof CNumber;
     CArray: typeof CArray;
     CString: typeof CString;
@@ -33,6 +35,7 @@ declare const JSC: {
 export default JSC;
 export { defined } from "./defined";
 export { defaultValue } from "./defaultValue";
+export { DeveloperError } from './DeveloperError';
 export { CNumber } from './CNumber/CNumber';
 export { CArray } from './CArray/CArray';
 export { CString } from './CString/CString';

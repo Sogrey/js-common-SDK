@@ -23,7 +23,7 @@ umd:
 <script>
     console.log(JSC);
     console.log(JSC.CNumber.randomNum(1,100000));
-    console.log(JSC.CNumber.format(19829680412));
+    console.log(JSC.CNumber.format(19929682412));
 </script>
 ```
 module:

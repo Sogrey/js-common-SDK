@@ -9,6 +9,7 @@
 import { defined } from "../defined"
 import { defaultValue } from "../defaultValue"
 
+import { CMath } from "./CMath"
 import { Vector3 } from "./Vector3"
 import { Vector4 } from "./Vector4"
 
@@ -53,7 +54,7 @@ export class Vector2 {
      *
      * @param {Vector2 | Vector3 | Vector4} v2 The Vector to duplicate.
      * @param {Vector2} [result] The object onto which to store the result.
-     * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided. (Returns undefined if cartesian is undefined)
+     * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided. (Returns undefined if v2 is undefined)
      */
     static clone = function (v2: Vector2 | Vector3 | Vector4, result: Vector2): undefined | Vector2 {
         if (!defined(v2)) {
@@ -95,4 +96,330 @@ export class Vector2 {
      * @type {Number}
      */
     static packedLength = 2;
+
+    /**
+     * Computes the provided Vector2's squared magnitude.
+     *
+     * @param {Vector2} v2 The Vector2 instance whose squared magnitude is to be computed.
+     * @returns {Number} The squared magnitude.
+     */
+    static magnitudeSquared = function (v2: Vector2) {
+        return v2.x * v2.x + v2.y * v2.y;
+    };
+
+    /**
+     * Computes the Vector2's magnitude (length).
+     *
+     * @param {Vector2} v2 The Vector2 instance whose magnitude is to be computed.
+     * @returns {Number} The magnitude.
+     */
+    static magnitude = function (v2: Vector2) {
+        return Math.sqrt(Vector2.magnitudeSquared(v2));
+    };
+
+    setLength = (length: number, result?: Vector2) => {
+
+        if (!defined(result)) result = new Vector2();
+
+        Vector2.multiplyByScalar(this.normalize()!, length, result);
+
+        return result;
+
+    }
+    /**
+     * Computes the distance between two points.
+     *
+     * @param {Vector2} left The first point to compute the distance from.
+     * @param {Vector2} right The second point to compute the distance to.
+     * @returns {Number} The distance between two points.
+     *
+     * @example
+     * 
+     * var d = static distance(new Vector2(1.0, 0.0), new Vector2(2.0, 0.0));
+     */
+    static distance = function (left: Vector2, right: Vector2) {
+        var distanceScratch = new Vector2();
+        Vector2.subtract(left, right, distanceScratch);
+        return Vector2.magnitude(distanceScratch);
+    };
+
+    /**
+     * Computes the squared distance between two points.  Comparing squared distances
+     * using this function is more efficient than comparing distances using {@link Vector2#distance}.
+     *
+     * @param {Vector2} left The first point to compute the distance from.
+     * @param {Vector2} right The second point to compute the distance to.
+     * @returns {Number} The distance between two points.
+     *
+     * @example
+     * 
+     * var d = static distance(new Vector2(1.0, 0.0), new Vector2(3.0, 0.0));
+     */
+    static distanceSquared = function (left: Vector2, right: Vector2) {
+        var distanceScratch = new Vector2();
+        Vector2.subtract(left, right, distanceScratch);
+        return Vector2.magnitudeSquared(distanceScratch);
+    };
+    /**
+     * Computes the componentwise sum of two Cartesians.
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static add = function (left: Vector2, right: Vector2, result?: Vector2) {
+        if (!defined(result)) result = new Vector2();
+        result!.x = left.x + right.x;
+        result!.y = left.y + right.y;
+        return result!;
+    };
+    /**
+     * Computes the componentwise sum of two Cartesians.
+     *
+     * @param {Vector2} right The second Vector.
+     * @returns {Vector2} The modified result parameter.
+     */
+    add = (right: Vector2) => {
+        return Vector2.add(this, right, this);
+    };
+    /**
+     * Computes the componentwise difference of two Cartesians.
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static subtract = function (left: Vector2, right: Vector2, result: Vector2) {
+        result.x = left.x - right.x;
+        result.y = left.y - right.y;
+        return result;
+    };
+
+    /**
+     * Computes the normalized form of the supplied Vector.
+     *
+     * @param {Vector2} v2 The Vector to be normalized.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static normalize = function (V2: Vector2, result: Vector2) {
+        var magnitude = Vector2.magnitude(V2);
+
+        result.x = V2.x / magnitude;
+        result.y = V2.y / magnitude;
+
+        return result;
+    };
+    /**
+     * Computes the normalized form of the supplied Vector.
+     *
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    normalize = (result?: Vector2) => {
+        if (!defined(result)) result = new Vector2();
+        var magnitude = Vector2.magnitude(this);
+
+        result!.x = this.x / magnitude;
+        result!.y = this.y / magnitude;
+
+        return result;
+    };
+
+    /**
+     * Computes the dot (scalar) product of two Cartesians.
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @returns {Number} The dot product.
+     */
+    static dot = function (left: Vector2, right: Vector2) {
+        return left.x * right.x + left.y * right.y;
+    };
+
+    /**
+     * Computes the magnitude of the cross product that would result from implicitly setting the Z coordinate of the input vectors to 0
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @returns {Number} The cross product.
+     */
+    static cross = function (left: Vector2, right: Vector2) {
+        return left.x * right.y - left.y * right.x;
+    };
+
+
+    /**
+     * Multiplies the provided Vector componentwise by the provided scalar.
+     *
+     * @param {Vector2} v2 The Vector to be scaled.
+     * @param {Number} scalar The scalar to multiply with.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static multiplyByScalar = function (v2: Vector2, scalar: number, result?: Vector2) {
+        if (!defined(result)) result = new Vector2();
+        result!.x = v2.x * scalar;
+        result!.y = v2.y * scalar;
+        return result;
+    };
+
+    /**
+     * Divides the provided Vector componentwise by the provided scalar.
+     *
+     * @param {Vector2} v2 The Vector to be divided.
+     * @param {Number} scalar The scalar to divide by.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static divideByScalar = function (v2: Vector2, scalar: number, result: Vector2) {
+        result.x = v2.x / scalar;
+        result.y = v2.y / scalar;
+        return result;
+    };
+
+    /**
+     * Negates the provided Vector.
+     *
+     * @param {Vector2} v2 The Vector to be negated.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static negate = function (v2: Vector2, result: Vector2) {
+        result.x = -v2.x;
+        result.y = -v2.y;
+        return result;
+    };
+
+    /**
+     * Computes the absolute value of the provided Vector.
+     *
+     * @param {Vector2} v2 The Vector whose absolute value is to be computed.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static abs = function (v2: Vector2, result: Vector2) {
+        result.x = Math.abs(v2.x);
+        result.y = Math.abs(v2.y);
+        return result;
+    };
+
+
+    /**
+     * Computes the linear interpolation or extrapolation at t using the provided cartesians.
+     *
+     * @param {Vector2} start The value corresponding to t at 0.0.
+     * @param {Vector2} end The value corresponding to t at 1.0.
+     * @param {Number} t The point along t at which to interpolate.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static lerp = function (start: Vector2, end: Vector2, t: number, result?: Vector2) {
+        if (!defined(result)) result = new Vector2();
+        let lerpScratch = new Vector2();
+
+        Vector2.multiplyByScalar(end, t, lerpScratch);
+        result = Vector2.multiplyByScalar(start, 1.0 - t, result);
+        return Vector2.add(lerpScratch, result!, result);
+    };
+
+
+    /**
+     * Returns the angle, in radians, between the provided Cartesians.
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @returns {Number} The angle between the Cartesians.
+     */
+    static angleBetween = function (left: Vector2, right: Vector2) {
+        let angleBetweenScratch = new Vector2();
+        let angleBetweenScratch2 = new Vector2();
+
+        Vector2.normalize(left, angleBetweenScratch);
+        Vector2.normalize(right, angleBetweenScratch2);
+        return CMath.acosClamped(
+            Vector2.dot(angleBetweenScratch, angleBetweenScratch2)
+        );
+    };
+    /**
+     * Compares the provided Cartesians componentwise and returns
+     * <code>true</code> if they are equal, <code>false</code> otherwise.
+     *
+     * @param {Vector2} [left] The first Vector.
+     * @param {Vector2} [right] The second Vector.
+     * @returns {Boolean} <code>true</code> if left and right are equal, <code>false</code> otherwise.
+     */
+    static equals = function (left: Vector2, right: Vector2) {
+        return (
+            left === right ||
+            (defined(left) &&
+                defined(right) &&
+                left.x === right.x &&
+                left.y === right.y)
+        );
+    };
+
+    /**
+     * An immutable Vector2 instance initialized to (0.0, 0.0).
+     *
+     * @type {Vector2}
+     * @constant
+     */
+    static ZERO = Object.freeze(new Vector2(0.0, 0.0));
+
+    /**
+     * An immutable Vector2 instance initialized to (1.0, 1.0).
+     *
+     * @type {Vector2}
+     * @constant
+     */
+    static ONE = Object.freeze(new Vector2(1.0, 1.0));
+
+    /**
+     * An immutable Vector2 instance initialized to (1.0, 0.0).
+     *
+     * @type {Vector2}
+     * @constant
+     */
+    static UNIT_X = Object.freeze(new Vector2(1.0, 0.0));
+
+    /**
+     * An immutable Vector2 instance initialized to (0.0, 1.0).
+     *
+     * @type {Vector2}
+     * @constant
+     */
+    static UNIT_Y = Object.freeze(new Vector2(0.0, 1.0));
+
+    /**
+     * Duplicates this Vector2 instance.
+     *
+     * @param {Vector2} [result] The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided.
+     */
+    clone = (result: Vector2) => {
+        return Vector2.clone(this, result);
+    };
+
+    /**
+     * Compares this Vector against the provided Vector componentwise and returns
+     * <code>true</code> if they are equal, <code>false</code> otherwise.
+     *
+     * @param {Vector2} [right] The right hand side Vector.
+     * @returns {Boolean} <code>true</code> if they are equal, <code>false</code> otherwise.
+     */
+    equals = (right: Vector2) => {
+        return Vector2.equals(this, right);
+    };
+
+    /**
+     * Creates a string representing this Vector in the format '(x, y)'.
+     *
+     * @returns {String} A string representing the provided Vector in the format '(x, y)'.
+     */
+    toString = () => {
+        return "(" + this.x + ", " + this.y + ")";
+    };
 }

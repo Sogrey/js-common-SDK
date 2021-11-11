@@ -1,6 +1,7 @@
 export default JSC;
 export { defined } from "./defined";
 export { defaultValue } from "./defaultValue";
+export { DeveloperError } from "./DeveloperError";
 export { CNumber } from "./CNumber/CNumber";
 export { CArray } from "./CArray/CArray";
 export { CString } from "./CString/CString";
@@ -18,6 +19,7 @@ declare namespace JSC {
     export function test(): void;
     export { defined };
     export { defaultValue };
+    export { DeveloperError };
     export { CNumber };
     export { CArray };
     export { CString };
@@ -33,6 +35,7 @@ declare namespace JSC {
 }
 import { defined } from "./defined";
 import { defaultValue } from "./defaultValue";
+import { DeveloperError } from "./DeveloperError";
 import { CNumber } from "./CNumber/CNumber";
 import { CArray } from "./CArray/CArray";
 import { CString } from "./CString/CString";
