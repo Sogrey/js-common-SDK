@@ -117,13 +117,19 @@ export class Vector2 {
         return Math.sqrt(Vector2.magnitudeSquared(v2));
     };
 
+    /**
+     * 设置向量的模长
+     * @param length 模长
+     * @param result 结果向量
+     * @returns 结果向量
+     */
     setLength = (length: number, result?: Vector2) => {
 
-        if (!defined(result)) result = new Vector2();
+        if (!defined(result) || !(result! instanceof Vector2)) result = new Vector2();
 
         Vector2.multiplyByScalar(this.normalize()!, length, result);
 
-        return result;
+        return result!;
 
     }
     /**
@@ -204,11 +210,11 @@ export class Vector2 {
      * @param {Vector2} result The object onto which to store the result.
      * @returns {Vector2} The modified result parameter.
      */
-    static normalize = function (V2: Vector2, result: Vector2) {
-        var magnitude = Vector2.magnitude(V2);
+    static normalize = function (v2: Vector2, result: Vector2) {
+        var magnitude = Vector2.magnitude(v2);
 
-        result.x = V2.x / magnitude;
-        result.y = V2.y / magnitude;
+        result.x = v2.x / magnitude;
+        result.y = v2.y / magnitude;
 
         return result;
     };
@@ -306,7 +312,6 @@ export class Vector2 {
         return result;
     };
 
-
     /**
      * Computes the linear interpolation or extrapolation at t using the provided cartesians.
      *
@@ -399,7 +404,7 @@ export class Vector2 {
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided.
      */
-    clone = (result: Vector2) => {
+    clone = (result: Vector2): Vector2 | undefined => {
         return Vector2.clone(this, result);
     };
 
@@ -414,6 +419,48 @@ export class Vector2 {
         return Vector2.equals(this, right);
     };
 
+    /**
+     * 数组转二维向量
+     * @param array 数组
+     * @param offset 指定数组截取偏移量
+     * @returns 结果向量
+     */
+    fromArray = (array: Array<number>, offset: number = 0) => {
+
+        this.x = array[offset];
+        this.y = array[offset + 1];
+
+        return this;
+    }
+
+    /**
+     * 二维向量转数组，数据压缩
+     * @param offset 指定数组存储开始偏移量
+     * @param result 结果数组
+     * @returns 结果数组
+     */
+    toArray = (offset: number = 0, result?: Array<number>) => {
+        if (!defined(result) || !Array.isArray(result)) result = new Array<number>();
+
+        result[offset] = this.x;
+        result[offset + 1] = this.y;
+
+        return result;
+    }
+
+    /**
+     * 生成随机二位矢量
+     * @param result 生成的结果
+     * @returns 生成的结果
+     */
+    static random = function (result?: Vector2) {
+        if (!defined(result)) result = new Vector2();
+
+        result!.x = Math.random();
+        result!.y = Math.random();
+
+        return result!;
+    }
     /**
      * Creates a string representing this Vector in the format '(x, y)'.
      *

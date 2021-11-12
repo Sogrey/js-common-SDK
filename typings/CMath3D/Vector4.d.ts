@@ -4,5 +4,37 @@ export declare class Vector4 {
     z: number;
     w: number;
     constructor(x?: number, y?: number, z?: number, w?: number);
+    static fromElements: (x: number, y: number, z: number, w: number, result: Vector4) => Vector4;
+    static clone: (v4: Vector4 | Vector4, result: Vector4) => undefined | Vector4;
+    static packedLength: number;
+    static magnitudeSquared: (v4: Vector4) => number;
+    static magnitude: (v4: Vector4) => number;
+    setLength: (length: number, result?: Vector4 | undefined) => Vector4;
+    static distance: (left: Vector4, right: Vector4) => number;
+    static distanceSquared: (left: Vector4, right: Vector4) => number;
+    static add: (left: Vector4, right: Vector4, result?: Vector4 | undefined) => Vector4;
+    add: (right: Vector4) => Vector4;
+    static subtract: (left: Vector4, right: Vector4, result: Vector4) => Vector4;
+    static normalize: (v4: Vector4, result: Vector4) => Vector4;
+    normalize: (result?: Vector4 | undefined) => Vector4 | undefined;
+    static dot: (left: Vector4, right: Vector4) => number;
+    static multiplyByScalar: (v4: Vector4, scalar: number, result?: Vector4 | undefined) => Vector4 | undefined;
+    static divideByScalar: (v4: Vector4, scalar: number, result: Vector4) => Vector4;
+    static negate: (v4: Vector4, result: Vector4) => Vector4;
+    static abs: (v4: Vector4, result: Vector4) => Vector4;
+    static lerp: (start: Vector4, end: Vector4, t: number, result?: Vector4 | undefined) => Vector4;
+    static equals: (left: Vector4, right: Vector4) => boolean;
+    static ZERO: Readonly<Vector4>;
+    static ONE: Readonly<Vector4>;
+    static UNIT_X: Readonly<Vector4>;
+    static UNIT_Y: Readonly<Vector4>;
+    static UNIT_Z: Readonly<Vector4>;
+    static UNIT_W: Readonly<Vector4>;
+    clone: (result: Vector4) => Vector4 | undefined;
+    equals: (right: Vector4) => boolean;
+    fromArray: (array: Array<number>, offset?: number) => this;
+    toArray: (offset?: number, result?: number[] | undefined) => number[];
+    static random: (result?: Vector4 | undefined) => Vector4;
+    toString: () => string;
 }
 //# sourceMappingURL=Vector4.d.ts.map

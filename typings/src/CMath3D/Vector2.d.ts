@@ -11,13 +11,13 @@ export declare class Vector2 {
     static packedLength: number;
     static magnitudeSquared: (v2: Vector2) => number;
     static magnitude: (v2: Vector2) => number;
-    setLength: (length: number, result?: Vector2 | undefined) => Vector2 | undefined;
+    setLength: (length: number, result?: Vector2 | undefined) => Vector2;
     static distance: (left: Vector2, right: Vector2) => number;
     static distanceSquared: (left: Vector2, right: Vector2) => number;
     static add: (left: Vector2, right: Vector2, result?: Vector2 | undefined) => Vector2;
     add: (right: Vector2) => Vector2;
     static subtract: (left: Vector2, right: Vector2, result: Vector2) => Vector2;
-    static normalize: (V2: Vector2, result: Vector2) => Vector2;
+    static normalize: (v2: Vector2, result: Vector2) => Vector2;
     normalize: (result?: Vector2 | undefined) => Vector2 | undefined;
     static dot: (left: Vector2, right: Vector2) => number;
     static cross: (left: Vector2, right: Vector2) => number;
@@ -34,6 +34,9 @@ export declare class Vector2 {
     static UNIT_Y: Readonly<Vector2>;
     clone: (result: Vector2) => Vector2 | undefined;
     equals: (right: Vector2) => boolean;
+    fromArray: (array: Array<number>, offset?: number) => this;
+    toArray: (offset?: number, result?: number[] | undefined) => number[];
+    static random: (result?: Vector2 | undefined) => Vector2;
     toString: () => string;
 }
 //# sourceMappingURL=Vector2.d.ts.map

@@ -6,7 +6,7 @@ export class Vector2 {
         this.x = 0;
         this.y = 0;
         this.setLength = (length, result) => {
-            if (!defined(result))
+            if (!defined(result) || !(result instanceof Vector2))
                 result = new Vector2();
             Vector2.multiplyByScalar(this.normalize(), length, result);
             return result;
@@ -27,6 +27,18 @@ export class Vector2 {
         };
         this.equals = (right) => {
             return Vector2.equals(this, right);
+        };
+        this.fromArray = (array, offset = 0) => {
+            this.x = array[offset];
+            this.y = array[offset + 1];
+            return this;
+        };
+        this.toArray = (offset = 0, result) => {
+            if (!defined(result) || !Array.isArray(result))
+                result = new Array();
+            result[offset] = this.x;
+            result[offset + 1] = this.y;
+            return result;
         };
         this.toString = () => {
             return "(" + this.x + ", " + this.y + ")";
@@ -85,10 +97,10 @@ Vector2.subtract = function (left, right, result) {
     result.y = left.y - right.y;
     return result;
 };
-Vector2.normalize = function (V2, result) {
-    var magnitude = Vector2.magnitude(V2);
-    result.x = V2.x / magnitude;
-    result.y = V2.y / magnitude;
+Vector2.normalize = function (v2, result) {
+    var magnitude = Vector2.magnitude(v2);
+    result.x = v2.x / magnitude;
+    result.y = v2.y / magnitude;
     return result;
 };
 Vector2.dot = function (left, right) {
@@ -145,4 +157,11 @@ Vector2.ZERO = Object.freeze(new Vector2(0.0, 0.0));
 Vector2.ONE = Object.freeze(new Vector2(1.0, 1.0));
 Vector2.UNIT_X = Object.freeze(new Vector2(1.0, 0.0));
 Vector2.UNIT_Y = Object.freeze(new Vector2(0.0, 1.0));
+Vector2.random = function (result) {
+    if (!defined(result))
+        result = new Vector2();
+    result.x = Math.random();
+    result.y = Math.random();
+    return result;
+};
 //# sourceMappingURL=Vector2.js.map
