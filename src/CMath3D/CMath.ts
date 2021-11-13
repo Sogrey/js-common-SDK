@@ -12,13 +12,13 @@ import { DeveloperError } from "../DeveloperError"
 
 export class CMath {
     /**
-* Constraint a value to lie between two values.
-*
-* @param {Number} value The value to constrain.
-* @param {Number} min The minimum value.
-* @param {Number} max The maximum value.
-* @returns {Number} The value clamped so that min <= value <= max.
-*/
+    * Constraint a value to lie between two values.
+    *
+    * @param {Number} value The value to constrain.
+    * @param {Number} min The minimum value.
+    * @param {Number} max The maximum value.
+    * @returns {Number} The value clamped so that min <= value <= max.
+    */
     static clamp = function (value: number, min: number, max: number) {
 
         if (!defined(value)) {
@@ -32,14 +32,15 @@ export class CMath {
         }
 
         return value < min ? min : value > max ? max : value;
-    };/**
-  * Computes <code>Math.acos(value)</code>, but first clamps <code>value</code> to the range [-1.0, 1.0]
-  * so that the function will never return NaN.
-  *
-  * @param {Number} value The value for which to compute acos.
-  * @returns {Number} The acos of the value if the value is in the range [-1.0, 1.0], or the acos of -1.0 or 1.0,
-  *          whichever is closer, if the value is outside the range.
-  */
+    };
+    /**
+     * Computes <code>Math.acos(value)</code>, but first clamps <code>value</code> to the range [-1.0, 1.0]
+     * so that the function will never return NaN.
+     *
+     * @param {Number} value The value for which to compute acos.
+     * @returns {Number} The acos of the value if the value is in the range [-1.0, 1.0], or the acos of -1.0 or 1.0,
+     *          whichever is closer, if the value is outside the range.
+     */
     static acosClamped = function (value: number) {
 
         if (!defined(value)) {
@@ -47,5 +48,19 @@ export class CMath {
         }
 
         return Math.acos(CMath.clamp(value, -1.0, 1.0));
+    };
+    /**
+     * Computes the linear interpolation of two values.
+     *
+     * @param {Number} p The start value to interpolate.
+     * @param {Number} q The end value to interpolate.
+     * @param {Number} time The time of interpolation generally in the range <code>[0.0, 1.0]</code>.
+     * @returns {Number} The linearly interpolated value.
+     *
+     * @example
+     * var n = Cesium.Math.lerp(0.0, 2.0, 0.5); // returns 1.0
+     */
+    static lerp = function (p: number, q: number, time: number) {
+        return (1.0 - time) * p + time * q;
     };
 }

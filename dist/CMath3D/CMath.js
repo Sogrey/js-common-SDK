@@ -20,4 +20,7 @@ CMath.acosClamped = function (value) {
     }
     return Math.acos(CMath.clamp(value, -1.0, 1.0));
 };
+CMath.lerp = function (p, q, time) {
+    return (1.0 - time) * p + time * q;
+};
 //# sourceMappingURL=CMath.js.map
