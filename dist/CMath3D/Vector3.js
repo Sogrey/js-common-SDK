@@ -129,6 +129,24 @@ Vector3.cross = function (left, right, result) {
     result.z = z;
     return result;
 };
+Vector3.midpoint = function (left, right, result) {
+    result.x = (left.x + right.x) * 0.5;
+    result.y = (left.y + right.y) * 0.5;
+    result.z = (left.z + right.z) * 0.5;
+    return result;
+};
+Vector3.multiplyComponents = function (left, right, result) {
+    result.x = left.x * right.x;
+    result.y = left.y * right.y;
+    result.z = left.z * right.z;
+    return result;
+};
+Vector3.divideComponents = function (left, right, result) {
+    result.x = left.x / right.x;
+    result.y = left.y / right.y;
+    result.z = left.z / right.z;
+    return result;
+};
 Vector3.multiplyByScalar = function (v3, scalar, result) {
     if (!defined(result))
         result = new Vector3();

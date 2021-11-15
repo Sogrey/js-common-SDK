@@ -66,6 +66,16 @@ Vector4.fromElements = function (x, y, z, w, result) {
     result.w = w;
     return result;
 };
+Vector4.fromColor = function (color, result) {
+    if (!defined(result)) {
+        return new Vector4(color.r, color.g, color.b, color.a);
+    }
+    result.x = color.r;
+    result.y = color.g;
+    result.z = color.b;
+    result.w = color.a;
+    return result;
+};
 Vector4.clone = function (v4, result) {
     if (!defined(v4)) {
         return undefined;
@@ -122,6 +132,20 @@ Vector4.normalize = function (v4, result) {
 };
 Vector4.dot = function (left, right) {
     return (left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w);
+};
+Vector4.multiplyComponents = function (left, right, result) {
+    result.x = left.x * right.x;
+    result.y = left.y * right.y;
+    result.z = left.z * right.z;
+    result.w = left.w * right.w;
+    return result;
+};
+Vector4.divideComponents = function (left, right, result) {
+    result.x = left.x / right.x;
+    result.y = left.y / right.y;
+    result.z = left.z / right.z;
+    result.w = left.w / right.w;
+    return result;
 };
 Vector4.multiplyByScalar = function (v4, scalar, result) {
     if (!defined(result))

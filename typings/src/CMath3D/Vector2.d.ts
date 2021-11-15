@@ -1,13 +1,12 @@
-import { Vector3 } from "./Vector3";
 import { Vector4 } from "./Vector4";
 export declare class Vector2 {
     x: number;
     y: number;
     constructor(x?: number, y?: number);
     static fromElements: (x: number, y: number, result: Vector2) => Vector2;
-    static clone: (v2: Vector2 | Vector3 | Vector4, result: Vector2) => undefined | Vector2;
-    static fromVector3: (v2: Vector2 | Vector3 | Vector4, result: Vector2) => undefined | Vector2;
-    static fromVector4: (v2: Vector2 | Vector3 | Vector4, result: Vector2) => undefined | Vector2;
+    static clone: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
+    static fromVector3: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
+    static fromVector4: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
     static packedLength: number;
     static magnitudeSquared: (v2: Vector2) => number;
     static magnitude: (v2: Vector2) => number;
@@ -21,6 +20,9 @@ export declare class Vector2 {
     normalize: (result?: Vector2 | undefined) => Vector2 | undefined;
     static dot: (left: Vector2, right: Vector2) => number;
     static cross: (left: Vector2, right: Vector2) => number;
+    static midpoint: (left: Vector2, right: Vector2, result: Vector2) => Vector2;
+    static multiplyComponents: (left: Vector2, right: Vector2, result: Vector2) => Vector2;
+    static divideComponents: (left: Vector2, right: Vector2, result: Vector2) => Vector2;
     static multiplyByScalar: (v2: Vector2, scalar: number, result?: Vector2 | undefined) => Vector2 | undefined;
     static divideByScalar: (v2: Vector2, scalar: number, result: Vector2) => Vector2;
     static negate: (v2: Vector2, result: Vector2) => Vector2;

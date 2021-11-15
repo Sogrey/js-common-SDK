@@ -1,3 +1,4 @@
+import { Color } from "./Color";
 export declare class Vector4 {
     x: number;
     y: number;
@@ -5,6 +6,7 @@ export declare class Vector4 {
     w: number;
     constructor(x?: number, y?: number, z?: number, w?: number);
     static fromElements: (x: number, y: number, z: number, w: number, result: Vector4) => Vector4;
+    static fromColor: (color: Color, result: Vector4) => Vector4;
     static clone: (v4: Vector4 | Vector4, result: Vector4) => undefined | Vector4;
     static packedLength: number;
     static magnitudeSquared: (v4: Vector4) => number;
@@ -18,6 +20,8 @@ export declare class Vector4 {
     static normalize: (v4: Vector4, result: Vector4) => Vector4;
     normalize: (result?: Vector4 | undefined) => Vector4 | undefined;
     static dot: (left: Vector4, right: Vector4) => number;
+    static multiplyComponents: (left: Vector4, right: Vector4, result: Vector4) => Vector4;
+    static divideComponents: (left: Vector4, right: Vector4, result: Vector4) => Vector4;
     static multiplyByScalar: (v4: Vector4, scalar: number, result?: Vector4 | undefined) => Vector4 | undefined;
     static divideByScalar: (v4: Vector4, scalar: number, result: Vector4) => Vector4;
     static negate: (v4: Vector4, result: Vector4) => Vector4;

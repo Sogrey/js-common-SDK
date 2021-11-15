@@ -272,6 +272,49 @@ export class Vector3 {
     return result;
   };
 
+  /**
+  * Computes the midpoint between the right and left Vector.
+  * @param {Vector3} left The first Vector.
+  * @param {Vector3} right The second Vector.
+  * @param {Vector3} result The object onto which to store the result.
+  * @returns {Vector3} The midpoint.
+  */
+  static midpoint = function (left: Vector3, right: Vector3, result: Vector3) {
+    result.x = (left.x + right.x) * 0.5;
+    result.y = (left.y + right.y) * 0.5;
+    result.z = (left.z + right.z) * 0.5;
+
+    return result;
+  };
+  /**
+   * Computes the componentwise product of two Vectors.
+   *
+   * @param {Vector3} left The first Vector.
+   * @param {Vector3} right The second Vector.
+   * @param {Vector3} result The object onto which to store the result.
+   * @returns {Vector3} The modified result parameter.
+   */
+  static multiplyComponents = function (left: Vector3, right: Vector3, result: Vector3) {
+    result.x = left.x * right.x;
+    result.y = left.y * right.y;
+    result.z = left.z * right.z;
+    return result;
+  };
+
+  /**
+   * Computes the componentwise quotient of two Vectors.
+   *
+   * @param {Vector3} left The first Vector.
+   * @param {Vector3} right The second Vector.
+   * @param {Vector3} result The object onto which to store the result.
+   * @returns {Vector3} The modified result parameter.
+   */
+  static divideComponents = function (left: Vector3, right: Vector3, result: Vector3) {
+    result.x = left.x / right.x;
+    result.y = left.y / right.y;
+    result.z = left.z / right.z;
+    return result;
+  };
 
   /**
    * Multiplies the provided Vector componentwise by the provided scalar.

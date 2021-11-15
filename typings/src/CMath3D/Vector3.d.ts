@@ -20,6 +20,9 @@ export declare class Vector3 {
     normalize: (result?: Vector3 | undefined) => Vector3 | undefined;
     static dot: (left: Vector3, right: Vector3) => number;
     static cross: (left: Vector3, right: Vector3, result: Vector3) => Vector3;
+    static midpoint: (left: Vector3, right: Vector3, result: Vector3) => Vector3;
+    static multiplyComponents: (left: Vector3, right: Vector3, result: Vector3) => Vector3;
+    static divideComponents: (left: Vector3, right: Vector3, result: Vector3) => Vector3;
     static multiplyByScalar: (v3: Vector3, scalar: number, result?: Vector3 | undefined) => Vector3 | undefined;
     static divideByScalar: (v3: Vector3, scalar: number, result: Vector3) => Vector3;
     static negate: (v3: Vector3, result: Vector3) => Vector3;

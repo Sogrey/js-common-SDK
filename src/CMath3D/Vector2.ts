@@ -52,11 +52,11 @@ export class Vector2 {
     /**
      * Duplicates a Vector2 instance.
      *
-     * @param {Vector2 | Vector3 | Vector4} v2 The Vector to duplicate.
+     * @param {Vector2 | Vector2 | Vector4} v2 The Vector to duplicate.
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided. (Returns undefined if v2 is undefined)
      */
-    static clone = function (v2: Vector2 | Vector3 | Vector4, result: Vector2): undefined | Vector2 {
+    static clone = function (v2: Vector2 | Vector2 | Vector4, result: Vector2): undefined | Vector2 {
         if (!defined(v2)) {
             return undefined;
         }
@@ -70,11 +70,11 @@ export class Vector2 {
     };
 
     /**
-     * Creates a Vector2 instance from an existing Vector3.  This simply takes the
-     * x and y properties of the Vector3 and drops z.
+     * Creates a Vector2 instance from an existing Vector2.  This simply takes the
+     * x and y properties of the Vector2 and drops z.
      * @function
      *
-     * @param {Vector3} v3 The Vector3 instance to create a Vector2 instance from.
+     * @param {Vector2} v3 The Vector2 instance to create a Vector2 instance from.
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided.
      */
@@ -167,7 +167,7 @@ export class Vector2 {
         return Vector2.magnitudeSquared(distanceScratch);
     };
     /**
-     * Computes the componentwise sum of two Cartesians.
+     * Computes the componentwise sum of two Vectors.
      *
      * @param {Vector2} left The first Vector.
      * @param {Vector2} right The second Vector.
@@ -181,7 +181,7 @@ export class Vector2 {
         return result!;
     };
     /**
-     * Computes the componentwise sum of two Cartesians.
+     * Computes the componentwise sum of two Vectors.
      *
      * @param {Vector2} right The second Vector.
      * @returns {Vector2} The modified result parameter.
@@ -190,7 +190,7 @@ export class Vector2 {
         return Vector2.add(this, right, this);
     };
     /**
-     * Computes the componentwise difference of two Cartesians.
+     * Computes the componentwise difference of two Vectors.
      *
      * @param {Vector2} left The first Vector.
      * @param {Vector2} right The second Vector.
@@ -235,7 +235,7 @@ export class Vector2 {
     };
 
     /**
-     * Computes the dot (scalar) product of two Cartesians.
+     * Computes the dot (scalar) product of two Vectors.
      *
      * @param {Vector2} left The first Vector.
      * @param {Vector2} right The second Vector.
@@ -256,6 +256,46 @@ export class Vector2 {
         return left.x * right.y - left.y * right.x;
     };
 
+    /**
+     * Computes the midpoint between the right and left Vector.
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The midpoint.
+     */
+    static midpoint = function (left: Vector2, right: Vector2, result: Vector2) {
+        result.x = (left.x + right.x) * 0.5;
+        result.y = (left.y + right.y) * 0.5;
+        return result;
+    };
+
+    /**
+     * Computes the componentwise product of two Vectors.
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static multiplyComponents = function (left: Vector2, right: Vector2, result: Vector2) {
+        result.x = left.x * right.x;
+        result.y = left.y * right.y;
+        return result;
+    };
+
+    /**
+     * Computes the componentwise quotient of two Vectors.
+     *
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static divideComponents = function (left: Vector2, right: Vector2, result: Vector2) {
+        result.x = left.x / right.x;
+        result.y = left.y / right.y;
+        return result;
+    };
 
     /**
      * Multiplies the provided Vector componentwise by the provided scalar.
@@ -332,11 +372,11 @@ export class Vector2 {
 
 
     /**
-     * Returns the angle, in radians, between the provided Cartesians.
+     * Returns the angle, in radians, between the provided Vectors.
      *
      * @param {Vector2} left The first Vector.
      * @param {Vector2} right The second Vector.
-     * @returns {Number} The angle between the Cartesians.
+     * @returns {Number} The angle between the Vectors.
      */
     static angleBetween = function (left: Vector2, right: Vector2) {
         let angleBetweenScratch = new Vector2();
@@ -349,7 +389,7 @@ export class Vector2 {
         );
     };
     /**
-     * Compares the provided Cartesians componentwise and returns
+     * Compares the provided Vectors componentwise and returns
      * <code>true</code> if they are equal, <code>false</code> otherwise.
      *
      * @param {Vector2} [left] The first Vector.

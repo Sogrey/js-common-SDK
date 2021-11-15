@@ -10,6 +10,7 @@ import { defined } from "../defined"
 import { defaultValue } from "../defaultValue"
 
 import { CMath } from "./CMath"
+import { Color } from "./Color";
 
 export class Vector4 {
   x: number = 0; y: number = 0; z: number = 0; w: number = 0;
@@ -60,6 +61,26 @@ export class Vector4 {
     result.y = y;
     result.z = z;
     result.w = w;
+    return result;
+  };
+
+  /**
+   * Creates a Vector4 instance from a {@link Color}. <code>red</code>, <code>green</code>, <code>blue</code>,
+   * and <code>alpha</code> map to <code>x</code>, <code>y</code>, <code>z</code>, and <code>w</code>, respectively.
+   *
+   * @param {Color} color The source color.
+   * @param {Vector4} [result] The object onto which to store the result.
+   * @returns {Vector4} The modified result parameter or a new Vector4 instance if one was not provided.
+   */
+  static fromColor = function (color: Color, result: Vector4) {
+    if (!defined(result)) {
+      return new Vector4(color.r, color.g, color.b, color.a);
+    }
+
+    result.x = color.r;
+    result.y = color.g;
+    result.z = color.b;
+    result.w = color.a;
     return result;
   };
 
@@ -161,7 +182,7 @@ export class Vector4 {
     return Vector4.magnitudeSquared(distanceScratch);
   };
   /**
-   * Computes the componentwise sum of two Cartesians.
+   * Computes the componentwise sum of two Vectors.
    *
    * @param {Vector4} left The first Vector.
    * @param {Vector4} right The second Vector.
@@ -177,7 +198,7 @@ export class Vector4 {
     return result!;
   };
   /**
-   * Computes the componentwise sum of two Cartesians.
+   * Computes the componentwise sum of two Vectors.
    *
    * @param {Vector4} right The second Vector.
    * @returns {Vector4} The modified result parameter.
@@ -186,7 +207,7 @@ export class Vector4 {
     return Vector4.add(this, right, this);
   };
   /**
-   * Computes the componentwise difference of two Cartesians.
+   * Computes the componentwise difference of two Vectors.
    *
    * @param {Vector4} left The first Vector.
    * @param {Vector4} right The second Vector.
@@ -237,7 +258,7 @@ export class Vector4 {
   };
 
   /**
-   * Computes the dot (scalar) product of two Cartesians.
+   * Computes the dot (scalar) product of two Vectors.
    *
    * @param {Vector4} left The first Vector.
    * @param {Vector4} right The second Vector.
@@ -247,6 +268,40 @@ export class Vector4 {
     return (
       left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w
     );
+  };
+
+
+
+  /**
+   * Computes the componentwise product of two Vectors.
+   *
+   * @param {Vector4} left The first Vector.
+   * @param {Vector4} right The second Vector.
+   * @param {Vector4} result The object onto which to store the result.
+   * @returns {Vector4} The modified result parameter.
+   */
+  static multiplyComponents = function (left: Vector4, right: Vector4, result: Vector4) {
+    result.x = left.x * right.x;
+    result.y = left.y * right.y;
+    result.z = left.z * right.z;
+    result.w = left.w * right.w;
+    return result;
+  };
+
+  /**
+   * Computes the componentwise quotient of two Vectors.
+   *
+   * @param {Vector4} left The first Vector.
+   * @param {Vector4} right The second Vector.
+   * @param {Vector4} result The object onto which to store the result.
+   * @returns {Vector4} The modified result parameter.
+   */
+  static divideComponents = function (left: Vector4, right: Vector4, result: Vector4) {
+    result.x = left.x / right.x;
+    result.y = left.y / right.y;
+    result.z = left.z / right.z;
+    result.w = left.w / right.w;
+    return result;
   };
 
   /**
@@ -333,7 +388,7 @@ export class Vector4 {
   };
 
   /**
-   * Compares the provided Cartesians componentwise and returns
+   * Compares the provided Vectors componentwise and returns
    * <code>true</code> if they are equal, <code>false</code> otherwise.
    *
    * @param {Vector4} [left] The first Vector.

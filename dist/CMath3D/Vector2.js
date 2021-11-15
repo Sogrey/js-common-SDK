@@ -109,6 +109,21 @@ Vector2.dot = function (left, right) {
 Vector2.cross = function (left, right) {
     return left.x * right.y - left.y * right.x;
 };
+Vector2.midpoint = function (left, right, result) {
+    result.x = (left.x + right.x) * 0.5;
+    result.y = (left.y + right.y) * 0.5;
+    return result;
+};
+Vector2.multiplyComponents = function (left, right, result) {
+    result.x = left.x * right.x;
+    result.y = left.y * right.y;
+    return result;
+};
+Vector2.divideComponents = function (left, right, result) {
+    result.x = left.x / right.x;
+    result.y = left.y / right.y;
+    return result;
+};
 Vector2.multiplyByScalar = function (v2, scalar, result) {
     if (!defined(result))
         result = new Vector2();
