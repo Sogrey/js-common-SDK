@@ -11,6 +11,7 @@ import { defaultValue } from "../defaultValue"
 
 import { CMath } from "./CMath"
 import { Vector2 } from "./Vector2"
+import { Matrix3 } from "./Matrix3"
 
 export class Matrix2 {
     /**
@@ -20,7 +21,26 @@ export class Matrix2 {
      *  0.0, 0.0]
      * </code></pre>
      */
-    elements: number[] = [0, 0, 0, 0];
+    elements: number[] = [
+        0, 0,
+        0, 0
+    ];
+    /**
+     * A 2x2 matrix, indexable as a column-major order array.
+     * Constructor parameters are in row-major order for code readability.
+     * @alias Matrix2
+     * @constructor
+     * @implements {ArrayLike<number>}
+     *
+     * @param {Number} [column0Row0=0.0] The value for column 0, row 0.
+     * @param {Number} [column1Row0=0.0] The value for column 1, row 0.
+     * @param {Number} [column0Row1=0.0] The value for column 0, row 1.
+     * @param {Number} [column1Row1=0.0] The value for column 1, row 1.
+     * 
+     * 
+     * @see Matrix3
+     * @see Matrix4
+     */
     constructor(column0Row0?: number, column1Row0?: number, column0Row1?: number, column1Row1?: number) {
 
         this.elements[0] = defaultValue(column0Row0, 0.0);
@@ -87,7 +107,7 @@ export class Matrix2 {
      * @param {Matrix2} [result] The object onto which to store the result.
      * @returns {Matrix2} The modified result parameter or a new Matrix2 instance if one was not provided. (Returns undefined if matrix is undefined)
      */
-    static clone = function (matrix: Matrix2, result: Matrix2): Matrix2|undefined {
+    static clone = function (matrix: Matrix2, result: Matrix2): Matrix2 | undefined {
         if (!defined(matrix)) {
             return undefined;
         }

@@ -1,0 +1,1 @@
+{"version":3,"file":"Quaternion.d.ts","sourceRoot":"","sources":["../../src/CMath3D/Quaternion.ts"],"names":[],"mappings":"AAaA,qBAAa,UAAU;IACnB,CAAC,EAAE,MAAM,CAAK;IACd,CAAC,EAAE,MAAM,CAAK;IACd,CAAC,EAAE,MAAM,CAAK;IACd,CAAC,EAAE,MAAM,CAAK;gBAaV,CAAC,CAAC,EAAE,MAAM,EACV,CAAC,CAAC,EAAE,MAAM,EACV,CAAC,CAAC,EAAE,MAAM,EACV,CAAC,CAAC,EAAE,MAAM;CA8BjB"}

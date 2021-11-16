@@ -3,7 +3,10 @@ import { defaultValue } from "../defaultValue";
 import { Vector2 } from "./Vector2";
 export class Matrix2 {
     constructor(column0Row0, column1Row0, column0Row1, column1Row1) {
-        this.elements = [0, 0, 0, 0];
+        this.elements = [
+            0, 0,
+            0, 0
+        ];
         this.clone = (result) => {
             return Matrix2.clone(this, result);
         };
