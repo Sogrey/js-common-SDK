@@ -1,3 +1,4 @@
+import { clone } from "./clone";
 import { defined } from "./defined";
 import { defaultValue } from "./defaultValue";
 import { DeveloperError } from './DeveloperError';
@@ -16,6 +17,7 @@ import { CMath3D } from './CMath3D/CMath3D';
 declare const JSC: {
     VERSION: string;
     test: () => void;
+    clone: typeof clone;
     defined: typeof defined;
     defaultValue: typeof defaultValue;
     DeveloperError: typeof DeveloperError;
@@ -33,6 +35,7 @@ declare const JSC: {
     CMath3D: typeof CMath3D;
 };
 export default JSC;
+export { clone } from "./clone";
 export { defined } from "./defined";
 export { defaultValue } from "./defaultValue";
 export { DeveloperError } from './DeveloperError';

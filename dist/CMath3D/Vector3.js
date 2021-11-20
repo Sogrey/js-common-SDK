@@ -24,6 +24,7 @@ export class Vector3 {
             return result;
         };
         this.clone = (result) => {
+            result = defaultValue(result, new Vector3);
             return Vector3.clone(this, result);
         };
         this.equals = (right) => {
@@ -58,6 +59,15 @@ Vector3.fromElements = function (x, y, z, result) {
     result.x = x;
     result.y = y;
     result.z = z;
+    return result;
+};
+Vector3.fromQuaternion = function (quaternion, result) {
+    if (!defined(result)) {
+        return new Vector3(quaternion.x, quaternion.y, quaternion.z);
+    }
+    result.x = quaternion.x;
+    result.y = quaternion.y;
+    result.z = quaternion.z;
     return result;
 };
 Vector3.clone = function (v3, result) {

@@ -12,6 +12,8 @@ import { defaultValue } from "../defaultValue"
 import { CMath } from "./CMath"
 import { Vector2 } from "./Vector2"
 import { Matrix3 } from "./Matrix3"
+import { Matrix4 } from "./Matrix4"
+
 
 export class Matrix2 {
     /**
@@ -72,7 +74,7 @@ export class Matrix2 {
         array[startingIndex++] = value.elements[0];
         array[startingIndex++] = value.elements[1];
         array[startingIndex++] = value.elements[2];
-        array[startingIndex++] = value.elements[3];
+        array[startingIndex] = value.elements[3];
 
         return array;
     };
@@ -435,6 +437,16 @@ export class Matrix2 {
      * @constant
      */
     static ZERO: Matrix2 = Object.freeze(new Matrix2(0.0, 0.0, 0.0, 0.0));
+
+    /**
+     * Gets the number of items in the collection.
+     * @memberof Matrix2.prototype
+     *
+     * @type {Number}
+     */
+     length = () => {
+        return Matrix2.packedLength;
+    }
 
     /**
      * Duplicates the provided Matrix2 instance.

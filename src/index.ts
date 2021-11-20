@@ -2,6 +2,7 @@
  * This is the doc comment for @sogrey/js-common-sdk
  *
  */
+import { clone } from "./clone"
 import { defined } from "./defined"
 import { defaultValue } from "./defaultValue"
 import { DeveloperError } from './DeveloperError';
@@ -28,9 +29,10 @@ const JSC = {
         console.log("Hi,It's running.");
     },
 
+    clone: clone,
     defined: defined,
     defaultValue: defaultValue,
-    DeveloperError:DeveloperError,
+    DeveloperError: DeveloperError,
     CNumber: CNumber,
     CArray: CArray,
     CString: CString,
@@ -47,6 +49,7 @@ const JSC = {
 
 export default JSC;
 
+export { clone } from "./clone"
 export { defined } from "./defined"
 export { defaultValue } from "./defaultValue"
 export { DeveloperError } from './DeveloperError';

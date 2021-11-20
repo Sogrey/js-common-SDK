@@ -9,7 +9,9 @@
  * @returns {*} Returns the first parameter if not undefined, otherwise the second parameter.
  *
  * @example
+ * <pre><code>
  * param = defaultValue(param, 'default');
+ * </code></pre>
  */
 export function defaultValue(a: any, b: any) {
     if (a !== undefined && a !== null) {

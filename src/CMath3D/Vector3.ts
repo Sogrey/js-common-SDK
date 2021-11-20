@@ -11,6 +11,7 @@ import { defaultValue } from "../defaultValue"
 
 import { CMath } from "./CMath"
 import { Vector4 } from "./Vector4"
+import { Quaternion } from "./Quaternion";
 
 export class Vector3 {
   x: number = 0; y: number = 0; z: number = 0;
@@ -55,7 +56,23 @@ export class Vector3 {
     result.z = z;
     return result;
   };
+  /**
+   * Creates a Vector3 instance from Quaternion.
+   *
+   * @param {Quaternion} quaternion.
+   * @param {Vector3} [result] The object onto which to store the result.
+   * @returns {Vector3} The modified result parameter or a new Vector3 instance if one was not provided.
+   */
+  static fromQuaternion = function (quaternion: Quaternion, result: Vector3): Vector3 {
+    if (!defined(result)) {
+      return new Vector3(quaternion.x, quaternion.y, quaternion.z);
+    }
 
+    result.x = quaternion.x;
+    result.y = quaternion.y;
+    result.z = quaternion.z;
+    return result;
+  };
   /**
    * Duplicates a Vector3 instance.
    *
@@ -92,7 +109,7 @@ export class Vector3 {
    * The number of elements used to pack the object into an array.
    * @type {Number}
    */
-  static packedLength = 3;
+  static packedLength: number = 3;
 
   /**
    * Computes the provided Vector3's squared magnitude.
@@ -100,7 +117,7 @@ export class Vector3 {
    * @param {Vector3} v3 The Vector3 instance whose squared magnitude is to be computed.
    * @returns {Number} The squared magnitude.
    */
-  static magnitudeSquared = function (v3: Vector3) {
+  static magnitudeSquared = function (v3: Vector3): number {
     return v3.x * v3.x + v3.y * v3.y + v3.z * v3.z;
   };
 
@@ -110,7 +127,7 @@ export class Vector3 {
    * @param {Vector3} v3 The Vector3 instance whose magnitude is to be computed.
    * @returns {Number} The magnitude.
    */
-  static magnitude = function (v3: Vector3) {
+  static magnitude = function (v3: Vector3): number {
     return Math.sqrt(Vector3.magnitudeSquared(v3));
   };
 
@@ -127,7 +144,6 @@ export class Vector3 {
     Vector3.multiplyByScalar(this.normalize()!, length, result);
 
     return result!;
-
   }
   /**
    * Computes the distance between two points.
@@ -140,7 +156,7 @@ export class Vector3 {
    * 
    * var d = static distance(new Vector3(1.0, 0.0, 0.0), new Vector3(2.0, 0.0, 0.0));
    */
-  static distance = function (left: Vector3, right: Vector3) {
+  static distance = function (left: Vector3, right: Vector3): number {
     var distanceScratch = new Vector3();
     Vector3.subtract(left, right, distanceScratch);
     return Vector3.magnitude(distanceScratch);
@@ -158,7 +174,7 @@ export class Vector3 {
    * 
    * var d = static distance(new Vector3(1.0, 0.0, 0.0), new Vector3(3.0, 0.0, 0.0));
    */
-  static distanceSquared = function (left: Vector3, right: Vector3) {
+  static distanceSquared = function (left: Vector3, right: Vector3): number {
     var distanceScratch = new Vector3();
     Vector3.subtract(left, right, distanceScratch);
     return Vector3.magnitudeSquared(distanceScratch);
@@ -171,7 +187,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static add = function (left: Vector3, right: Vector3, result?: Vector3) {
+  static add = function (left: Vector3, right: Vector3, result?: Vector3): Vector3 {
     if (!defined(result)) result = new Vector3();
     result!.x = left.x + right.x;
     result!.y = left.y + right.y;
@@ -184,7 +200,7 @@ export class Vector3 {
    * @param {Vector3} right The second Vector.
    * @returns {Vector3} The modified result parameter.
    */
-  add = (right: Vector3) => {
+  add = (right: Vector3): Vector3 => {
     return Vector3.add(this, right, this);
   };
   /**
@@ -195,7 +211,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static subtract = function (left: Vector3, right: Vector3, result: Vector3) {
+  static subtract = function (left: Vector3, right: Vector3, result: Vector3): Vector3 {
     result.x = left.x - right.x;
     result.y = left.y - right.y;
     result.y = left.z - right.z;
@@ -209,7 +225,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static normalize = function (v3: Vector3, result: Vector3) {
+  static normalize = function (v3: Vector3, result: Vector3): Vector3 {
     var magnitude = Vector3.magnitude(v3);
 
     result.x = v3.x / magnitude;
@@ -224,7 +240,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  normalize = (result?: Vector3) => {
+  normalize = (result?: Vector3): Vector3 => {
     if (!defined(result)) result = new Vector3();
     var magnitude = Vector3.magnitude(this);
 
@@ -232,7 +248,7 @@ export class Vector3 {
     result!.y = this.y / magnitude;
     result!.z = this.z / magnitude;
 
-    return result;
+    return result!;
   };
 
   /**
@@ -242,7 +258,7 @@ export class Vector3 {
    * @param {Vector3} right The second Vector.
    * @returns {Number} The dot product.
    */
-  static dot = function (left: Vector3, right: Vector3) {
+  static dot = function (left: Vector3, right: Vector3): number {
     return left.x * right.x + left.y * right.y + left.z * right.z;
   };
 
@@ -254,7 +270,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The cross product.
    */
-  static cross = function (left: Vector3, right: Vector3, result: Vector3) {
+  static cross = function (left: Vector3, right: Vector3, result: Vector3): Vector3 {
     var leftX = left.x;
     var leftY = left.y;
     var leftZ = left.z;
@@ -279,7 +295,7 @@ export class Vector3 {
   * @param {Vector3} result The object onto which to store the result.
   * @returns {Vector3} The midpoint.
   */
-  static midpoint = function (left: Vector3, right: Vector3, result: Vector3) {
+  static midpoint = function (left: Vector3, right: Vector3, result: Vector3): Vector3 {
     result.x = (left.x + right.x) * 0.5;
     result.y = (left.y + right.y) * 0.5;
     result.z = (left.z + right.z) * 0.5;
@@ -294,7 +310,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static multiplyComponents = function (left: Vector3, right: Vector3, result: Vector3) {
+  static multiplyComponents = function (left: Vector3, right: Vector3, result: Vector3): Vector3 {
     result.x = left.x * right.x;
     result.y = left.y * right.y;
     result.z = left.z * right.z;
@@ -309,7 +325,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static divideComponents = function (left: Vector3, right: Vector3, result: Vector3) {
+  static divideComponents = function (left: Vector3, right: Vector3, result: Vector3): Vector3 {
     result.x = left.x / right.x;
     result.y = left.y / right.y;
     result.z = left.z / right.z;
@@ -324,12 +340,12 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static multiplyByScalar = function (v3: Vector3, scalar: number, result?: Vector3) {
+  static multiplyByScalar = function (v3: Vector3, scalar: number, result?: Vector3): Vector3 {
     if (!defined(result)) result = new Vector3();
     result!.x = v3.x * scalar;
     result!.y = v3.y * scalar;
     result!.z = v3.z * scalar;
-    return result;
+    return result!;
   };
 
   /**
@@ -340,7 +356,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static divideByScalar = function (v3: Vector3, scalar: number, result: Vector3) {
+  static divideByScalar = function (v3: Vector3, scalar: number, result: Vector3): Vector3 {
     result.x = v3.x / scalar;
     result.y = v3.y / scalar;
     result.z = v3.z / scalar;
@@ -354,7 +370,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static negate = function (v3: Vector3, result: Vector3) {
+  static negate = function (v3: Vector3, result: Vector3): Vector3 {
     result.x = -v3.x;
     result.y = -v3.y;
     result.z = -v3.z;
@@ -368,7 +384,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static abs = function (v3: Vector3, result: Vector3) {
+  static abs = function (v3: Vector3, result: Vector3): Vector3 {
     result.x = Math.abs(v3.x);
     result.y = Math.abs(v3.y);
     result.z = Math.abs(v3.z);
@@ -384,7 +400,7 @@ export class Vector3 {
    * @param {Vector3} result The object onto which to store the result.
    * @returns {Vector3} The modified result parameter.
    */
-  static lerp = function (start: Vector3, end: Vector3, t: number, result?: Vector3) {
+  static lerp = function (start: Vector3, end: Vector3, t: number, result?: Vector3): Vector3 {
     if (!defined(result)) result = new Vector3();
     let lerpScratch = new Vector3();
 
@@ -401,7 +417,7 @@ export class Vector3 {
    * @param {Vector3} right The second Vector.
    * @returns {Number} The angle between the Cartesians.
    */
-  static angleBetween = function (left: Vector3, right: Vector3) {
+  static angleBetween = function (left: Vector3, right: Vector3): number {
     let angleBetweenScratch = new Vector3();
     let angleBetweenScratch2 = new Vector3();
 
@@ -425,7 +441,7 @@ export class Vector3 {
    * @param {Vector3} [right] The second Vector.
    * @returns {Boolean} <code>true</code> if left and right are equal, <code>false</code> otherwise.
    */
-  static equals = function (left: Vector3, right: Vector3) {
+  static equals = function (left: Vector3, right: Vector3): boolean {
     return (
       left === right ||
       (defined(left) &&
@@ -442,7 +458,7 @@ export class Vector3 {
    * @type {Vector3}
    * @constant
    */
-  static ZERO = Object.freeze(new Vector3(0.0, 0.0, 0.0));
+  static ZERO: Vector3 = Object.freeze(new Vector3(0.0, 0.0, 0.0));
 
   /**
    * An immutable Vector3 instance initialized to (1.0, 1.0, 1.0).
@@ -450,7 +466,7 @@ export class Vector3 {
    * @type {Vector3}
    * @constant
    */
-  static ONE = Object.freeze(new Vector3(1.0, 1.0, 1.0));
+  static ONE: Vector3 = Object.freeze(new Vector3(1.0, 1.0, 1.0));
 
   /**
    * An immutable Vector3 instance initialized to (1.0, 0.0, 0.0).
@@ -458,7 +474,7 @@ export class Vector3 {
    * @type {Vector3}
    * @constant
    */
-  static UNIT_X = Object.freeze(new Vector3(1.0, 0.0, 0.0));
+  static UNIT_X: Vector3 = Object.freeze(new Vector3(1.0, 0.0, 0.0));
 
   /**
    * An immutable Vector3 instance initialized to (0.0, 1.0, 0.0).
@@ -466,7 +482,7 @@ export class Vector3 {
    * @type {Vector3}
    * @constant
    */
-  static UNIT_Y = Object.freeze(new Vector3(0.0, 1.0, 0.0));
+  static UNIT_Y: Vector3 = Object.freeze(new Vector3(0.0, 1.0, 0.0));
 
   /**
    * An immutable Vector3 instance initialized to (0.0, 0.0, 1.0).
@@ -474,7 +490,7 @@ export class Vector3 {
    * @type {Vector3}
    * @constant
    */
-  static UNIT_Z = Object.freeze(new Vector3(0.0, 0.0, 1.0));
+  static UNIT_Z: Vector3 = Object.freeze(new Vector3(0.0, 0.0, 1.0));
 
   /**
    * Duplicates this Vector3 instance.
@@ -482,8 +498,9 @@ export class Vector3 {
    * @param {Vector3} [result] The object onto which to store the result.
    * @returns {Vector3} The modified result parameter or a new Vector3 instance if one was not provided.
    */
-  clone = (result: Vector3): Vector3 | undefined => {
-    return Vector3.clone(this, result);
+  clone = (result?: Vector3): Vector3 => {
+    result = defaultValue(result, new Vector3);
+    return Vector3.clone(this, result!)!;
   };
 
   /**
@@ -493,7 +510,7 @@ export class Vector3 {
    * @param {Vector3} [right] The right hand side Vector.
    * @returns {Boolean} <code>true</code> if they are equal, <code>false</code> otherwise.
    */
-  equals = (right: Vector3) => {
+  equals = (right: Vector3): boolean => {
     return Vector3.equals(this, right);
   };
 
@@ -547,7 +564,7 @@ export class Vector3 {
    *
    * @returns {String} A string representing the provided Vector in the format '(x, y, z)'.
    */
-  toString = () => {
+  toString = (): string => {
     return "(" + this.x + ", " + this.y + ", " + this.z + ")";
   };
 }

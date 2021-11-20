@@ -22,6 +22,7 @@ export declare class Matrix2 {
     static equals: (left: Matrix2, right: Matrix2) => boolean;
     static IDENTITY: Matrix2;
     static ZERO: Matrix2;
+    length: () => number;
     clone: (result: Matrix2) => Matrix2 | undefined;
     equals: (right: Matrix2) => boolean;
     toString: () => string;

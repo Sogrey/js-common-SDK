@@ -1,5 +1,25 @@
 var _a;
+import { defaultValue } from "../defaultValue";
 export class CArray {
+    static arrayFill(array, value, start, end) {
+        if (typeof array.fill === "function") {
+            return array.fill(value, start, end);
+        }
+        var length = array.length >>> 0;
+        var relativeStart = defaultValue(start, 0);
+        var k = relativeStart < 0
+            ? Math.max(length + relativeStart, 0)
+            : Math.min(relativeStart, length);
+        var relativeEnd = defaultValue(end, length);
+        var last = relativeEnd < 0
+            ? Math.max(length + relativeEnd, 0)
+            : Math.min(relativeEnd, length);
+        while (k < last) {
+            array[k] = value;
+            k++;
+        }
+        return array;
+    }
 }
 _a = CArray;
 CArray.arrScrambling = (arr) => {

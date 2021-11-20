@@ -1,4 +1,5 @@
 export default JSC;
+export { clone } from "./clone";
 export { defined } from "./defined";
 export { defaultValue } from "./defaultValue";
 export { DeveloperError } from "./DeveloperError";
@@ -17,6 +18,7 @@ export * from "./CMath3D/CMath3D";
 declare namespace JSC {
     export const VERSION: string;
     export function test(): void;
+    export { clone };
     export { defined };
     export { defaultValue };
     export { DeveloperError };
@@ -33,6 +35,7 @@ declare namespace JSC {
     export { CDataTime };
     export { CMath3D };
 }
+import { clone } from "./clone";
 import { defined } from "./defined";
 import { defaultValue } from "./defaultValue";
 import { DeveloperError } from "./DeveloperError";

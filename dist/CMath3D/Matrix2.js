@@ -7,6 +7,9 @@ export class Matrix2 {
             0, 0,
             0, 0
         ];
+        this.length = () => {
+            return Matrix2.packedLength;
+        };
         this.clone = (result) => {
             return Matrix2.clone(this, result);
         };
@@ -37,7 +40,7 @@ Matrix2.toArray = function (value, array, startingIndex) {
     array[startingIndex++] = value.elements[0];
     array[startingIndex++] = value.elements[1];
     array[startingIndex++] = value.elements[2];
-    array[startingIndex++] = value.elements[3];
+    array[startingIndex] = value.elements[3];
     return array;
 };
 Matrix2.fromArray = function (array, startingIndex, result) {

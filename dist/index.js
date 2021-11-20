@@ -1,3 +1,4 @@
+import { clone } from "./clone";
 import { defined } from "./defined";
 import { defaultValue } from "./defaultValue";
 import { DeveloperError } from './DeveloperError';
@@ -18,6 +19,7 @@ const JSC = {
     test: () => {
         console.log("Hi,It's running.");
     },
+    clone: clone,
     defined: defined,
     defaultValue: defaultValue,
     DeveloperError: DeveloperError,
@@ -35,6 +37,7 @@ const JSC = {
     CMath3D: CMath3D,
 };
 export default JSC;
+export { clone } from "./clone";
 export { defined } from "./defined";
 export { defaultValue } from "./defaultValue";
 export { DeveloperError } from './DeveloperError';

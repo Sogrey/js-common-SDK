@@ -1,0 +1,1 @@
+{"version":3,"file":"Box2.d.ts","sourceRoot":"","sources":["../../../src/CMath3D/Box2.ts"],"names":[],"mappings":"AAaA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAA;AAEnC,qBAAa,IAAI;IAEb,GAAG,EAAE,OAAO,CAAqC;IAEjD,GAAG,EAAE,OAAO,CAAqC;gBASrC,GAAG,CAAC,EAAE,OAAO,EAAE,GAAG,CAAC,EAAE,OAAO;CAM3C"}

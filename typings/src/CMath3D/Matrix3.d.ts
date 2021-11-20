@@ -1,4 +1,5 @@
 import { Quaternion } from "./Quaternion";
+import { Vector3 } from "./Vector3";
 export declare class Matrix3 {
     elements: number[];
     constructor(column0Row0?: number, column1Row0?: number, column2Row0?: number, column0Row1?: number, column1Row1?: number, column2Row1?: number, column0Row2?: number, column1Row2?: number, column2Row2?: number);
@@ -7,5 +8,37 @@ export declare class Matrix3 {
     static fromArray: (array: Array<number>, startingIndex: number, result: Matrix3) => Matrix3;
     static clone: (matrix: Matrix3, result: Matrix3) => Matrix3 | undefined;
     static fromQuaternion: (quaternion: Quaternion, result: Matrix3) => Matrix3;
+    static fromScale: (scale: Vector3, result: Matrix3) => Matrix3;
+    static fromUniformScale: (scale: number, result: Matrix3) => Matrix3;
+    static fromCrossProduct: (vector: Vector3, result: Matrix3) => Matrix3;
+    static fromRotationX: (angle: number, result: Matrix3) => Matrix3;
+    static fromRotationY: (angle: number, result: Matrix3) => Matrix3;
+    static fromRotationZ: (angle: number, result: Matrix3) => Matrix3;
+    static getElementIndex: (column: number, row: number) => number;
+    static getColumn: (matrix: Matrix3, index: number, result: Vector3) => Vector3;
+    static setColumn: (matrix: Matrix3, index: number, vector: Vector3, result: Matrix3) => Matrix3;
+    static getRow: (matrix: Matrix3, index: number, result: Vector3) => Vector3;
+    static setRow: (matrix: Matrix3, index: number, vector: Vector3, result: Matrix3) => Matrix3;
+    static getScale: (matrix: Matrix3, result: Vector3) => Vector3;
+    static multiply: (left: Matrix3, right: Matrix3, result: Matrix3) => Matrix3;
+    static add: (left: Matrix3, right: Matrix3, result: Matrix3) => Matrix3;
+    static subtract: (left: Matrix3, right: Matrix3, result: Matrix3) => Matrix3;
+    static multiplyByVector: (matrix: Matrix3, vector: Vector3, result: Vector3) => Vector3;
+    static multiplyByScalar: (matrix: Matrix3, scalar: number, result: Matrix3) => Matrix3;
+    static multiplyByScale: (matrix: Matrix3, scale: Vector3, result: Matrix3) => Matrix3;
+    static negate: (matrix: Matrix3, result: Matrix3) => Matrix3;
+    static transpose: (matrix: Matrix3, result: Matrix3) => Matrix3;
+    static getRotation: (matrix: Matrix3, result: Matrix3) => Matrix3;
+    static abs: (matrix: Matrix3, result: Matrix3) => Matrix3;
+    static determinant: (matrix: Matrix3) => number;
+    static inverse: (matrix: Matrix3, result: Matrix3) => Matrix3;
+    static inverseTranspose: (matrix: Matrix3, result: Matrix3) => Matrix3;
+    static equals: (left: Matrix3, right: Matrix3) => boolean;
+    static IDENTITY: Matrix3;
+    static ZERO: Matrix3;
+    length: number;
+    clone: (result: Matrix3) => Matrix3;
+    equals: (right: Matrix3) => boolean;
+    toString: () => string;
 }
 //# sourceMappingURL=Matrix3.d.ts.map
