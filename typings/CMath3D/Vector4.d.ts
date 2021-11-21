@@ -1,4 +1,5 @@
 import { Color } from "./Color";
+import { Matrix4 } from "./Matrix4";
 export declare class Vector4 {
     x: number;
     y: number;
@@ -17,6 +18,17 @@ export declare class Vector4 {
     static add: (left: Vector4, right: Vector4, result?: Vector4 | undefined) => Vector4;
     add: (right: Vector4) => Vector4;
     static subtract: (left: Vector4, right: Vector4, result: Vector4) => Vector4;
+    static min: (left: Vector4, right: Vector4, result?: Vector4 | undefined) => Vector4;
+    static minFromArray: (array: Array<Vector4>, result?: Vector4 | undefined) => Vector4;
+    static max: (left: Vector4, right: Vector4, result?: Vector4 | undefined) => Vector4;
+    static maxFromArray: (array: Array<Vector4>, result?: Vector4 | undefined) => Vector4;
+    applyMatrix4(m: Matrix4): this;
+    clamp: (min: Vector4, max: Vector4) => this;
+    clampScalar: (minVal: number, maxVal: number) => this;
+    clampLength: (min: number, max: number) => Vector4;
+    floor: () => this;
+    ceil: () => this;
+    round: () => this;
     static normalize: (v4: Vector4, result: Vector4) => Vector4;
     normalize: (result?: Vector4 | undefined) => Vector4 | undefined;
     static dot: (left: Vector4, right: Vector4) => number;

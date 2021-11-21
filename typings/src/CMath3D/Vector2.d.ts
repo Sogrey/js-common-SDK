@@ -1,11 +1,12 @@
 import { Vector4 } from "./Vector4";
+import { Matrix3 } from "./Matrix3";
 export declare class Vector2 {
     x: number;
     y: number;
     constructor(x?: number, y?: number);
     static fromElements: (x: number, y: number, result: Vector2) => Vector2;
     static clone: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
-    static fromVector3: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
+    static fromVector2: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
     static fromVector4: (v2: Vector2 | Vector2 | Vector4, result: Vector2) => undefined | Vector2;
     static packedLength: number;
     static magnitudeSquared: (v2: Vector2) => number;
@@ -16,6 +17,17 @@ export declare class Vector2 {
     static add: (left: Vector2, right: Vector2, result?: Vector2 | undefined) => Vector2;
     add: (right: Vector2) => Vector2;
     static subtract: (left: Vector2, right: Vector2, result: Vector2) => Vector2;
+    static min: (left: Vector2, right: Vector2, result?: Vector2 | undefined) => Vector2;
+    static minFromArray: (array: Array<Vector2>, result?: Vector2 | undefined) => Vector2;
+    static max: (left: Vector2, right: Vector2, result?: Vector2 | undefined) => Vector2;
+    static maxFromArray: (array: Array<Vector2>, result?: Vector2 | undefined) => Vector2;
+    applyMatrix3: (m: Matrix3) => this;
+    clamp: (min: Vector2, max: Vector2) => this;
+    clampScalar: (minVal: number, maxVal: number) => this;
+    clampLength: (min: number, max: number) => Vector2;
+    floor: () => this;
+    ceil: () => this;
+    round: () => this;
     static normalize: (v2: Vector2, result: Vector2) => Vector2;
     normalize: (result?: Vector2 | undefined) => Vector2 | undefined;
     static dot: (left: Vector2, right: Vector2) => number;
@@ -34,7 +46,7 @@ export declare class Vector2 {
     static ONE: Readonly<Vector2>;
     static UNIT_X: Readonly<Vector2>;
     static UNIT_Y: Readonly<Vector2>;
-    clone: (result: Vector2) => Vector2 | undefined;
+    clone: (result?: Vector2 | undefined) => Vector2 | undefined;
     equals: (right: Vector2) => boolean;
     fromArray: (array: Array<number>, offset?: number) => this;
     toArray: (offset?: number, result?: number[] | undefined) => number[];

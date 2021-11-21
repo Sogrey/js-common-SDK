@@ -14,6 +14,45 @@ export class Vector2 {
         this.add = (right) => {
             return Vector2.add(this, right, this);
         };
+        this.applyMatrix3 = (m) => {
+            const x = this.x, y = this.y;
+            const e = m.elements;
+            this.x = e[0] * x + e[3] * y + e[6];
+            this.y = e[1] * x + e[4] * y + e[7];
+            return this;
+        };
+        this.clamp = (min, max) => {
+            this.x = Math.max(min.x, Math.min(max.x, this.x));
+            this.y = Math.max(min.y, Math.min(max.y, this.y));
+            return this;
+        };
+        this.clampScalar = (minVal, maxVal) => {
+            this.x = Math.max(minVal, Math.min(maxVal, this.x));
+            this.y = Math.max(minVal, Math.min(maxVal, this.y));
+            return this;
+        };
+        this.clampLength = (min, max) => {
+            const length = Vector2.magnitude(this);
+            var v = new Vector2();
+            Vector2.divideByScalar(this, length || 1, v);
+            Vector2.multiplyByScalar(v, Math.max(min, Math.min(max, length)), v);
+            return v;
+        };
+        this.floor = () => {
+            this.x = Math.floor(this.x);
+            this.y = Math.floor(this.y);
+            return this;
+        };
+        this.ceil = () => {
+            this.x = Math.ceil(this.x);
+            this.y = Math.ceil(this.y);
+            return this;
+        };
+        this.round = () => {
+            this.x = Math.round(this.x);
+            this.y = Math.round(this.y);
+            return this;
+        };
         this.normalize = (result) => {
             if (!defined(result))
                 result = new Vector2();
@@ -23,6 +62,8 @@ export class Vector2 {
             return result;
         };
         this.clone = (result) => {
+            if (!defined(result))
+                result = new Vector2();
             return Vector2.clone(this, result);
         };
         this.equals = (right) => {
@@ -66,7 +107,7 @@ Vector2.clone = function (v2, result) {
     result.y = v2.y;
     return result;
 };
-Vector2.fromVector3 = Vector2.clone;
+Vector2.fromVector2 = Vector2.clone;
 Vector2.fromVector4 = Vector2.clone;
 Vector2.packedLength = 2;
 Vector2.magnitudeSquared = function (v2) {
@@ -95,6 +136,40 @@ Vector2.add = function (left, right, result) {
 Vector2.subtract = function (left, right, result) {
     result.x = left.x - right.x;
     result.y = left.y - right.y;
+    return result;
+};
+Vector2.min = function (left, right, result) {
+    if (!defined(result))
+        result = new Vector2();
+    result.x = Math.min(left.x, right.x);
+    result.y = Math.min(left.y, right.y);
+    return result;
+};
+Vector2.minFromArray = function (array, result) {
+    if (!defined(result))
+        result = new Vector2();
+    if (array.length > 0)
+        for (let index = 0; index < array.length; index++) {
+            const v = array[index];
+            result = Vector2.min(v, result);
+        }
+    return result;
+};
+Vector2.max = function (left, right, result) {
+    if (!defined(result))
+        result = new Vector2();
+    result.x = Math.max(left.x, right.x);
+    result.y = Math.max(left.y, right.y);
+    return result;
+};
+Vector2.maxFromArray = function (array, result) {
+    if (!defined(result))
+        result = new Vector2();
+    if (array.length > 0)
+        for (let index = 0; index < array.length; index++) {
+            const v = array[index];
+            result = Vector2.max(v, result);
+        }
     return result;
 };
 Vector2.normalize = function (v2, result) {

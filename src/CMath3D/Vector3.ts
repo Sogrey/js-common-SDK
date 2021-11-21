@@ -12,9 +12,16 @@ import { defaultValue } from "../defaultValue"
 import { CMath } from "./CMath"
 import { Vector4 } from "./Vector4"
 import { Quaternion } from "./Quaternion";
+import { Matrix4 } from "./Matrix4";
 
 export class Vector3 {
   x: number = 0; y: number = 0; z: number = 0;
+  /**
+   * @alias Vector3
+   * @constructor
+   * @see <a href="./Vector2.html">Vector2</a>
+   * @see <a href="./Vector4.html">Vector4</a>
+   */
   constructor(x?: number, y?: number, z?: number) {
     /**
      * The X component.
@@ -218,6 +225,166 @@ export class Vector3 {
     return result;
   };
 
+  /**
+   * Calculate the vector composed of the minimum value of each dimension of two three-dimensional vectors.
+   * @param {Vector3} left The first Vector.
+   * @param {Vector3} right The second Vector.
+   * @param {Vector3} result The object onto which to store the result.
+   * @returns {Vector3} The modified result parameter.
+   */
+  static min = function (left: Vector3, right: Vector3, result?: Vector3): Vector3 {
+    if (!defined(result)) result = new Vector3();
+
+    result!.x = Math.min(left.x, right.x);
+    result!.y = Math.min(left.y, right.y);
+    result!.z = Math.min(left.z, right.z);
+
+    return result!;
+  }
+
+  /**
+   * Calculate the vector composed of the minimum value of each dimension of a set of three-dimensional vectors
+   * @param array The Vectors.
+   * @param {Vector3} result The object onto which to store the result.
+   * @returns {Vector3} The modified result parameter.
+   */
+  static minFromArray = function (array: Array<Vector3>, result?: Vector3): Vector3 {
+    if (!defined(result)) result = new Vector3();
+
+    if (array.length > 0)
+      for (let index = 0; index < array.length; index++) {
+        const v = array[index];
+
+        result = Vector3.min(v, result!);
+      }
+
+    return result!;
+  }
+  /**
+   * Calculate the vector composed of the maximum value of each dimension of two three-dimensional vectors
+   * @param {Vector3} left The first Vector.
+   * @param {Vector3} right The second Vector.
+   * @param {Vector3} result The object onto which to store the result.
+   * @returns {Vector3} The modified result parameter.
+   */
+  static max = function (left: Vector3, right: Vector3, result?: Vector3): Vector3 {
+    if (!defined(result)) result = new Vector3();
+
+    result!.x = Math.max(left.x, right.x);
+    result!.y = Math.max(left.y, right.y);
+    result!.z = Math.max(left.z, right.z);
+
+    return result!;
+  }
+
+  /**
+ * Calculate the vector composed of the maximum value of each dimension of a set of three-dimensional vectors
+ * @param array The Vectors.
+ * @param {Vector3} result The object onto which to store the result.
+ * @returns {Vector3} The modified result parameter.
+ */
+  static maxFromArray = function (array: Array<Vector3>, result?: Vector3): Vector3 {
+    if (!defined(result)) result = new Vector3();
+
+    if (array.length > 0)
+      for (let index = 0; index < array.length; index++) {
+        const v = array[index];
+
+        result = Vector3.max(v, result!);
+      }
+
+    return result!;
+  }
+
+  /**
+   * 应用矩阵变换
+   * @param matrix 
+   * @returns 
+   */
+  applyMatrix4 = (matrix: Matrix4) => {
+    const x = this.x, y = this.y, z = this.z;
+    const e = matrix.elements;
+
+    const w = 1 / (e[3] * x + e[7] * y + e[11] * z + e[15]);
+
+    this.x = (e[0] * x + e[4] * y + e[8] * z + e[12]) * w;
+    this.y = (e[1] * x + e[5] * y + e[9] * z + e[13]) * w;
+    this.z = (e[2] * x + e[6] * y + e[10] * z + e[14]) * w;
+
+    return this;
+  }
+
+  applyQuaternion(q: Quaternion) {
+
+    const x = this.x, y = this.y, z = this.z;
+    const qx = q.x, qy = q.y, qz = q.z, qw = q.w;
+
+    // calculate quat * vector
+
+    const ix = qw * x + qy * z - qz * y;
+    const iy = qw * y + qz * x - qx * z;
+    const iz = qw * z + qx * y - qy * x;
+    const iw = - qx * x - qy * y - qz * z;
+
+    // calculate result * inverse quat
+
+    this.x = ix * qw + iw * - qx + iy * - qz - iz * - qy;
+    this.y = iy * qw + iw * - qy + iz * - qx - ix * - qz;
+    this.z = iz * qw + iw * - qz + ix * - qy - iy * - qx;
+
+    return this;
+  }
+
+  clamp = (min: Vector3, max: Vector3) => {
+    // assumes min < max, componentwise
+
+    this.x = Math.max(min.x, Math.min(max.x, this.x));
+    this.y = Math.max(min.y, Math.min(max.y, this.y));
+    this.z = Math.max(min.z, Math.min(max.z, this.z));
+
+    return this;
+  }
+
+  clampScalar = (minVal: number, maxVal: number) => {
+    this.x = Math.max(minVal, Math.min(maxVal, this.x));
+    this.y = Math.max(minVal, Math.min(maxVal, this.y));
+    this.z = Math.max(minVal, Math.min(maxVal, this.z));
+
+    return this;
+  }
+
+  clampLength = (min: number, max: number) => {
+    const length = Vector3.magnitude(this);
+
+    var v = new Vector3();
+    Vector3.divideByScalar(this, length || 1, v);
+    Vector3.multiplyByScalar(v, Math.max(min, Math.min(max, length)), v);
+    return v;
+  }
+
+  floor = () => {
+    this.x = Math.floor(this.x);
+    this.y = Math.floor(this.y);
+    this.z = Math.floor(this.z);
+
+    return this;
+  }
+
+  ceil = () => {
+    this.x = Math.ceil(this.x);
+    this.y = Math.ceil(this.y);
+    this.z = Math.ceil(this.z);
+
+    return this;
+  }
+
+  round = () => {
+    this.x = Math.round(this.x);
+    this.y = Math.round(this.y);
+    this.z = Math.round(this.z);
+
+    return this;
+  }
   /**
    * Computes the normalized form of the supplied Vector.
    *

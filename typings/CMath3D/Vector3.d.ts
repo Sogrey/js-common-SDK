@@ -1,5 +1,6 @@
 import { Vector4 } from "./Vector4";
 import { Quaternion } from "./Quaternion";
+import { Matrix4 } from "./Matrix4";
 export declare class Vector3 {
     x: number;
     y: number;
@@ -18,6 +19,18 @@ export declare class Vector3 {
     static add: (left: Vector3, right: Vector3, result?: Vector3 | undefined) => Vector3;
     add: (right: Vector3) => Vector3;
     static subtract: (left: Vector3, right: Vector3, result: Vector3) => Vector3;
+    static min: (left: Vector3, right: Vector3, result?: Vector3 | undefined) => Vector3;
+    static minFromArray: (array: Array<Vector3>, result?: Vector3 | undefined) => Vector3;
+    static max: (left: Vector3, right: Vector3, result?: Vector3 | undefined) => Vector3;
+    static maxFromArray: (array: Array<Vector3>, result?: Vector3 | undefined) => Vector3;
+    applyMatrix4: (matrix: Matrix4) => this;
+    applyQuaternion(q: Quaternion): this;
+    clamp: (min: Vector3, max: Vector3) => this;
+    clampScalar: (minVal: number, maxVal: number) => this;
+    clampLength: (min: number, max: number) => Vector3;
+    floor: () => this;
+    ceil: () => this;
+    round: () => this;
     static normalize: (v3: Vector3, result: Vector3) => Vector3;
     normalize: (result?: Vector3 | undefined) => Vector3;
     static dot: (left: Vector3, right: Vector3) => number;

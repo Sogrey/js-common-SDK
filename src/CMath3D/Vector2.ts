@@ -12,9 +12,16 @@ import { defaultValue } from "../defaultValue"
 import { CMath } from "./CMath"
 import { Vector3 } from "./Vector3"
 import { Vector4 } from "./Vector4"
+import { Matrix3 } from "./Matrix3"
 
 export class Vector2 {
     x: number = 0; y: number = 0;
+    /**
+     * @alias Vector2
+     * @constructor
+     * @see <a href="./Vector2.html">Vector2</a>
+     * @see <a href="./Vector4.html">Vector4</a>
+     */
     constructor(x?: number, y?: number) {
         /**
          * The X component.
@@ -78,7 +85,7 @@ export class Vector2 {
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided.
      */
-    static fromVector3 = Vector2.clone;
+    static fromVector2 = Vector2.clone;
 
     /**
      * Creates a Vector2 instance from an existing Vector4.  This simply takes the
@@ -203,6 +210,136 @@ export class Vector2 {
         return result;
     };
 
+    /**
+   * Calculate the vector composed of the minimum value of each dimension of two two-dimensional vectors.
+   * @param {Vector2} left The first Vector.
+   * @param {Vector2} right The second Vector.
+   * @param {Vector2} result The object onto which to store the result.
+   * @returns {Vector2} The modified result parameter.
+   */
+    static min = function (left: Vector2, right: Vector2, result?: Vector2): Vector2 {
+        if (!defined(result)) result = new Vector2();
+
+        result!.x = Math.min(left.x, right.x);
+        result!.y = Math.min(left.y, right.y);
+
+        return result!;
+    }
+
+    /**
+     * Calculate the vector composed of the minimum value of each dimension of a set of two-dimensional vectors
+     * @param array The Vectors.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static minFromArray = function (array: Array<Vector2>, result?: Vector2): Vector2 {
+        if (!defined(result)) result = new Vector2();
+
+        if (array.length > 0)
+            for (let index = 0; index < array.length; index++) {
+                const v = array[index];
+
+                result = Vector2.min(v, result!);
+            }
+
+        return result!;
+    }
+    /**
+     * Calculate the vector composed of the maximum value of each dimension of two two-dimensional vectors
+     * @param {Vector2} left The first Vector.
+     * @param {Vector2} right The second Vector.
+     * @param {Vector2} result The object onto which to store the result.
+     * @returns {Vector2} The modified result parameter.
+     */
+    static max = function (left: Vector2, right: Vector2, result?: Vector2): Vector2 {
+        if (!defined(result)) result = new Vector2();
+
+        result!.x = Math.max(left.x, right.x);
+        result!.y = Math.max(left.y, right.y);
+
+        return result!;
+    }
+
+    /**
+   * Calculate the vector composed of the maximum value of each dimension of a set of two-dimensional vectors
+   * @param array The Vectors.
+   * @param {Vector2} result The object onto which to store the result.
+   * @returns {Vector2} The modified result parameter.
+   */
+    static maxFromArray = function (array: Array<Vector2>, result?: Vector2): Vector2 {
+        if (!defined(result)) result = new Vector2();
+
+        if (array.length > 0)
+            for (let index = 0; index < array.length; index++) {
+                const v = array[index];
+
+                result = Vector2.max(v, result!);
+            }
+
+        return result!;
+    }
+
+    /**
+     * 应用旋转矩阵
+     * @param m 
+     * @returns 
+     */
+    applyMatrix3=( m:Matrix3 )=> {
+
+		const x = this.x, y = this.y;
+		const e = m.elements;
+
+		this.x = e[ 0 ] * x + e[ 3 ] * y + e[ 6 ];
+		this.y = e[ 1 ] * x + e[ 4 ] * y + e[ 7 ];
+
+		return this;
+	}
+
+    clamp = (min: Vector2, max: Vector2) => {
+        // assumes min < max, componentwise
+
+        this.x = Math.max(min.x, Math.min(max.x, this.x));
+        this.y = Math.max(min.y, Math.min(max.y, this.y));
+
+        return this;
+    }
+
+    clampScalar = (minVal: number, maxVal: number) => {
+        this.x = Math.max(minVal, Math.min(maxVal, this.x));
+        this.y = Math.max(minVal, Math.min(maxVal, this.y));
+
+        return this;
+    }
+
+    clampLength = (min: number, max: number) => {
+        const length = Vector2.magnitude(this);
+
+        var v = new Vector2();
+        Vector2.divideByScalar(this, length || 1, v);
+        Vector2.multiplyByScalar(v, Math.max(min, Math.min(max, length)), v);
+        return v;
+    }
+
+    floor = () => {
+        this.x = Math.floor(this.x);
+        this.y = Math.floor(this.y);
+
+        return this;
+    }
+
+    ceil = () => {
+        this.x = Math.ceil(this.x);
+        this.y = Math.ceil(this.y);
+
+        return this;
+    }
+
+    round = () => {
+        this.x = Math.round(this.x);
+        this.y = Math.round(this.y);
+
+        return this;
+    }
     /**
      * Computes the normalized form of the supplied Vector.
      *
@@ -444,8 +581,9 @@ export class Vector2 {
      * @param {Vector2} [result] The object onto which to store the result.
      * @returns {Vector2} The modified result parameter or a new Vector2 instance if one was not provided.
      */
-    clone = (result: Vector2): Vector2 | undefined => {
-        return Vector2.clone(this, result);
+    clone = (result?: Vector2): Vector2 | undefined => {
+        if(!defined(result)) result = new Vector2();
+        return Vector2.clone(this, result!);
     };
 
     /**

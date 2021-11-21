@@ -11,9 +11,16 @@ import { defaultValue } from "../defaultValue"
 
 import { CMath } from "./CMath"
 import { Color } from "./Color";
+import { Matrix4 } from "./Matrix4";
 
 export class Vector4 {
   x: number = 0; y: number = 0; z: number = 0; w: number = 0;
+  /**
+   * @alias Vector4
+   * @constructor
+   * @see <a href="./Vector2.html">Vector2</a>
+   * @see <a href="./Vector3.html">Vector3</a>
+   */
   constructor(x?: number, y?: number, z?: number, w?: number) {
     /**
      * The X component.
@@ -222,6 +229,151 @@ export class Vector4 {
     return result;
   };
 
+
+  /**
+   * Calculate the vector composed of the minimum value of each dimension of two four-dimensional vectors.
+   * @param {Vector4} left The first Vector.
+   * @param {Vector4} right The second Vector.
+   * @param {Vector4} result The object onto which to store the result.
+   * @returns {Vector4} The modified result parameter.
+   */
+  static min = function (left: Vector4, right: Vector4, result?: Vector4): Vector4 {
+    if (!defined(result)) result = new Vector4();
+
+    result!.x = Math.min(left.x, right.x);
+    result!.y = Math.min(left.y, right.y);
+    result!.z = Math.min(left.z, right.z);
+    result!.w = Math.min(left.w, right.w);
+
+    return result!;
+  }
+
+  /**
+   * Calculate the vector composed of the minimum value of each dimension of a set of four-dimensional vectors
+   * @param array The Vectors.
+   * @param {Vector4} result The object onto which to store the result.
+   * @returns {Vector4} The modified result parameter.
+   */
+  static minFromArray = function (array: Array<Vector4>, result?: Vector4): Vector4 {
+    if (!defined(result)) result = new Vector4();
+
+    if (array.length > 0)
+      for (let index = 0; index < array.length; index++) {
+        const v = array[index];
+
+        result = Vector4.min(v, result!);
+      }
+
+    return result!;
+  }
+  /**
+   * Calculate the vector composed of the maximum value of each dimension of two four-dimensional vectors
+   * @param {Vector4} left The first Vector.
+   * @param {Vector4} right The second Vector.
+   * @param {Vector4} result The object onto which to store the result.
+   * @returns {Vector4} The modified result parameter.
+   */
+  static max = function (left: Vector4, right: Vector4, result?: Vector4): Vector4 {
+    if (!defined(result)) result = new Vector4();
+
+    result!.x = Math.max(left.x, right.x);
+    result!.y = Math.max(left.y, right.y);
+    result!.z = Math.max(left.z, right.z);
+    result!.w = Math.max(left.w, right.w);
+
+    return result!;
+  }
+
+  /**
+ * Calculate the vector composed of the maximum value of each dimension of a set of four-dimensional vectors
+ * @param array The Vectors.
+ * @param {Vector4} result The object onto which to store the result.
+ * @returns {Vector4} The modified result parameter.
+ */
+  static maxFromArray = function (array: Array<Vector4>, result?: Vector4): Vector4 {
+    if (!defined(result)) result = new Vector4();
+
+    if (array.length > 0)
+      for (let index = 0; index < array.length; index++) {
+        const v = array[index];
+
+        result = Vector4.max(v, result!);
+      }
+
+    return result!;
+  }
+  /**
+  * 应用矩阵变换
+  * @param matrix 
+  * @returns 
+  */
+  applyMatrix4(m: Matrix4) {
+    const x = this.x, y = this.y, z = this.z, w = this.w;
+    const e = m.elements;
+
+    this.x = e[0] * x + e[4] * y + e[8] * z + e[12] * w;
+    this.y = e[1] * x + e[5] * y + e[9] * z + e[13] * w;
+    this.z = e[2] * x + e[6] * y + e[10] * z + e[14] * w;
+    this.w = e[3] * x + e[7] * y + e[11] * z + e[15] * w;
+
+    return this;
+  }
+
+  clamp = (min: Vector4, max: Vector4) => {
+    // assumes min < max, componentwise
+
+    this.x = Math.max(min.x, Math.min(max.x, this.x));
+    this.y = Math.max(min.y, Math.min(max.y, this.y));
+    this.z = Math.max(min.z, Math.min(max.z, this.z));
+    this.w = Math.max(min.w, Math.min(max.w, this.w));
+
+    return this;
+  }
+
+  clampScalar = (minVal: number, maxVal: number) => {
+    this.x = Math.max(minVal, Math.min(maxVal, this.x));
+    this.y = Math.max(minVal, Math.min(maxVal, this.y));
+    this.z = Math.max(minVal, Math.min(maxVal, this.z));
+    this.w = Math.max(minVal, Math.min(maxVal, this.w));
+
+    return this;
+  }
+
+  clampLength = (min: number, max: number) => {
+    const length = Vector4.magnitude(this);
+
+    var v = new Vector4();
+    Vector4.divideByScalar(this, length || 1, v);
+    Vector4.multiplyByScalar(v, Math.max(min, Math.min(max, length)), v);
+    return v;
+  }
+
+  floor = () => {
+    this.x = Math.floor(this.x);
+    this.y = Math.floor(this.y);
+    this.z = Math.floor(this.z);
+    this.w = Math.floor(this.w);
+
+    return this;
+  }
+
+  ceil = () => {
+    this.x = Math.ceil(this.x);
+    this.y = Math.ceil(this.y);
+    this.z = Math.ceil(this.z);
+    this.w = Math.ceil(this.w);
+
+    return this;
+  }
+
+  round = () => {
+    this.x = Math.round(this.x);
+    this.y = Math.round(this.y);
+    this.z = Math.round(this.z);
+    this.w = Math.round(this.w);
+
+    return this;
+  }
   /**
    * Computes the normalized form of the supplied Vector.
    *

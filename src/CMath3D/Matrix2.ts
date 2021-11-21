@@ -40,8 +40,8 @@ export class Matrix2 {
      * @param {Number} [column1Row1=0.0] The value for column 1, row 1.
      * 
      * 
-     * @see Matrix3
-     * @see Matrix4
+     * @see <a href="./Matrix3.html">Matrix3</a>
+     * @see <a href="./Matrix4.html">Matrix4</a>
      */
     constructor(column0Row0?: number, column1Row0?: number, column0Row1?: number, column1Row1?: number) {
 
@@ -330,8 +330,7 @@ export class Matrix2 {
      * Matrix2.multiplyByScale(m, scale, m);
      * </code></pre>
      *
-     * @see Matrix2.fromScale
-     * @see Matrix2.multiplyByUniformScale
+     * @see <a href="#fromScale">Matrix2.fromScale</a>
      */
     static multiplyByScale = function (matrix: Matrix2, scale: Vector2, result: Matrix2): Matrix2 {
         result.elements[0] = matrix.elements[0] * scale.x;

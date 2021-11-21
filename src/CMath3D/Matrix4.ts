@@ -61,8 +61,8 @@ export class Matrix4 {
      * @param {Number} [column2Row3=0.0] The value for column 2, row 3.
      * @param {Number} [column3Row3=0.0] The value for column 3, row 3.
      *
-     * @see Matrix2
-     * @see Matrix3
+     * @see <a href="./Matrix2.html">Matrix2</a>
+     * @see <a href="./Matrix3.html">Matrix3</a>
      */
     constructor(
         column0Row0?: number,
@@ -506,8 +506,8 @@ export class Matrix4 {
      * @param {Number} column The zero-based index of the column.
      * @returns {Number} The index of the element at the provided row and column.
      *
-     * @exception {DeveloperError} row must be 0, 1, 2, or 3.
-     * @exception {DeveloperError} column must be 0, 1, 2, or 3.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} row must be 0, 1, 2, or 3.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} column must be 0, 1, 2, or 3.
      *
      * @example
      * <pre><code>
@@ -531,7 +531,7 @@ export class Matrix4 {
      * @param {Vector4} result The object onto which to store the result.
      * @returns {Vector4} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, 2, or 3.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, 2, or 3.
      *
      * @example
      * <pre><code>
@@ -578,7 +578,7 @@ export class Matrix4 {
      * @param {Matrix4} result The object onto which to store the result.
      * @returns {Matrix4} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, 2, or 3.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, 2, or 3.
      *
      * @example
      * <pre><code>
@@ -672,7 +672,7 @@ export class Matrix4 {
      * @param {Vector4} result The object onto which to store the result.
      * @returns {Vector4} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, 2, or 3.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, 2, or 3.
      *
      * @example
      * <pre><code>
@@ -718,7 +718,7 @@ export class Matrix4 {
      * @param {Matrix4} result The object onto which to store the result.
      * @returns {Matrix4} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, 2, or 3.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, 2, or 3.
      *
      * @example
      * <pre><code>
@@ -1657,7 +1657,6 @@ export class Matrix4 {
     };
 
     /**
-     * @private
      */
     static equalsArray = function (matrix: Matrix4, array: Array<number>, offset: number) {
         return (

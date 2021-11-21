@@ -48,8 +48,8 @@ export class Matrix3 {
      * @param {Number} [column1Row2=0.0] The value for column 1, row 2.
      * @param {Number} [column2Row2=0.0] The value for column 2, row 2.
      *
-     * @see Matrix2
-     * @see Matrix4
+     * @see <a href="./Matrix2.html">Matrix2</a>
+     * @see <a href="./Matrix4.html">Matrix4</a>
      */
     constructor(
         column0Row0?: number,
@@ -222,11 +222,13 @@ export class Matrix3 {
      * @returns {Matrix3} The modified result parameter, or a new Matrix3 instance if one was not provided.
      *
      * @example
+     * <pre><code>
      * // Creates
      * //   [7.0, 0.0, 0.0]
      * //   [0.0, 8.0, 0.0]
      * //   [0.0, 0.0, 9.0]
      * var m = Matrix3.fromScale(new Vector3(7.0, 8.0, 9.0));
+     * </code></pre>
      */
     static fromScale = function (scale: Vector3, result: Matrix3): Matrix3 {
         if (!defined(result)) {
@@ -253,11 +255,13 @@ export class Matrix3 {
      * @returns {Matrix3} The modified result parameter, or a new Matrix3 instance if one was not provided.
      *
      * @example
+     * <pre><code>
      * // Creates
      * //   [2.0, 0.0, 0.0]
      * //   [0.0, 2.0, 0.0]
      * //   [0.0, 0.0, 2.0]
      * var m = Matrix3.fromUniformScale(2.0);
+     * </code></pre>
      */
     static fromUniformScale = function (scale: number, result: Matrix3): Matrix3 {
         if (!defined(result)) {
@@ -325,10 +329,12 @@ export class Matrix3 {
      * @returns {Matrix3} The modified result parameter, or a new Matrix3 instance if one was not provided.
      *
      * @example
+     * <pre><code>
      * // Rotate a point 45 degrees counterclockwise around the x-axis.
      * var p = new Vector3(5, 6, 7);
      * var m = Matrix3.fromRotationX(Math.toRadians(45.0));
      * var rotated = Matrix3.multiplyByVector(m, p, new Vector3());
+     * </code></pre>
      */
     static fromRotationX = function (angle: number, result: Matrix3): Matrix3 {
         var cosAngle = Math.cos(angle);
@@ -369,10 +375,12 @@ export class Matrix3 {
      * @returns {Matrix3} The modified result parameter, or a new Matrix3 instance if one was not provided.
      *
      * @example
+     * <pre><code>
      * // Rotate a point 45 degrees counterclockwise around the y-axis.
      * var p = new Vector3(5, 6, 7);
      * var m = Matrix3.fromRotationY(Math.toRadians(45.0));
      * var rotated = Matrix3.multiplyByVector(m, p, new Vector3());
+     * </code></pre>
      */
     static fromRotationY = function (angle: number, result: Matrix3): Matrix3 {
         var cosAngle = Math.cos(angle);
@@ -413,10 +421,12 @@ export class Matrix3 {
      * @returns {Matrix3} The modified result parameter, or a new Matrix3 instance if one was not provided.
      *
      * @example
+     * <pre><code>
      * // Rotate a point 45 degrees counterclockwise around the z-axis.
      * var p = new Vector3(5, 6, 7);
      * var m = Matrix3.fromRotationZ(Math.toRadians(45.0));
      * var rotated = Matrix3.multiplyByVector(m, p, new Vector3());
+     * </code></pre>
      */
     static fromRotationZ = function (angle: number, result: Matrix3): Matrix3 {
         var cosAngle = Math.cos(angle);
@@ -456,14 +466,16 @@ export class Matrix3 {
      * @param {Number} column The zero-based index of the column.
      * @returns {Number} The index of the element at the provided row and column.
      *
-     * @exception {DeveloperError} row must be 0, 1, or 2.
-     * @exception {DeveloperError} column must be 0, 1, or 2.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} row must be 0, 1, or 2.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} column must be 0, 1, or 2.
      *
      * @example
+     * <pre><code>
      * var myMatrix = new Matrix3();
      * var column1Row0Index = Matrix3.getElementIndex(1, 0);
      * var column1Row0 = myMatrix[column1Row0Index]
      * myMatrix[column1Row0Index] = 10.0;
+     * </code></pre>
      */
     static getElementIndex = function (column: number, row: number): number {
         if (column < 0 || column > 2) throw new DeveloperError("column must be 0, 1, or 2.");
@@ -480,7 +492,7 @@ export class Matrix3 {
      * @param {Vector3} result The object onto which to store the result.
      * @returns {Vector3} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, or 2.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, or 2.
      */
     static getColumn = function (matrix: Matrix3, index: number, result: Vector3): Vector3 {
         if (index < 0 || index > 2) throw new DeveloperError("index must be 0, 1, or 2.");
@@ -505,7 +517,7 @@ export class Matrix3 {
      * @param {Matrix3} result The object onto which to store the result.
      * @returns {Matrix3} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, or 2.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, or 2.
      */
     static setColumn = function (matrix: Matrix3, index: number, vector: Vector3, result: Matrix3): Matrix3 {
         if (index < 0 || index > 2) throw new DeveloperError("index must be 0, 1, or 2.");
@@ -526,7 +538,7 @@ export class Matrix3 {
      * @param {Vector3} result The object onto which to store the result.
      * @returns {Vector3} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, or 2.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, or 2.
      */
     static getRow = function (matrix: Matrix3, index: number, result: Vector3): Vector3 {
         if (index < 0 || index > 2) throw new DeveloperError("index must be 0, 1, or 2.");
@@ -550,7 +562,7 @@ export class Matrix3 {
      * @param {Matrix3} result The object onto which to store the result.
      * @returns {Matrix3} The modified result parameter.
      *
-     * @exception {DeveloperError} index must be 0, 1, or 2.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} index must be 0, 1, or 2.
      */
     static setRow = function (matrix: Matrix3, index: number, vector: Vector3, result: Matrix3): Matrix3 {
         if (index < 0 || index > 2) throw new DeveloperError("index must be 0, 1, or 2.");
@@ -721,10 +733,11 @@ export class Matrix3 {
      *
      *
      * @example
+     * <pre><code>
      * // Instead of Matrix3.multiply(m, Matrix3.fromScale(scale), m);
      * Matrix3.multiplyByScale(m, scale, m);
-     *
-     * @see Matrix3.fromScale
+     *</code></pre>
+     * @see <a href="#fromScale">Matrix3.fromScale</a>
      */
     static multiplyByScale = function (matrix: Matrix3, scale: Vector3, result: Matrix3): Matrix3 {
         result.elements[0] = matrix.elements[0] * scale.x;
@@ -861,7 +874,7 @@ export class Matrix3 {
      * @param {Matrix3} result The object onto which to store the result.
      * @returns {Matrix3} The modified result parameter.
      *
-     * @exception {DeveloperError} matrix is not invertible.
+     * @exception {<a href="./DeveloperError.html">DeveloperError</a>} matrix is not invertible.
      */
     static inverse = function (matrix: Matrix3, result: Matrix3): Matrix3 {
         var m11 = matrix.elements[0];

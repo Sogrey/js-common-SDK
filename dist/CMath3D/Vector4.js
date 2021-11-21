@@ -15,6 +15,48 @@ export class Vector4 {
         this.add = (right) => {
             return Vector4.add(this, right, this);
         };
+        this.clamp = (min, max) => {
+            this.x = Math.max(min.x, Math.min(max.x, this.x));
+            this.y = Math.max(min.y, Math.min(max.y, this.y));
+            this.z = Math.max(min.z, Math.min(max.z, this.z));
+            this.w = Math.max(min.w, Math.min(max.w, this.w));
+            return this;
+        };
+        this.clampScalar = (minVal, maxVal) => {
+            this.x = Math.max(minVal, Math.min(maxVal, this.x));
+            this.y = Math.max(minVal, Math.min(maxVal, this.y));
+            this.z = Math.max(minVal, Math.min(maxVal, this.z));
+            this.w = Math.max(minVal, Math.min(maxVal, this.w));
+            return this;
+        };
+        this.clampLength = (min, max) => {
+            const length = Vector4.magnitude(this);
+            var v = new Vector4();
+            Vector4.divideByScalar(this, length || 1, v);
+            Vector4.multiplyByScalar(v, Math.max(min, Math.min(max, length)), v);
+            return v;
+        };
+        this.floor = () => {
+            this.x = Math.floor(this.x);
+            this.y = Math.floor(this.y);
+            this.z = Math.floor(this.z);
+            this.w = Math.floor(this.w);
+            return this;
+        };
+        this.ceil = () => {
+            this.x = Math.ceil(this.x);
+            this.y = Math.ceil(this.y);
+            this.z = Math.ceil(this.z);
+            this.w = Math.ceil(this.w);
+            return this;
+        };
+        this.round = () => {
+            this.x = Math.round(this.x);
+            this.y = Math.round(this.y);
+            this.z = Math.round(this.z);
+            this.w = Math.round(this.w);
+            return this;
+        };
         this.normalize = (result) => {
             if (!defined(result))
                 result = new Vector4();
@@ -54,6 +96,15 @@ export class Vector4 {
         this.y = defaultValue(y, 0.0);
         this.z = defaultValue(z, 0.0);
         this.w = defaultValue(w, 0.0);
+    }
+    applyMatrix4(m) {
+        const x = this.x, y = this.y, z = this.z, w = this.w;
+        const e = m.elements;
+        this.x = e[0] * x + e[4] * y + e[8] * z + e[12] * w;
+        this.y = e[1] * x + e[5] * y + e[9] * z + e[13] * w;
+        this.z = e[2] * x + e[6] * y + e[10] * z + e[14] * w;
+        this.w = e[3] * x + e[7] * y + e[11] * z + e[15] * w;
+        return this;
     }
 }
 Vector4.fromElements = function (x, y, z, w, result) {
@@ -120,6 +171,44 @@ Vector4.subtract = function (left, right, result) {
     result.y = left.y - right.y;
     result.y = left.z - right.z;
     result.w = left.w - right.w;
+    return result;
+};
+Vector4.min = function (left, right, result) {
+    if (!defined(result))
+        result = new Vector4();
+    result.x = Math.min(left.x, right.x);
+    result.y = Math.min(left.y, right.y);
+    result.z = Math.min(left.z, right.z);
+    result.w = Math.min(left.w, right.w);
+    return result;
+};
+Vector4.minFromArray = function (array, result) {
+    if (!defined(result))
+        result = new Vector4();
+    if (array.length > 0)
+        for (let index = 0; index < array.length; index++) {
+            const v = array[index];
+            result = Vector4.min(v, result);
+        }
+    return result;
+};
+Vector4.max = function (left, right, result) {
+    if (!defined(result))
+        result = new Vector4();
+    result.x = Math.max(left.x, right.x);
+    result.y = Math.max(left.y, right.y);
+    result.z = Math.max(left.z, right.z);
+    result.w = Math.max(left.w, right.w);
+    return result;
+};
+Vector4.maxFromArray = function (array, result) {
+    if (!defined(result))
+        result = new Vector4();
+    if (array.length > 0)
+        for (let index = 0; index < array.length; index++) {
+            const v = array[index];
+            result = Vector4.max(v, result);
+        }
     return result;
 };
 Vector4.normalize = function (v4, result) {
