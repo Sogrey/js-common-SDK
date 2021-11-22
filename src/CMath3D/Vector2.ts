@@ -639,6 +639,10 @@ export class Vector2 {
 
         return result!;
     }
+
+    length = ():number=>{
+        return Vector2.magnitude(this);
+    }
     /**
      * Creates a string representing this Vector in the format '(x, y)'.
      *

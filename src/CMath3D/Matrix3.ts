@@ -459,6 +459,40 @@ export class Matrix3 {
         return result;
     };
 
+
+    /**
+   * 绕任意轴旋转
+   * @param {*} axisNormal 空间内任意向量
+   * @param {*} angle 旋转角度（弧度）
+   * @param {*} rotation 旋转结果矩阵
+   * @returns 
+   */
+    static fromRotationAroundAxis = function (axisNormal: Vector3, angle: number, rotation?: Matrix3): Matrix3 {
+        if (!defined(rotation)) rotation = new Matrix3();
+
+        // http://www.cppblog.com/lovedday/archive/2008/01/12/41031.html
+        // 绕任意 n 轴旋转
+        //          ┍     ┑   ┍                                                                     ┑
+        //          |  p' |   |   nx*nx(1-cosθ)+cosθ   nx*ny(1-cosθ)+nz*sinθ  nx*nz(1-cosθ)-ny*sinθ |
+        // R(n,θ) = |  q' | = | nx*ny(1-cosθ)-nz*sinθ    ny*ny(1-cosθ)+cosθ   ny*nz(1-cosθ)+nx*sinθ |
+        //          |  r' |   | nx*nz(1-cosθ)+ny*sinθ  ny*nz(1-cosθ)-nx*sinθ    nz*nz(1-cosθ)+cosθ  |
+        //          ┕     ┙   ┕                                                                     ┙
+
+        rotation!.elements[0] = axisNormal.x * axisNormal.x * (1 - Math.cos(angle)) + Math.cos(angle);
+        rotation!.elements[1] = axisNormal.x * axisNormal.y * (1 - Math.cos(angle)) + axisNormal.z * Math.sin(angle);
+        rotation!.elements[2] = axisNormal.x * axisNormal.z * (1 - Math.cos(angle)) - axisNormal.y * Math.sin(angle);
+
+        rotation!.elements[3] = axisNormal.x * axisNormal.y * (1 - Math.cos(angle)) - axisNormal.z * Math.sin(angle);
+        rotation!.elements[4] = axisNormal.y * axisNormal.y * (1 - Math.cos(angle)) + Math.cos(angle);
+        rotation!.elements[5] = axisNormal.y * axisNormal.z * (1 - Math.cos(angle)) + axisNormal.x * Math.sin(angle);
+
+        rotation!.elements[6] = axisNormal.x * axisNormal.z * (1 - Math.cos(angle)) + axisNormal.y * Math.sin(angle);
+        rotation!.elements[7] = axisNormal.y * axisNormal.z * (1 - Math.cos(angle)) - axisNormal.x * Math.sin(angle);
+        rotation!.elements[8] = axisNormal.z * axisNormal.z * (1 - Math.cos(angle)) + Math.cos(angle);
+
+        return rotation!;
+    }
+
     /**
      * Computes the array index of the element at the provided row and column.
      *

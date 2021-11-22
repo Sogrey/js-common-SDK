@@ -81,6 +81,9 @@ export class Vector2 {
             result[offset + 1] = this.y;
             return result;
         };
+        this.length = () => {
+            return Vector2.magnitude(this);
+        };
         this.toString = () => {
             return "(" + this.x + ", " + this.y + ")";
         };

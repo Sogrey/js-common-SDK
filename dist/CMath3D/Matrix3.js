@@ -228,6 +228,20 @@ Matrix3.fromRotationZ = function (angle, result) {
     result.elements[8] = 1.0;
     return result;
 };
+Matrix3.fromRotationAroundAxis = function (axisNormal, angle, rotation) {
+    if (!defined(rotation))
+        rotation = new Matrix3();
+    rotation.elements[0] = axisNormal.x * axisNormal.x * (1 - Math.cos(angle)) + Math.cos(angle);
+    rotation.elements[1] = axisNormal.x * axisNormal.y * (1 - Math.cos(angle)) + axisNormal.z * Math.sin(angle);
+    rotation.elements[2] = axisNormal.x * axisNormal.z * (1 - Math.cos(angle)) - axisNormal.y * Math.sin(angle);
+    rotation.elements[3] = axisNormal.x * axisNormal.y * (1 - Math.cos(angle)) - axisNormal.z * Math.sin(angle);
+    rotation.elements[4] = axisNormal.y * axisNormal.y * (1 - Math.cos(angle)) + Math.cos(angle);
+    rotation.elements[5] = axisNormal.y * axisNormal.z * (1 - Math.cos(angle)) + axisNormal.x * Math.sin(angle);
+    rotation.elements[6] = axisNormal.x * axisNormal.z * (1 - Math.cos(angle)) + axisNormal.y * Math.sin(angle);
+    rotation.elements[7] = axisNormal.y * axisNormal.z * (1 - Math.cos(angle)) - axisNormal.x * Math.sin(angle);
+    rotation.elements[8] = axisNormal.z * axisNormal.z * (1 - Math.cos(angle)) + Math.cos(angle);
+    return rotation;
+};
 Matrix3.getElementIndex = function (column, row) {
     if (column < 0 || column > 2)
         throw new DeveloperError("column must be 0, 1, or 2.");

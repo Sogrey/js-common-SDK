@@ -13,6 +13,7 @@ import { CMath } from "./CMath"
 import { Vector4 } from "./Vector4"
 import { Quaternion } from "./Quaternion";
 import { Matrix4 } from "./Matrix4";
+import { Matrix3 } from "./Matrix3";
 
 export class Vector3 {
   x: number = 0; y: number = 0; z: number = 0;
@@ -725,6 +726,9 @@ export class Vector3 {
     result!.z = Math.random();
 
     return result!;
+  }
+  length = (): number => {
+    return Vector3.magnitude(this);
   }
   /**
    * Creates a string representing this Vector in the format '(x, y, z)'.

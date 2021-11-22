@@ -1,5 +1,6 @@
 import { defined } from "../defined";
 import { defaultValue } from "../defaultValue";
+import { Quaternion } from "./Quaternion";
 import { Matrix3 } from "./Matrix3";
 import { Vector3 } from "./Vector3";
 import { DeveloperError } from "../DeveloperError";
@@ -11,6 +12,46 @@ export class Matrix4 {
             0, 0, 0, 0,
             0, 0, 0, 0
         ];
+        this.makeRotationFromEuler = (euler) => {
+            return Matrix4.makeRotationFromEuler(euler, this);
+        };
+        this.makeRotationFromQuaternion = (q) => {
+            return Matrix4.makeRotationFromQuaternion(q, this);
+        };
+        this.compose = (position, quaternion, scale) => {
+            return Matrix4.compose(position, quaternion, scale, this);
+        };
+        this.determinant = () => {
+            const te = this.elements;
+            const n11 = te[0], n12 = te[4], n13 = te[8], n14 = te[12];
+            const n21 = te[1], n22 = te[5], n23 = te[9], n24 = te[13];
+            const n31 = te[2], n32 = te[6], n33 = te[10], n34 = te[14];
+            const n41 = te[3], n42 = te[7], n43 = te[11], n44 = te[15];
+            return (n41 * (+n14 * n23 * n32
+                - n13 * n24 * n32
+                - n14 * n22 * n33
+                + n12 * n24 * n33
+                + n13 * n22 * n34
+                - n12 * n23 * n34) +
+                n42 * (+n11 * n23 * n34
+                    - n11 * n24 * n33
+                    + n14 * n21 * n33
+                    - n13 * n21 * n34
+                    + n13 * n24 * n31
+                    - n14 * n23 * n31) +
+                n43 * (+n11 * n24 * n32
+                    - n11 * n22 * n34
+                    - n14 * n21 * n32
+                    + n12 * n21 * n34
+                    + n14 * n22 * n31
+                    - n12 * n24 * n31) +
+                n44 * (-n13 * n22 * n31
+                    - n11 * n23 * n32
+                    + n11 * n22 * n33
+                    + n13 * n21 * n32
+                    - n12 * n21 * n33
+                    + n12 * n23 * n31));
+        };
         this.length = Matrix3.packedLength;
         this.clone = (result) => {
             return Matrix4.clone(this, result);
@@ -667,6 +708,160 @@ Matrix4.multiplyByScalar = function (matrix, scalar, result) {
     result.elements[14] = matrix.elements[14] * scalar;
     result.elements[15] = matrix.elements[15] * scalar;
     return result;
+};
+Matrix4.makeRotationFromEuler = function (euler, result) {
+    if (!defined(result))
+        result = new Matrix4();
+    const te = result.elements;
+    const x = euler.x, y = euler.y, z = euler.z;
+    const a = Math.cos(x), b = Math.sin(x);
+    const c = Math.cos(y), d = Math.sin(y);
+    const e = Math.cos(z), f = Math.sin(z);
+    if (euler.order === 'XYZ') {
+        const ae = a * e, af = a * f, be = b * e, bf = b * f;
+        te[0] = c * e;
+        te[4] = -c * f;
+        te[8] = d;
+        te[1] = af + be * d;
+        te[5] = ae - bf * d;
+        te[9] = -b * c;
+        te[2] = bf - ae * d;
+        te[6] = be + af * d;
+        te[10] = a * c;
+    }
+    else if (euler.order === 'YXZ') {
+        const ce = c * e, cf = c * f, de = d * e, df = d * f;
+        te[0] = ce + df * b;
+        te[4] = de * b - cf;
+        te[8] = a * d;
+        te[1] = a * f;
+        te[5] = a * e;
+        te[9] = -b;
+        te[2] = cf * b - de;
+        te[6] = df + ce * b;
+        te[10] = a * c;
+    }
+    else if (euler.order === 'ZXY') {
+        const ce = c * e, cf = c * f, de = d * e, df = d * f;
+        te[0] = ce - df * b;
+        te[4] = -a * f;
+        te[8] = de + cf * b;
+        te[1] = cf + de * b;
+        te[5] = a * e;
+        te[9] = df - ce * b;
+        te[2] = -a * d;
+        te[6] = b;
+        te[10] = a * c;
+    }
+    else if (euler.order === 'ZYX') {
+        const ae = a * e, af = a * f, be = b * e, bf = b * f;
+        te[0] = c * e;
+        te[4] = be * d - af;
+        te[8] = ae * d + bf;
+        te[1] = c * f;
+        te[5] = bf * d + ae;
+        te[9] = af * d - be;
+        te[2] = -d;
+        te[6] = b * c;
+        te[10] = a * c;
+    }
+    else if (euler.order === 'YZX') {
+        const ac = a * c, ad = a * d, bc = b * c, bd = b * d;
+        te[0] = c * e;
+        te[4] = bd - ac * f;
+        te[8] = bc * f + ad;
+        te[1] = f;
+        te[5] = a * e;
+        te[9] = -b * e;
+        te[2] = -d * e;
+        te[6] = ad * f + bc;
+        te[10] = ac - bd * f;
+    }
+    else if (euler.order === 'XZY') {
+        const ac = a * c, ad = a * d, bc = b * c, bd = b * d;
+        te[0] = c * e;
+        te[4] = -f;
+        te[8] = d * e;
+        te[1] = ac * f + bd;
+        te[5] = a * e;
+        te[9] = ad * f - bc;
+        te[2] = bc * f - ad;
+        te[6] = b * e;
+        te[10] = bd * f + ac;
+    }
+    te[3] = 0;
+    te[7] = 0;
+    te[11] = 0;
+    te[12] = 0;
+    te[13] = 0;
+    te[14] = 0;
+    te[15] = 1;
+    return result;
+};
+Matrix4.makeRotationFromQuaternion = function (q, result) {
+    return Matrix4.compose(Vector3.ONE, q, Vector3.ZERO, result);
+};
+Matrix4.compose = (position, quaternion, scale, result) => {
+    if (!defined(result))
+        result = new Matrix4();
+    const te = result.elements;
+    const x = quaternion.x, y = quaternion.y, z = quaternion.z, w = quaternion.w;
+    const x2 = x + x, y2 = y + y, z2 = z + z;
+    const xx = x * x2, xy = x * y2, xz = x * z2;
+    const yy = y * y2, yz = y * z2, zz = z * z2;
+    const wx = w * x2, wy = w * y2, wz = w * z2;
+    const sx = scale.x, sy = scale.y, sz = scale.z;
+    te[0] = (1 - (yy + zz)) * sx;
+    te[1] = (xy + wz) * sx;
+    te[2] = (xz - wy) * sx;
+    te[3] = 0;
+    te[4] = (xy - wz) * sy;
+    te[5] = (1 - (xx + zz)) * sy;
+    te[6] = (yz + wx) * sy;
+    te[7] = 0;
+    te[8] = (xz + wy) * sz;
+    te[9] = (yz - wx) * sz;
+    te[10] = (1 - (xx + yy)) * sz;
+    te[11] = 0;
+    te[12] = position.x;
+    te[13] = position.y;
+    te[14] = position.z;
+    te[15] = 1;
+    return result;
+};
+Matrix4.decompose = (value, position, quaternion, scale) => {
+    const te = value.elements;
+    var _v1 = new Vector3();
+    let sx = _v1.fromArray([te[0], te[1], te[2]]).length();
+    const sy = _v1.fromArray([te[4], te[5], te[6]]).length();
+    const sz = _v1.fromArray([te[8], te[9], te[10]]).length();
+    const det = value.determinant();
+    if (det < 0)
+        sx = -sx;
+    position.x = te[12];
+    position.y = te[13];
+    position.z = te[14];
+    var _m1 = new Matrix4();
+    Matrix4.clone(value, _m1);
+    const invSX = 1 / sx;
+    const invSY = 1 / sy;
+    const invSZ = 1 / sz;
+    _m1.elements[0] *= invSX;
+    _m1.elements[1] *= invSX;
+    _m1.elements[2] *= invSX;
+    _m1.elements[4] *= invSY;
+    _m1.elements[5] *= invSY;
+    _m1.elements[6] *= invSY;
+    _m1.elements[8] *= invSZ;
+    _m1.elements[9] *= invSZ;
+    _m1.elements[10] *= invSZ;
+    var _m3 = new Matrix3();
+    Matrix4.getMatrix3(_m1, _m3);
+    Quaternion.fromRotationMatrix(_m3, quaternion);
+    scale.x = sx;
+    scale.y = sy;
+    scale.z = sz;
+    return value;
 };
 Matrix4.negate = function (matrix, result) {
     result.elements[0] = -matrix.elements[0];

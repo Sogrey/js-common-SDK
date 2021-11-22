@@ -14,6 +14,7 @@ export declare class Matrix3 {
     static fromRotationX: (angle: number, result: Matrix3) => Matrix3;
     static fromRotationY: (angle: number, result: Matrix3) => Matrix3;
     static fromRotationZ: (angle: number, result: Matrix3) => Matrix3;
+    static fromRotationAroundAxis: (axisNormal: Vector3, angle: number, rotation?: Matrix3 | undefined) => Matrix3;
     static getElementIndex: (column: number, row: number) => number;
     static getColumn: (matrix: Matrix3, index: number, result: Vector3) => Vector3;
     static setColumn: (matrix: Matrix3, index: number, vector: Vector3, result: Matrix3) => Matrix3;

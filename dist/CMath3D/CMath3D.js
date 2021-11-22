@@ -9,6 +9,7 @@ import { Matrix2 } from './Matrix2';
 import { Matrix3 } from './Matrix3';
 import { Matrix4 } from './Matrix4';
 import { Quaternion } from './Quaternion';
+import { Euler } from './Euler';
 import { TranslationRotationScale } from "./TranslationRotationScale";
 export class CMath3D {
 }
@@ -23,6 +24,7 @@ CMath3D.Matrix2 = Matrix2;
 CMath3D.Matrix3 = Matrix3;
 CMath3D.Matrix4 = Matrix4;
 CMath3D.Quaternion = Quaternion;
+CMath3D.Euler = Euler;
 CMath3D.TranslationRotationScale = TranslationRotationScale;
 export { CMath } from "./CMath";
 export { Vector2 } from './Vector2';
@@ -35,5 +37,6 @@ export { Matrix2 } from './Matrix2';
 export { Matrix3 } from './Matrix3';
 export { Matrix4 } from './Matrix4';
 export { Quaternion } from './Quaternion';
+export { Euler } from './Euler';
 export { TranslationRotationScale } from "./TranslationRotationScale";
 //# sourceMappingURL=CMath3D.js.map

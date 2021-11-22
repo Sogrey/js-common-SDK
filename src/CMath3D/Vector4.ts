@@ -676,6 +676,9 @@ export class Vector4 {
 
     return result!;
   }
+  length = (): number => {
+    return Vector4.magnitude(this);
+  }
   /**
    * Creates a string representing this Vector in the format '(x, y, z, w)'.
    *

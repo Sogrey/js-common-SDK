@@ -9,6 +9,7 @@ import { Matrix2 } from './Matrix2';
 import { Matrix3 } from './Matrix3';
 import { Matrix4 } from './Matrix4';
 import { Quaternion } from './Quaternion';
+import { Euler } from './Euler';
 import { TranslationRotationScale } from "./TranslationRotationScale";
 export declare class CMath3D {
     static CMath: typeof CMath;
@@ -22,6 +23,7 @@ export declare class CMath3D {
     static Matrix3: typeof Matrix3;
     static Matrix4: typeof Matrix4;
     static Quaternion: typeof Quaternion;
+    static Euler: typeof Euler;
     static TranslationRotationScale: typeof TranslationRotationScale;
 }
 export { CMath } from "./CMath";
@@ -35,5 +37,6 @@ export { Matrix2 } from './Matrix2';
 export { Matrix3 } from './Matrix3';
 export { Matrix4 } from './Matrix4';
 export { Quaternion } from './Quaternion';
+export { Euler } from './Euler';
 export { TranslationRotationScale } from "./TranslationRotationScale";
 //# sourceMappingURL=CMath3D.d.ts.map

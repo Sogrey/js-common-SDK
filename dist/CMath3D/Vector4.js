@@ -89,6 +89,9 @@ export class Vector4 {
             result[offset + 3] = this.w;
             return result;
         };
+        this.length = () => {
+            return Vector4.magnitude(this);
+        };
         this.toString = () => {
             return "(" + this.x + ", " + this.y + ", " + this.z + ", " + this.w + ")";
         };

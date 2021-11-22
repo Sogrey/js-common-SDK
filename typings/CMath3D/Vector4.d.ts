@@ -51,6 +51,7 @@ export declare class Vector4 {
     fromArray: (array: Array<number>, offset?: number) => this;
     toArray: (offset?: number, result?: number[] | undefined) => number[];
     static random: (result?: Vector4 | undefined) => Vector4;
+    length: () => number;
     toString: () => string;
 }
 //# sourceMappingURL=Vector4.d.ts.map

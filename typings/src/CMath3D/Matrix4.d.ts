@@ -3,6 +3,7 @@ import { Matrix3 } from "./Matrix3";
 import { Vector3 } from "./Vector3";
 import { TranslationRotationScale } from "./TranslationRotationScale";
 import { Vector4 } from "./Vector4";
+import { Euler } from "./Euler";
 export declare class Matrix4 {
     elements: number[];
     constructor(column0Row0?: number, column1Row0?: number, column2Row0?: number, column3Row0?: number, column0Row1?: number, column1Row1?: number, column2Row1?: number, column3Row1?: number, column0Row2?: number, column1Row2?: number, column2Row2?: number, column3Row2?: number, column0Row3?: number, column1Row3?: number, column2Row3?: number, column3Row3?: number);
@@ -36,7 +37,15 @@ export declare class Matrix4 {
     static multiplyByPointAsVector: (matrix: Matrix4, vector: Vector3, result: Vector3) => Vector3;
     static multiplyByPoint: (matrix: Matrix4, vector: Vector3, result: Vector3) => Vector3;
     static multiplyByScalar: (matrix: Matrix4, scalar: number, result: Matrix4) => Matrix4;
+    static makeRotationFromEuler: (euler: Euler, result?: Matrix4 | undefined) => Matrix4;
+    makeRotationFromEuler: (euler: Euler) => Matrix4;
+    static makeRotationFromQuaternion: (q: Quaternion, result?: Matrix4 | undefined) => Matrix4;
+    makeRotationFromQuaternion: (q: Quaternion) => Matrix4;
+    static compose: (position: Vector3, quaternion: Quaternion, scale: Vector3, result?: Matrix4 | undefined) => Matrix4;
+    compose: (position: Vector3, quaternion: Quaternion, scale: Vector3) => Matrix4;
+    static decompose: (value: Matrix4, position: Vector3, quaternion: Quaternion, scale: Vector3) => Matrix4;
     static negate: (matrix: Matrix4, result: Matrix4) => Matrix4;
+    determinant: () => number;
     static transpose: (matrix: Matrix4, result: Matrix4) => Matrix4;
     static abs: (matrix: Matrix4, result: Matrix4) => Matrix4;
     static equals: (left: Matrix4, right: Matrix4) => boolean;

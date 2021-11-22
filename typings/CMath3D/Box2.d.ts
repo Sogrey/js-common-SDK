@@ -6,9 +6,9 @@ export declare class Box2 {
     isBox2: boolean;
     set(min: Vector2, max: Vector2): this;
     static fromArray: (array: Array<number>, result?: Box2 | undefined) => Box2 | undefined;
-    static fromPoints: (points: Array<Vector2>, result?: Box2 | undefined) => Box2 | undefined;
+    static fromPoints: (points: Array<Vector2>, result?: Box2 | undefined) => Box2;
     expandByPoint: (point: Vector2) => this;
-    static fromCenterAndSize: (center: Vector2, size: Vector2, result?: Box2 | undefined) => Box2 | undefined;
+    static fromCenterAndSize: (center: Vector2, size: Vector2, result?: Box2 | undefined) => Box2;
     static clone: (value: Box2, result?: Box2 | undefined) => Box2;
     clone: (result?: Box2 | undefined) => Box2;
     makeEmpty: () => this;
