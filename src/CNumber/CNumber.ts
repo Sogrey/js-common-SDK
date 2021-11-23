@@ -33,4 +33,16 @@ export class CNumber {
             }
         }
     }
+    /**
+     * 保留小数点以后n位
+     * @param number 要处理的小数
+     * @param no 要保留的小数位数,默认2位
+     * @returns 返回处理后小数
+     */
+    static cutNumber = function (number: number, no: number = 2): number {
+        if (typeof number != 'number') {
+            number = Number(number)
+        }
+        return Number(number.toFixed(no))
+    }
 }

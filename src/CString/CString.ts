@@ -8,17 +8,18 @@
 export class CString {
     /**
      * 生成随机字符串
-     * @param len 指定随机串长度
+     * <br/>
+     * 用于前端生成随机的ID,毕竟现在的Vue和React都需要绑定key
+     * @param length 指定随机串长度,默认8
      * @returns 返回生成的随机字符串
      */
-    static randomString = (len: number) => {
-        let chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz123456789';
-        let strLen = chars.length;
-        let randomStr = '';
-        for (let i = 0; i < len; i++) {
-            randomStr += chars.charAt(Math.floor(Math.random() * strLen));
-        }
-        return randomStr;
+    static randomString = (length: number = 8) => {
+        var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        length = length || 8;
+        var result = ''
+        for (var i = length; i > 0; --i)
+            result += chars[Math.floor(Math.random() * chars.length)]
+        return result
     };
 
     /**

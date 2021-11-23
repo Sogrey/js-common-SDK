@@ -1,13 +1,12 @@
 export class CString {
 }
-CString.randomString = (len) => {
-    let chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz123456789';
-    let strLen = chars.length;
-    let randomStr = '';
-    for (let i = 0; i < len; i++) {
-        randomStr += chars.charAt(Math.floor(Math.random() * strLen));
-    }
-    return randomStr;
+CString.randomString = (length = 8) => {
+    var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    length = length || 8;
+    var result = '';
+    for (var i = length; i > 0; --i)
+        result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
 };
 CString.fistLetterUpper = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);

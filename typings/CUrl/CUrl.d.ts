@@ -1,4 +1,5 @@
 export declare class CUrl {
+    static parseUrlSearch: (url?: string | undefined) => any;
     static getQueryVariable: (variable: string, url?: string | undefined) => string | undefined;
     static getUrlState: (url: string) => boolean;
     static params2Url: (obj: Map<string, any>) => string;

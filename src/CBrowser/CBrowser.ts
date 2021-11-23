@@ -89,4 +89,75 @@ export class CBrowser {
     //     }
     // }
 
+    /**
+     * 找元素的第n级父元素
+     * @param ele 
+     * @param n 
+     * @returns 
+     */
+    static parents = function (ele: HTMLElement, n: number = 1) {
+        while (ele && n) {
+            ele = ele.parentElement ? ele.parentElement : ele.parentNode as HTMLElement;
+            n--;
+        }
+        return ele;
+    }
+    /**
+     * 返回元素的第n个兄弟节点
+     * @param e 
+     * @param n 
+     * @returns 
+     */
+    static retSibling = function (e: HTMLElement, n: number = 1) {
+        while (e && n) {
+            if (n > 0) {
+                if (e.nextElementSibling) {
+                    e = e.nextElementSibling as HTMLElement;
+                } else {
+                    for (e = e.nextSibling as HTMLElement; e && e.nodeType !== 1; e = e.nextSibling as HTMLElement);
+                }
+                n--;
+            } else {
+                if (e.previousElementSibling) {
+                    e = e.previousElementSibling as HTMLElement;
+                } else {
+                    for (e = e.previousElementSibling! as HTMLElement; e && e.nodeType !== 1; e = e.previousElementSibling as HTMLElement);
+                }
+                n++;
+            }
+        }
+        return e;
+    }
+    /**
+     * 封装mychildren，解决浏览器的兼容问题
+     * @param e 
+     * @returns 
+     */
+    static myChildren = function (e: HTMLElement) {
+        var children = e.childNodes,
+            arr = [],
+            len = children.length;
+        for (var i = 0; i < len; i++) {
+            if (children[i].nodeType === 1) {
+                arr.push(children[i])
+            }
+        }
+        return arr;
+    }
+    /**
+     * 判断元素有没有子元素
+     * @param e 
+     * @returns 
+     */
+    static hasChildren = function (e: HTMLElement) {
+        var children = e.childNodes,
+            len = children.length;
+        for (var i = 0; i < len; i++) {
+            if (children[i].nodeType === 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

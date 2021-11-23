@@ -1,5 +1,15 @@
+import { defined } from "../defined";
 export class CUrl {
 }
+CUrl.parseUrlSearch = function (url) {
+    if (!defined(url) && defined(location) && defined(location.search))
+        url = location.search;
+    return url.replace(/(^\?)|(&$)/g, "").split("&").reduce((t, v) => {
+        const [key, val] = v.split("=");
+        t[key] = decodeURIComponent(val);
+        return t;
+    }, {});
+};
 CUrl.getQueryVariable = (variable, url) => {
     var query = "";
     if (url && url.includes('?')) {

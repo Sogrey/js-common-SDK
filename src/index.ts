@@ -19,6 +19,10 @@ import { CDevice } from './CDevice/CDevice';
 import { CBrowser } from './CBrowser/CBrowser';
 import { CDataTime } from './CDataTime/CDataTime';
 import { CMath3D } from './CMath3D/CMath3D';
+import { CFile } from './CFile/CFile';
+import { COther } from './COther/COther';
+import { CNetwork } from './CNetwork/CNetwork';
+import { CEvent } from './CEvent/CEvent';
 
 /**
  * @type {JSC}
@@ -45,6 +49,10 @@ const JSC = {
     CBrowser: CBrowser,
     CDataTime: CDataTime,
     CMath3D: CMath3D,
+    CFile: CFile,
+    COther: COther,
+    CNetwork:CNetwork,
+    CEvent:CEvent,
 }
 
 export default JSC;
@@ -66,3 +74,7 @@ export { CDevice } from './CDevice/CDevice';
 export { CBrowser } from './CBrowser/CBrowser';
 export { CDataTime } from './CDataTime/CDataTime';
 export * from './CMath3D/CMath3D';
+export { CFile } from './CFile/CFile';
+export { COther } from './COther/COther';
+export { CNetwork } from './CNetwork/CNetwork';
+export { CEvent } from './CEvent/CEvent';

@@ -1,3 +1,5 @@
+import { defined } from "../defined";
+
 /**
  * URL操作
  * 
@@ -6,7 +8,26 @@
  * @module CUrl
  */
 export class CUrl {
-
+    /**
+     * URL参数反序列化
+     * @param url 带参数url
+     * @example 
+     * <pre><code>
+     * // 假设URL为：https://www.baidu.com?age=25&name=TYJ
+     * parseUrlSearch('https://www.baidu.com?age=25&name=TYJ');
+     * // { age: "25", name: "TYJ" }
+     * </code></pre> 
+     * @returns 
+     */
+    static parseUrlSearch = function (url?: string) {
+        if (!defined(url) && defined(location) && defined(location.search))
+            url = location.search;
+        return url!.replace(/(^\?)|(&$)/g, "").split("&").reduce((t: any, v) => {
+            const [key, val] = v.split("=");
+            t[key] = decodeURIComponent(val);
+            return t;
+        }, {});
+    }
     /**
      * 获取url参数
      * @param variable 参数名

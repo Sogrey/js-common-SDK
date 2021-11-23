@@ -15,6 +15,10 @@ export { CDevice } from "./CDevice/CDevice";
 export { CBrowser } from "./CBrowser/CBrowser";
 export { CDataTime } from "./CDataTime/CDataTime";
 export * from "./CMath3D/CMath3D";
+export { CFile } from "./CFile/CFile";
+export { COther } from "./COther/COther";
+export { CNetwork } from "./CNetwork/CNetwork";
+export { CEvent } from "./CEvent/CEvent";
 declare namespace JSC {
     export const VERSION: string;
     export function test(): void;
@@ -34,6 +38,10 @@ declare namespace JSC {
     export { CBrowser };
     export { CDataTime };
     export { CMath3D };
+    export { CFile };
+    export { COther };
+    export { CNetwork };
+    export { CEvent };
 }
 import { clone } from "./clone";
 import { defined } from "./defined";
@@ -51,4 +59,8 @@ import { CDevice } from "./CDevice/CDevice";
 import { CBrowser } from "./CBrowser/CBrowser";
 import { CDataTime } from "./CDataTime/CDataTime";
 import { CMath3D } from "./CMath3D/CMath3D";
+import { CFile } from "./CFile/CFile";
+import { COther } from "./COther/COther";
+import { CNetwork } from "./CNetwork/CNetwork";
+import { CEvent } from "./CEvent/CEvent";
 //# sourceMappingURL=index.d.ts.map

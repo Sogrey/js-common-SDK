@@ -14,6 +14,10 @@ import { CDevice } from './CDevice/CDevice';
 import { CBrowser } from './CBrowser/CBrowser';
 import { CDataTime } from './CDataTime/CDataTime';
 import { CMath3D } from './CMath3D/CMath3D';
+import { CFile } from './CFile/CFile';
+import { COther } from './COther/COther';
+import { CNetwork } from './CNetwork/CNetwork';
+import { CEvent } from './CEvent/CEvent';
 declare const JSC: {
     VERSION: string;
     test: () => void;
@@ -33,6 +37,10 @@ declare const JSC: {
     CBrowser: typeof CBrowser;
     CDataTime: typeof CDataTime;
     CMath3D: typeof CMath3D;
+    CFile: typeof CFile;
+    COther: typeof COther;
+    CNetwork: typeof CNetwork;
+    CEvent: typeof CEvent;
 };
 export default JSC;
 export { clone } from "./clone";
@@ -51,4 +59,8 @@ export { CDevice } from './CDevice/CDevice';
 export { CBrowser } from './CBrowser/CBrowser';
 export { CDataTime } from './CDataTime/CDataTime';
 export * from './CMath3D/CMath3D';
+export { CFile } from './CFile/CFile';
+export { COther } from './COther/COther';
+export { CNetwork } from './CNetwork/CNetwork';
+export { CEvent } from './CEvent/CEvent';
 //# sourceMappingURL=index.d.ts.map

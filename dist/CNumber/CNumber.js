@@ -18,4 +18,10 @@ CNumber.format = (n) => {
         }
     }
 };
+CNumber.cutNumber = function (number, no = 2) {
+    if (typeof number != 'number') {
+        number = Number(number);
+    }
+    return Number(number.toFixed(no));
+};
 //# sourceMappingURL=CNumber.js.map

@@ -1,5 +1,5 @@
 export declare class CString {
-    static randomString: (len: number) => string;
+    static randomString: (length?: number) => string;
     static fistLetterUpper: (str: string) => string;
     static telFormat: (tel: (string | number)) => string;
     static getKebabCase: (str: string) => string;

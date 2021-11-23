@@ -84,4 +84,23 @@ export class CArray {
         }
         return array;
     }
+
+    /**
+     * 数组去重
+     * <br/>
+     * 原理是利用Set中不能出现重复元素的特性
+     * @param {Array<any>} arr 源数租
+     * @returns 去重后的数组
+     */
+    static uniqueArray = function (arr: Array<any>): Array<any> {
+        if (!Array.isArray(arr)) {
+            throw new Error('The first parameter must be an array')
+        }
+        if (arr.length == 1) {
+            return arr
+        }
+        return [...new Set(arr)]
+    }
+
+
 }

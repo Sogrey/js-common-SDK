@@ -42,4 +42,13 @@ CArray.flatten = (arr) => {
     return result;
 };
 CArray.sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
+CArray.uniqueArray = function (arr) {
+    if (!Array.isArray(arr)) {
+        throw new Error('The first parameter must be an array');
+    }
+    if (arr.length == 1) {
+        return arr;
+    }
+    return [...new Set(arr)];
+};
 //# sourceMappingURL=CArray.js.map
