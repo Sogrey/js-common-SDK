@@ -53,4 +53,7 @@ CString.toDBC = (str) => {
     }
     return result;
 };
+CString.reverse = (str) => str.split('').reverse().join('');
+CString.truncateString = (string, length) => string.length < length ? string : `${string.slice(0, length - 3)}...`;
+CString.stripHtml = (html) => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || '';
 //# sourceMappingURL=CString.js.map

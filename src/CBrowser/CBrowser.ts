@@ -36,6 +36,24 @@ export class CBrowser {
     };
 
     /**
+     * 获得滚动条的滚动距离
+     * @returns 
+     */
+    static getScrollOffset = function () {
+        if (window.pageXOffset) {
+            return {
+                x: window.pageXOffset,
+                y: window.pageYOffset
+            }
+        } else {
+            return {
+                x: document.body.scrollLeft + document.documentElement.scrollLeft,
+                y: document.body.scrollTop + document.documentElement.scrollTop
+            }
+        }
+    }
+
+    /**
      * 获取可视窗口高度
      * @returns 
      */
@@ -57,6 +75,50 @@ export class CBrowser {
     static getPageViewWidth = () => {
         return (document.compatMode == "BackCompat" ? document.body : document.documentElement).clientWidth;
     }
+
+    /**
+     * 获得视口的尺寸
+     * @returns 
+     */
+    static getViewportOffset = function () {
+        if (window.innerWidth) {
+            return {
+                w: window.innerWidth,
+                h: window.innerHeight
+            }
+        } else {
+            // ie8及其以下
+            if (document.compatMode === "BackCompat") {
+                // 怪异模式
+                return {
+                    w: document.body.clientWidth,
+                    h: document.body.clientHeight
+                }
+            } else {
+                // 标准模式
+                return {
+                    w: document.documentElement.clientWidth,
+                    h: document.documentElement.clientHeight
+                }
+            }
+        }
+    }
+
+    /**
+     * 遍历Dom树
+     * <br/>
+     * 给定页面上的DOM元素,将访问元素本身及其所有后代(不仅仅是它的直接子元素),对于每个访问的元素，函数讲元素传递给提供的回调函数
+     * @param element 
+     * @param callback 
+     */
+    static traverse = function (element: Element, callback: Function) {
+        callback(element);
+        var list = element.children;
+        for (var i = 0; i < list.length; i++) {
+            CBrowser.traverse(list[i], callback);
+        }
+    }
+
 
     // /**
     //  * 打开浏览器全屏

@@ -20,4 +20,8 @@ CDataTime.dateFormater = (formater, time) => {
         .replace(/mm/g, (m < 10 ? '0' : '') + m)
         .replace(/ss/g, (s < 10 ? '0' : '') + s);
 };
+CDataTime.isDateValid = (val) => !Number.isNaN(new Date(val).valueOf());
+CDataTime.dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000);
+CDataTime.dayOfYear = (date) => Math.floor((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24);
+CDataTime.timeFromDate = (date) => date.toTimeString().slice(0, 8);
 //# sourceMappingURL=CDataTime.js.map

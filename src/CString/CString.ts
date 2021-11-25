@@ -98,4 +98,53 @@ export class CString {
         }
         return result;
     }
+
+    /**
+     * 翻转字符串
+     * <br/>
+     * 该方法用于将一个字符串进行翻转操作，返回翻转后的字符串
+     * @example
+     * <pre><code>
+     * reverse('hello world');   // 'dlrow olleh'
+     * </code></pre>
+     * @param str 
+     * @returns 返回翻转后的字符串
+     */
+    static reverse = (str: string) => str.split('').reverse().join('');
+    /**
+     * 截断字符串
+     * <br/>
+     * 该方法可以从指定长度处截断字符串,超出使用‘...’
+     * @example
+     * <pre><code>
+     * truncateString('Hi, I should be truncated because I am too loooong!', 36)   // 'Hi, I should be truncated because...'
+     * </code></pre>
+     * @param string 
+     * @param length 
+     * @returns 
+     */
+    static truncateString = (string: string, length: number) => string.length < length ? string : `${string.slice(0, length - 3)}...`;
+    /**
+     * 去除字符串中的HTML
+     * <br/>
+     * 该方法用于去除字符串中的HTML元素
+     * @example
+     * <pre><code>
+     * var html = `&lt;ul&gt;
+     *     &lt;li&gt;文档本身就是一个文档对象&lt;/li&gt;
+     *     &lt;li&gt;所有 HTML 元素都是元素节点&lt;/li&gt;
+     *     &lt;li&gt;所有 HTML 属性都是属性节点&lt;/li&gt;
+     *     &lt;li&gt;插入到 HTML 元素文本是文本节点&lt;/li&gt;
+     *     &lt;li&gt;注释是注释节点&lt;/li&gt;
+     * &lt;/ul&gt;`
+     * 
+     * stripHtml(html);
+     * //'\n    文档本身就是一个文档对象\n    所有 HTML 元素都是元素节点\n\t所有 HTML 属性都是属性节点\n\t插入到 HTML 元素文本是文本节点\n\t注释是注释节点\n'
+     * </code></pre>
+     * @param html HTML字符串
+     * @returns 
+     */
+    static stripHtml = (html: string) => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || '';
+
+
 }

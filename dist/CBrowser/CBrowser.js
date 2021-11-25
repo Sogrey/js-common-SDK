@@ -17,6 +17,20 @@ CBrowser.smoothScroll = (element) => {
         behavior: 'smooth'
     });
 };
+CBrowser.getScrollOffset = function () {
+    if (window.pageXOffset) {
+        return {
+            x: window.pageXOffset,
+            y: window.pageYOffset
+        };
+    }
+    else {
+        return {
+            x: document.body.scrollLeft + document.documentElement.scrollLeft,
+            y: document.body.scrollTop + document.documentElement.scrollTop
+        };
+    }
+};
 CBrowser.getClientHeight = () => {
     let clientHeight = 0;
     if (document.body.clientHeight && document.documentElement.clientHeight) {
@@ -29,6 +43,35 @@ CBrowser.getClientHeight = () => {
 };
 CBrowser.getPageViewWidth = () => {
     return (document.compatMode == "BackCompat" ? document.body : document.documentElement).clientWidth;
+};
+CBrowser.getViewportOffset = function () {
+    if (window.innerWidth) {
+        return {
+            w: window.innerWidth,
+            h: window.innerHeight
+        };
+    }
+    else {
+        if (document.compatMode === "BackCompat") {
+            return {
+                w: document.body.clientWidth,
+                h: document.body.clientHeight
+            };
+        }
+        else {
+            return {
+                w: document.documentElement.clientWidth,
+                h: document.documentElement.clientHeight
+            };
+        }
+    }
+};
+CBrowser.traverse = function (element, callback) {
+    callback(element);
+    var list = element.children;
+    for (var i = 0; i < list.length; i++) {
+        CBrowser.traverse(list[i], callback);
+    }
 };
 CBrowser.parents = function (ele, n = 1) {
     while (ele && n) {

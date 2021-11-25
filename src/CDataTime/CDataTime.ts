@@ -44,4 +44,56 @@ export class CDataTime {
             .replace(/mm/g, (m < 10 ? '0' : '') + m)
             .replace(/ss/g, (s < 10 ? '0' : '') + s)
     }
+
+    /**
+     * 检查日期是否有效
+     * 
+     * @example
+     * <pre><code>
+     * isDateValid("December 17, 1995 03:24:00");  // true
+     * </code></pre>
+     * @param val 
+     * @returns 
+     */
+    static isDateValid = (val: string) => !Number.isNaN(new Date(val).valueOf());
+
+    /**
+     * 计算两个日期之间的间隔天数
+     * @example
+     * <pre><code>
+     * dayDif(new Date("2021-11-3"), new Date("2022-2-1"))  // 90
+     * </code></pre>
+     * @param date1 
+     * @param date2 
+     * @returns 
+     */
+    static dayDif = (date1: Date, date2: Date) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000)
+
+    /**
+     * 查找日期位于一年中的第几天
+     * @example
+     * <pre><code>
+     * dayOfYear(new Date());   // 330
+     * </code></pre>
+     * @param date 
+     * @returns 
+     */
+    static dayOfYear = (date: Date) => Math.floor((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24);
+
+    /**
+     * 时间格式化
+     * <br/>
+     * 该方法可以用于将时间转化为hour:minutes:seconds的格式：
+     * @example
+     * <pre><code>
+     * timeFromDate(new Date(2021, 11, 2, 12, 30, 0));  // 12:30:00
+     * timeFromDate(new Date());  // 返回当前时间 09:00:00
+     * </code></pre>
+     * @param date 
+     * @returns 
+     */
+    static timeFromDate = (date: Date) => date.toTimeString().slice(0, 8);
+
+
+
 }
