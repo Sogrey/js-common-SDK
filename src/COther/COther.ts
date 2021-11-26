@@ -29,4 +29,14 @@ export class COther {
         document.body.removeChild(element)
         return false
     }
+
+    /**
+     * 输入一个值，返回其数据类型
+     * @param para 
+     * @returns 
+     */
+    static type = function (para:any) {
+        return Object.prototype.toString.call(para)
+    }
+
 }

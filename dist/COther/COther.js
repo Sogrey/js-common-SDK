@@ -13,4 +13,7 @@ COther.copyToBoard = function (value) {
     document.body.removeChild(element);
     return false;
 };
+COther.type = function (para) {
+    return Object.prototype.toString.call(para);
+};
 //# sourceMappingURL=COther.js.map

@@ -45,4 +45,28 @@ export class CNumber {
         }
         return Number(number.toFixed(no))
     }
+
+    /**
+     * 判断一个数是奇数还是偶数
+     * <br/>
+     * 该方法用于判断一个数字是奇数还是偶数
+     * @example
+     * <pre><code>
+     * isEven(996); 
+     * </code></pre>
+     * @param num 
+     * @returns 
+     */
+    static isEven = (num:number) => num % 2 === 0;
+
+    /**
+     * 获得一组数的平均值
+     * @example
+     * <pre><code>
+     * average(1, 2, 3, 4, 5);   // 3
+     * </code></pre>
+     * @param args 
+     * @returns 
+     */
+    static average = (args:Array<number>) => args.reduce((a, b) => a + b) / args.length;
 }

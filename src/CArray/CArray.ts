@@ -102,5 +102,69 @@ export class CArray {
         return [...new Set(arr)]
     }
 
+    /**
+     * 数组快排 [left] + min + [right]
+     * @param arr 
+     * @returns 
+     */
+    static quickArr = function (arr: Array<number>): Array<number> {
+        if (arr.length <= 1) {
+            return arr;
+        }
+        var left = [],
+            right = [];
+        var pIndex = Math.floor(arr.length / 2);
+        var p = arr.splice(pIndex, 1)[0];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] <= p) {
+                left.push(arr[i]);
+            } else {
+                right.push(arr[i]);
+            }
+        }
+        // 递归
+        return CArray.quickArr(left).concat([p], CArray.quickArr(right));
+    }
 
+    /**
+     * 冒泡排序
+     * @param arr 
+     * @returns 
+     */
+    static bubbleSort = function (arr: Array<number>): Array<number> {
+        var len = arr.length;
+        for (var i = 0; i < len - 1; i++) {
+            for (var j = 0; j < len - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    var temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * 判断数组是否为空
+     * <br/>
+     * 该方法用于判断一个数组是否为空数组，它将返回一个布尔值
+     * @example
+     * <pre><code>
+     * isNotEmpty([1, 2, 3]);  // true
+     * </code></pre>
+     * @param arr 
+     * @returns 
+     */
+    static isNotEmpty = (arr:any) => Array.isArray(arr) && arr.length > 0;
+
+    /**
+     * 合并两个数组
+     * <br/>
+     * 可以使用下面两个方法来合并两个数组
+     * @param a 
+     * @param b 
+     * @returns 
+     */
+    static merge = (a:Array<any>, b:Array<any>):Array<any> => [...a, ...b];
 }

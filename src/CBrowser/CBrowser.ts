@@ -164,32 +164,7 @@ export class CBrowser {
         }
         return ele;
     }
-    /**
-     * 返回元素的第n个兄弟节点
-     * @param e 
-     * @param n 
-     * @returns 
-     */
-    static retSibling = function (e: HTMLElement, n: number = 1) {
-        while (e && n) {
-            if (n > 0) {
-                if (e.nextElementSibling) {
-                    e = e.nextElementSibling as HTMLElement;
-                } else {
-                    for (e = e.nextSibling as HTMLElement; e && e.nodeType !== 1; e = e.nextSibling as HTMLElement);
-                }
-                n--;
-            } else {
-                if (e.previousElementSibling) {
-                    e = e.previousElementSibling as HTMLElement;
-                } else {
-                    for (e = e.previousElementSibling! as HTMLElement; e && e.nodeType !== 1; e = e.previousElementSibling as HTMLElement);
-                }
-                n++;
-            }
-        }
-        return e;
-    }
+
     /**
      * 封装mychildren，解决浏览器的兼容问题
      * @param e 
@@ -222,4 +197,28 @@ export class CBrowser {
         return false;
     }
 
+    /**
+     * 兼容getElementsByClassName方法
+     * @param className 
+     * @returns 
+     */
+    static getElementsByClassName = function (className:string) {
+        var allDomArray = document.getElementsByTagName('*');
+        var lastDomArray = [];
+        function trimSpace(_strClass:string) {
+            var reg = /\s+/g;
+            return _strClass.replace(reg, ' ').trim()
+        }
+        for (var i = 0; i < allDomArray.length; i++) {
+            var classArray = trimSpace(allDomArray[i].className).split(' ');
+            for (var j = 0; j < classArray.length; j++) {
+                if (classArray[j] == className) {
+                    lastDomArray.push(allDomArray[i]);
+                    break;
+                }
+            }
+        }
+        return lastDomArray;
+    }
+    
 }

@@ -24,4 +24,6 @@ CNumber.cutNumber = function (number, no = 2) {
     }
     return Number(number.toFixed(no));
 };
+CNumber.isEven = (num) => num % 2 === 0;
+CNumber.average = (args) => args.reduce((a, b) => a + b) / args.length;
 //# sourceMappingURL=CNumber.js.map

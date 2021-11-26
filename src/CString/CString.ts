@@ -146,5 +146,64 @@ export class CString {
      */
     static stripHtml = (html: string) => (new DOMParser().parseFromString(html, 'text/html')).body.textContent || '';
 
+    /**
+     * 深浅克隆是针对引用值
+     * @param target 
+     * @returns 
+     */
+    static deepClone = function (target: { [x: string]: any; hasOwnProperty: (arg0: string) => any; }) {
+        if (typeof (target) !== 'object') {
+            return target;
+        }
+        var result: { [x: string]: any; hasOwnProperty: (arg0: string) => any; };
+        if (Object.prototype.toString.call(target) == '[object Array]') {
+            // 数组
+            result = []
+        } else {
+            // 对象
+            result = {};
+        }
+        for (var prop in target) {
+            if (target.hasOwnProperty(prop)) {
+                result[prop] = CString.deepClone(target[prop])
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 找出字符串中第一次只出现一次的字母
+     * @param string 
+     * @returns 
+     */
+    static firstAppear = function (string: string) {
+        var obj: { [x: string]: any; hasOwnProperty: (arg0: string) => any; } = {},
+            len = string.length;
+        for (var i = 0; i < len; i++) {
+            if (obj[string[i]]) {
+                obj[string[i]]++;
+            } else {
+                obj[string[i]] = 1;
+            }
+        }
+        for (var prop in obj) {
+            if (obj[prop] == 1) {
+                return prop;
+            }
+        }
+    }
+    /**
+     * 检验字符串是否是回文
+     * @param str 
+     * @returns 
+     */
+    static isPalindrome = function (str: string) {
+        if (Object.prototype.toString.call(str) !== '[object String]') {
+            return false;
+        }
+        str = str.replace(/\W/g, '').toLowerCase();
+        console.log(str)
+        return (str == str.split('').reverse().join(''))
+    }
 
 }

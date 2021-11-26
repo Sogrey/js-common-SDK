@@ -51,4 +51,36 @@ CArray.uniqueArray = function (arr) {
     }
     return [...new Set(arr)];
 };
+CArray.quickArr = function (arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    var left = [], right = [];
+    var pIndex = Math.floor(arr.length / 2);
+    var p = arr.splice(pIndex, 1)[0];
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] <= p) {
+            left.push(arr[i]);
+        }
+        else {
+            right.push(arr[i]);
+        }
+    }
+    return CArray.quickArr(left).concat([p], CArray.quickArr(right));
+};
+CArray.bubbleSort = function (arr) {
+    var len = arr.length;
+    for (var i = 0; i < len - 1; i++) {
+        for (var j = 0; j < len - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                var temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+};
+CArray.isNotEmpty = (arr) => Array.isArray(arr) && arr.length > 0;
+CArray.merge = (a, b) => [...a, ...b];
 //# sourceMappingURL=CArray.js.map

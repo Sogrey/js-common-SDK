@@ -80,31 +80,6 @@ CBrowser.parents = function (ele, n = 1) {
     }
     return ele;
 };
-CBrowser.retSibling = function (e, n = 1) {
-    while (e && n) {
-        if (n > 0) {
-            if (e.nextElementSibling) {
-                e = e.nextElementSibling;
-            }
-            else {
-                for (e = e.nextSibling; e && e.nodeType !== 1; e = e.nextSibling)
-                    ;
-            }
-            n--;
-        }
-        else {
-            if (e.previousElementSibling) {
-                e = e.previousElementSibling;
-            }
-            else {
-                for (e = e.previousElementSibling; e && e.nodeType !== 1; e = e.previousElementSibling)
-                    ;
-            }
-            n++;
-        }
-    }
-    return e;
-};
 CBrowser.myChildren = function (e) {
     var children = e.childNodes, arr = [], len = children.length;
     for (var i = 0; i < len; i++) {
@@ -122,5 +97,23 @@ CBrowser.hasChildren = function (e) {
         }
     }
     return false;
+};
+CBrowser.getElementsByClassName = function (className) {
+    var allDomArray = document.getElementsByTagName('*');
+    var lastDomArray = [];
+    function trimSpace(_strClass) {
+        var reg = /\s+/g;
+        return _strClass.replace(reg, ' ').trim();
+    }
+    for (var i = 0; i < allDomArray.length; i++) {
+        var classArray = trimSpace(allDomArray[i].className).split(' ');
+        for (var j = 0; j < classArray.length; j++) {
+            if (classArray[j] == className) {
+                lastDomArray.push(allDomArray[i]);
+                break;
+            }
+        }
+    }
+    return lastDomArray;
 };
 //# sourceMappingURL=CBrowser.js.map

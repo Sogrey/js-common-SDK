@@ -14,8 +14,8 @@ export declare class CBrowser {
     };
     static traverse: (element: Element, callback: Function) => void;
     static parents: (ele: HTMLElement, n?: number) => HTMLElement;
-    static retSibling: (e: HTMLElement, n?: number) => HTMLElement;
     static myChildren: (e: HTMLElement) => ChildNode[];
     static hasChildren: (e: HTMLElement) => boolean;
+    static getElementsByClassName: (className: string) => Element[];
 }
 //# sourceMappingURL=CBrowser.d.ts.map
