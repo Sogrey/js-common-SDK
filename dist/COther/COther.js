@@ -16,4 +16,5 @@ COther.copyToBoard = function (value) {
 COther.type = function (para) {
     return Object.prototype.toString.call(para);
 };
+COther.isEmpty = (obj) => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object;
 //# sourceMappingURL=COther.js.map

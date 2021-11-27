@@ -8,6 +8,52 @@
 export class CBrowser {
 
     /**
+     * 重定向到一个URL
+     * <br/>
+     * 该方法用于重定向到一个新的URL
+     * @example
+     * <pre><code>
+     * CBrowser.redirect("https://www.google.com/")
+     * </code></pre>
+     * @param url 
+     * @returns 
+     */
+    static redirect = (url: string) => location.href = url;
+
+    /**
+     * 打开浏览器打印框
+     * <br/>
+     * 该方法用于打开浏览器的打印框
+     * @returns 
+     */
+    static showPrintDialog = () => window.print();
+
+    /**
+     * 复制内容到剪切板
+     * <br/>
+     * 该方法使用 navigator.clipboard.writeText 来实现将文本复制到剪贴板
+     * @example
+     * <pre><code>
+     * CBrowser.copyToClipboard("Hello World");
+     * </code></pre>
+     * @param text 
+     * @returns 
+     */
+    static copyToClipboard = (text: string) => navigator.clipboard.writeText(text);
+
+    /**
+     * 获取选中的文本
+     * <br/>
+     * 该方法通过内置的 getSelection 属性获取用户选择的文本
+     * @example
+     * <pre><code>
+     * CBrowser.getSelectedText();
+     * </code></pre>
+     * @returns 
+     */
+    static getSelectedText = () => window.getSelection()!.toString();
+
+    /**
      *  滚动到页面顶部
      */
     static scrollToTop = () => {
@@ -24,6 +70,14 @@ export class CBrowser {
     static scrollToBottom = () => {
         window.scrollTo(0, document.documentElement.clientHeight);
     }
+
+    /**
+     * 是否滚动到页面底部
+     * <br/>
+     * 该方法用于判断页面是否已经底部
+     * @returns 
+     */
+    static scrolledToBottom = () => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;
 
     /**
      * 滚动到指定元素区域
@@ -202,10 +256,10 @@ export class CBrowser {
      * @param className 
      * @returns 
      */
-    static getElementsByClassName = function (className:string) {
+    static getElementsByClassName = function (className: string) {
         var allDomArray = document.getElementsByTagName('*');
         var lastDomArray = [];
-        function trimSpace(_strClass:string) {
+        function trimSpace(_strClass: string) {
             var reg = /\s+/g;
             return _strClass.replace(reg, ' ').trim()
         }
@@ -220,5 +274,5 @@ export class CBrowser {
         }
         return lastDomArray;
     }
-    
+
 }

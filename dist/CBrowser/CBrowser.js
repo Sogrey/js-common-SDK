@@ -2,6 +2,10 @@ var _a;
 export class CBrowser {
 }
 _a = CBrowser;
+CBrowser.redirect = (url) => location.href = url;
+CBrowser.showPrintDialog = () => window.print();
+CBrowser.copyToClipboard = (text) => navigator.clipboard.writeText(text);
+CBrowser.getSelectedText = () => window.getSelection().toString();
 CBrowser.scrollToTop = () => {
     const height = document.documentElement.scrollTop || document.body.scrollTop;
     if (height > 0) {
@@ -12,6 +16,7 @@ CBrowser.scrollToTop = () => {
 CBrowser.scrollToBottom = () => {
     window.scrollTo(0, document.documentElement.clientHeight);
 };
+CBrowser.scrolledToBottom = () => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;
 CBrowser.smoothScroll = (element) => {
     document.querySelector(element).scrollIntoView({
         behavior: 'smooth'

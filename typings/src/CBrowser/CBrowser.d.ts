@@ -1,6 +1,11 @@
 export declare class CBrowser {
+    static redirect: (url: string) => string;
+    static showPrintDialog: () => void;
+    static copyToClipboard: (text: string) => Promise<void>;
+    static getSelectedText: () => string;
     static scrollToTop: () => void;
     static scrollToBottom: () => void;
+    static scrolledToBottom: () => boolean;
     static smoothScroll: (element: string) => void;
     static getScrollOffset: () => {
         x: number;

@@ -57,7 +57,7 @@ export class CNumber {
      * @param num 
      * @returns 
      */
-    static isEven = (num:number) => num % 2 === 0;
+    static isEven = (num: number) => num % 2 === 0;
 
     /**
      * 获得一组数的平均值
@@ -68,5 +68,18 @@ export class CNumber {
      * @param args 
      * @returns 
      */
-    static average = (args:Array<number>) => args.reduce((a, b) => a + b) / args.length;
+    static average = (args: Array<number>) => args.reduce((a, b) => a + b) / args.length;
+
+    /**
+     * 摄氏度 转 华氏度
+     * @param celsius 
+     * @returns 
+     */
+    static celsiusToFahrenheit = (celsius: number) => celsius * 9 / 5 + 32;
+    /**
+     * 华氏度 转 摄氏度 
+     * @param celsius 
+     * @returns 
+     */
+    static fahrenheitToCelsius = (fahrenheit: number) => (fahrenheit - 32) * 5 / 9;
 }

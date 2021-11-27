@@ -21,4 +21,5 @@ CCookie.getCookie = (key) => {
 CCookie.delCookie = (key) => {
     document.cookie = `${encodeURIComponent(key)}=;expires=${new Date()}`;
 };
+CCookie.clearAllCookies = document.cookie.split(';').forEach(cookie => document.cookie = cookie.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`));
 //# sourceMappingURL=CCookie.js.map

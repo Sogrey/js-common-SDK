@@ -35,8 +35,17 @@ export class COther {
      * @param para 
      * @returns 
      */
-    static type = function (para:any) {
+    static type = function (para: any) {
         return Object.prototype.toString.call(para)
     }
+
+    /**
+     * 检测对象是否为空
+     * <br/>
+     * 该方法用于检测一个JavaScript对象是否为空
+     * @param obj 
+     * @returns 
+     */
+    static isEmpty = (obj: any) => Reflect.ownKeys(obj).length === 0 && obj.constructor === Object;
 
 }

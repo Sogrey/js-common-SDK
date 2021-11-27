@@ -26,4 +26,6 @@ CNumber.cutNumber = function (number, no = 2) {
 };
 CNumber.isEven = (num) => num % 2 === 0;
 CNumber.average = (args) => args.reduce((a, b) => a + b) / args.length;
+CNumber.celsiusToFahrenheit = (celsius) => celsius * 9 / 5 + 32;
+CNumber.fahrenheitToCelsius = (fahrenheit) => (fahrenheit - 32) * 5 / 9;
 //# sourceMappingURL=CNumber.js.map
