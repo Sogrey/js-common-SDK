@@ -1,5 +1,6 @@
+import { BaseObject } from "../BaseObject";
 import { defined } from "../defined";
-export class CUrl {
+export class CUrl extends BaseObject {
 }
 CUrl.parseUrlSearch = function (url) {
     if (!defined(url) && defined(location) && defined(location.search))

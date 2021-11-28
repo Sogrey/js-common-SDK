@@ -1,4 +1,5 @@
-export declare class CString {
+import { BaseObject } from "../BaseObject";
+export declare class CString extends BaseObject {
     static randomString: (length?: number) => string;
     static fistLetterUpper: (str: string) => string;
     static telFormat: (tel: (string | number)) => string;

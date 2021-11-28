@@ -1,4 +1,5 @@
-export class CNetwork {
+import { BaseObject } from "../BaseObject";
+export class CNetwork extends BaseObject {
 }
 CNetwork.ajax = function (method, url, callback, data, flag) {
     var xhr;

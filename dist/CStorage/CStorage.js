@@ -1,4 +1,5 @@
-export class CStorage {
+import { BaseObject } from "../BaseObject";
+export class CStorage extends BaseObject {
 }
 CStorage.setLoalStorage = (key, value) => {
     if (!key)

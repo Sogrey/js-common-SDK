@@ -1,4 +1,5 @@
-export class COther {
+import { BaseObject } from "../BaseObject";
+export class COther extends BaseObject {
 }
 COther.copyToBoard = function (value) {
     const element = document.createElement('textarea');

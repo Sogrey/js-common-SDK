@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 格式转化
  * 
@@ -5,7 +7,7 @@
  *
  * @module CFormat
  */
-export class CFormat {
+export class CFormat  extends BaseObject{
 
     /**
      * 数字转化为大写金额

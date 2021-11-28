@@ -1,3 +1,4 @@
+import { BaseObject } from "../BaseObject";
 import { defined } from "../defined";
 import { DeveloperError } from "../DeveloperError"
 
@@ -8,7 +9,7 @@ import { DeveloperError } from "../DeveloperError"
  *
  * @module CEvent
  */
-export class CEvent {
+export class CEvent extends BaseObject {
 
     
 }

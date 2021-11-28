@@ -1,4 +1,5 @@
-export declare class CRegular {
+import { BaseObject } from "../BaseObject";
+export declare class CRegular extends BaseObject {
     static checkID: (value: string) => boolean;
     static haveCNChars: (value: string) => boolean;
     static isPostCode: (value: string) => boolean;

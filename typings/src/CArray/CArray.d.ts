@@ -1,4 +1,5 @@
-export declare class CArray {
+import { BaseObject } from "../BaseObject";
+export declare class CArray extends BaseObject {
     static arrScrambling: (arr: Array<any>) => any[];
     static flatten: (arr: Array<any>) => any[];
     static sample: (arr: Array<any>) => any;

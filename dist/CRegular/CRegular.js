@@ -1,4 +1,5 @@
-export class CRegular {
+import { BaseObject } from "../BaseObject";
+export class CRegular extends BaseObject {
 }
 CRegular.checkID = (value) => {
     let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;

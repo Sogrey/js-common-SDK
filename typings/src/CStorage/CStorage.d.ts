@@ -1,4 +1,5 @@
-export declare class CStorage {
+import { BaseObject } from "../BaseObject";
+export declare class CStorage extends BaseObject {
     static setLoalStorage: (key: string, value: any) => void;
     static getLoalStorage: (key: string) => string | null | undefined;
     static removeLoalStorage: (key: string) => void;

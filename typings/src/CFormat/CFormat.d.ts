@@ -1,4 +1,5 @@
-export declare class CFormat {
+import { BaseObject } from "../BaseObject";
+export declare class CFormat extends BaseObject {
     static digitUppercase: (n: number) => string;
     static intToChinese: (value: number) => string;
 }

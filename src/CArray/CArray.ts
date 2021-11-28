@@ -1,3 +1,4 @@
+import { BaseObject } from "../BaseObject";
 import { defaultValue } from "../defaultValue";
 import { defined } from "../defined";
 
@@ -8,7 +9,7 @@ import { defined } from "../defined";
  *
  * @module CArray
  */
-export class CArray {
+export class CArray extends BaseObject {
 
     /**
      * 数组乱序
@@ -156,7 +157,7 @@ export class CArray {
      * @param arr 
      * @returns 
      */
-    static isNotEmpty = (arr:any) => Array.isArray(arr) && arr.length > 0;
+    static isNotEmpty = (arr: any) => Array.isArray(arr) && arr.length > 0;
 
     /**
      * 合并两个数组
@@ -166,5 +167,5 @@ export class CArray {
      * @param b 
      * @returns 
      */
-    static merge = (a:Array<any>, b:Array<any>):Array<any> => [...a, ...b];
+    static merge = (a: Array<any>, b: Array<any>): Array<any> => [...a, ...b];
 }

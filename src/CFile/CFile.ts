@@ -1,3 +1,4 @@
+import { BaseObject } from "../BaseObject"
 import { DeveloperError } from "../DeveloperError"
 
 /**
@@ -7,7 +8,7 @@ import { DeveloperError } from "../DeveloperError"
  *
  * @module CFile
  */
-export class CFile {
+export class CFile extends BaseObject {
     /**
      * 获取文件后缀名
      * @param filename 

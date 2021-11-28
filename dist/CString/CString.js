@@ -1,4 +1,5 @@
-export class CString {
+import { BaseObject } from "../BaseObject";
+export class CString extends BaseObject {
 }
 CString.randomString = (length = 8) => {
     var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

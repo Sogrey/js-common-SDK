@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 时间操作
  * 
@@ -5,7 +7,7 @@
  *
  * @module CDataTime
  */
-export class CDataTime {
+export class CDataTime extends BaseObject {
 
     /**
      * 获取当前时间

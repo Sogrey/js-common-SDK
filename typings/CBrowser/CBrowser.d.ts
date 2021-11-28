@@ -1,4 +1,5 @@
-export declare class CBrowser {
+import { BaseObject } from "../BaseObject";
+export declare class CBrowser extends BaseObject {
     static redirect: (url: string) => string;
     static showPrintDialog: () => void;
     static copyToClipboard: (text: string) => Promise<void>;

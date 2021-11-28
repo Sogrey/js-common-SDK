@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 设备判断
  * 
@@ -5,7 +7,7 @@
  *
  * @module CDevice
  */
-export class CDevice {
+export class CDevice extends BaseObject {
 
     /**
      * 判断是移动还是pc设备

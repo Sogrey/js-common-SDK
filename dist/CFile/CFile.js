@@ -1,5 +1,6 @@
+import { BaseObject } from "../BaseObject";
 import { DeveloperError } from "../DeveloperError";
-export class CFile {
+export class CFile extends BaseObject {
 }
 CFile.getExt = function (filename) {
     if (typeof filename == 'string') {

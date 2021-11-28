@@ -1,4 +1,5 @@
-export class CCookie {
+import { BaseObject } from "../BaseObject";
+export class CCookie extends BaseObject {
 }
 CCookie.setCookie = (key, value, expire) => {
     const d = new Date();

@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 操作存储
  * 
@@ -5,7 +7,7 @@
  *
  * @module CStorage
  */
-export class CStorage {
+export class CStorage extends BaseObject {
 
     /**
      * 存储loalStorage

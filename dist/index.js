@@ -2,6 +2,7 @@ import { clone } from "./clone";
 import { defined } from "./defined";
 import { defaultValue } from "./defaultValue";
 import { DeveloperError } from './DeveloperError';
+import { BaseObject } from './BaseObject';
 import { CNumber } from './CNumber/CNumber';
 import { CArray } from './CArray/CArray';
 import { CString } from './CString/CString';
@@ -27,6 +28,7 @@ const JSC = {
     defined: defined,
     defaultValue: defaultValue,
     DeveloperError: DeveloperError,
+    BaseObject: BaseObject,
     CNumber: CNumber,
     CArray: CArray,
     CString: CString,
@@ -49,6 +51,7 @@ export { clone } from "./clone";
 export { defined } from "./defined";
 export { defaultValue } from "./defaultValue";
 export { DeveloperError } from './DeveloperError';
+export { BaseObject } from './BaseObject';
 export { CNumber } from './CNumber/CNumber';
 export { CArray } from './CArray/CArray';
 export { CString } from './CString/CString';

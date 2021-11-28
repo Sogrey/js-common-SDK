@@ -1,1 +1,1 @@
-{"version":3,"file":"CNetwork.d.ts","sourceRoot":"","sources":["../../../src/CNetwork/CNetwork.ts"],"names":[],"mappings":"AASA,qBAAa,QAAQ;IASjB,MAAM,CAAC,IAAI,WAAqB,MAAM,OAAO,MAAM,YAAY,QAAQ,QAAQ,MAAM,QAAQ,OAAO,UA0BnG;CACJ"}
+{"version":3,"file":"CNetwork.d.ts","sourceRoot":"","sources":["../../../src/CNetwork/CNetwork.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAU3C,qBAAa,QAAS,SAAQ,UAAU;IASpC,MAAM,CAAC,IAAI,WAAqB,MAAM,OAAO,MAAM,YAAY,QAAQ,QAAQ,MAAM,QAAQ,OAAO,UA0BnG;CACJ"}

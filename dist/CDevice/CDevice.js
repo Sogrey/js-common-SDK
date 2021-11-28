@@ -1,4 +1,5 @@
-export class CDevice {
+import { BaseObject } from "../BaseObject";
+export class CDevice extends BaseObject {
 }
 CDevice.isMobile = () => {
     if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iOS|iPad|Backerry|WebOS|Symbian|Windows Phone|Phone)/i))) {

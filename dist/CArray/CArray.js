@@ -1,6 +1,7 @@
 var _a;
+import { BaseObject } from "../BaseObject";
 import { defaultValue } from "../defaultValue";
-export class CArray {
+export class CArray extends BaseObject {
     static arrayFill(array, value, start, end) {
         if (typeof array.fill === "function") {
             return array.fill(value, start, end);

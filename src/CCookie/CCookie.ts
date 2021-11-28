@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 操作cookie
  * 
@@ -5,7 +7,7 @@
  *
  * @module CCookie
  */
-export class CCookie {
+export class CCookie extends BaseObject {
 
     /**
      * 设置cookie

@@ -1,4 +1,5 @@
-export class CFormat {
+import { BaseObject } from "../BaseObject";
+export class CFormat extends BaseObject {
 }
 CFormat.digitUppercase = (n) => {
     const fraction = ['角', '分'];

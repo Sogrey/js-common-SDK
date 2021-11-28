@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 数字操作
  * 
@@ -5,7 +7,7 @@
  *
  * @module CNumber
  */
-export class CNumber {
+export class CNumber extends BaseObject {
     /**
      * 生成指定范围随机数
      * @param min 范围最小值

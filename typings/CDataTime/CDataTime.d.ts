@@ -1,4 +1,5 @@
-export declare class CDataTime {
+import { BaseObject } from "../BaseObject";
+export declare class CDataTime extends BaseObject {
     static nowTime: () => string;
     static dateFormater: (formater: string, time: number) => string;
     static isDateValid: (val: string) => boolean;

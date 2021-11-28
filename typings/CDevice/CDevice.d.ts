@@ -1,4 +1,5 @@
-export declare class CDevice {
+import { BaseObject } from "../BaseObject";
+export declare class CDevice extends BaseObject {
     static isMobile: () => "mobile" | "desktop";
     static isAppleMobileDevice: () => boolean;
     static isAndroidMobileDevice: () => boolean;

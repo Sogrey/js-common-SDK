@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 字符串操作
  * 
@@ -5,7 +7,7 @@
  *
  * @module CString
  */
-export class CString {
+export class CString extends BaseObject {
     /**
      * 生成随机字符串
      * <br/>

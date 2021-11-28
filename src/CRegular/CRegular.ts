@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 正则格式校验
  * 
@@ -5,7 +7,7 @@
  *
  * @module CRegular
  */
-export class CRegular {
+export class CRegular extends BaseObject {
 
     /**
      * 校验身份证号码

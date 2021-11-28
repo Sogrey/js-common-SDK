@@ -1,3 +1,4 @@
+import { BaseObject } from "../BaseObject";
 import { DeveloperError } from "../DeveloperError"
 
 /**
@@ -7,7 +8,7 @@ import { DeveloperError } from "../DeveloperError"
  *
  * @module CNetwork
  */
-export class CNetwork {
+export class CNetwork extends BaseObject {
     /**
      * 原生js封装ajax
      * @param method 提交方式 GET | POST

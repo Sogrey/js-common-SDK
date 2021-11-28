@@ -1,4 +1,5 @@
-export class CNumber {
+import { BaseObject } from "../BaseObject";
+export class CNumber extends BaseObject {
 }
 CNumber.randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 CNumber.format = (n) => {

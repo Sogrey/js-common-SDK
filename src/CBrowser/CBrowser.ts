@@ -1,3 +1,5 @@
+import { BaseObject } from "../BaseObject";
+
 /**
  * 浏览器操作
  * 
@@ -5,7 +7,7 @@
  *
  * @module CBrowser
  */
-export class CBrowser {
+export class CBrowser extends BaseObject {
 
     /**
      * 重定向到一个URL

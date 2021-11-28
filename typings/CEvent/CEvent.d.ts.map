@@ -1,1 +1,1 @@
-{"version":3,"file":"CEvent.d.ts","sourceRoot":"","sources":["../../src/CEvent/CEvent.ts"],"names":[],"mappings":"AAUA,qBAAa,MAAM;CAGlB"}
+{"version":3,"file":"CEvent.d.ts","sourceRoot":"","sources":["../../src/CEvent/CEvent.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAW3C,qBAAa,MAAO,SAAQ,UAAU;CAGrC"}

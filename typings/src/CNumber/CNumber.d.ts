@@ -1,4 +1,5 @@
-export declare class CNumber {
+import { BaseObject } from "../BaseObject";
+export declare class CNumber extends BaseObject {
     static randomNum: (min: number, max: number) => number;
     static format: (n: number) => string;
     static cutNumber: (number: number, no?: number) => number;

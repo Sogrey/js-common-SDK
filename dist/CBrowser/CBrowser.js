@@ -1,5 +1,6 @@
 var _a;
-export class CBrowser {
+import { BaseObject } from "../BaseObject";
+export class CBrowser extends BaseObject {
 }
 _a = CBrowser;
 CBrowser.redirect = (url) => location.href = url;

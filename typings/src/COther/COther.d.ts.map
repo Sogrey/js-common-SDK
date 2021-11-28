@@ -1,1 +1,1 @@
-{"version":3,"file":"COther.d.ts","sourceRoot":"","sources":["../../../src/COther/COther.ts"],"names":[],"mappings":"AASA,qBAAa,MAAM;IASf,MAAM,CAAC,WAAW,UAAoB,MAAM,aAY3C;IAOD,MAAM,CAAC,IAAI,SAAmB,GAAG,YAEhC;IASD,MAAM,CAAC,OAAO,QAAS,GAAG,aAAqE;CAElG"}
+{"version":3,"file":"COther.d.ts","sourceRoot":"","sources":["../../../src/COther/COther.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAA;AAU1C,qBAAa,MAAO,SAAQ,UAAU;IASlC,MAAM,CAAC,WAAW,UAAoB,MAAM,aAY3C;IAOD,MAAM,CAAC,IAAI,SAAmB,GAAG,YAEhC;IASD,MAAM,CAAC,OAAO,QAAS,GAAG,aAAqE;CAElG"}

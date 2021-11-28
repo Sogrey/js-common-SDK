@@ -1,3 +1,4 @@
+import { BaseObject } from "../BaseObject";
 import { defined } from "../defined";
 
 /**
@@ -7,7 +8,7 @@ import { defined } from "../defined";
  *
  * @module CUrl
  */
-export class CUrl {
+export class CUrl extends BaseObject {
     /**
      * URL参数反序列化
      * @param url 带参数url

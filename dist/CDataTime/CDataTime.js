@@ -1,4 +1,5 @@
-export class CDataTime {
+import { BaseObject } from "../BaseObject";
+export class CDataTime extends BaseObject {
 }
 CDataTime.nowTime = () => {
     const now = new Date();

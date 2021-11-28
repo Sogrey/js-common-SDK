@@ -1,3 +1,4 @@
+import { BaseObject } from "../BaseObject"
 import { DeveloperError } from "../DeveloperError"
 
 /**
@@ -7,7 +8,7 @@ import { DeveloperError } from "../DeveloperError"
  *
  * @module COther
  */
-export class COther {
+export class COther extends BaseObject {
     /**
      * 复制内容到剪贴板
      * <br/>
