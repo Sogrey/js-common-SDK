@@ -9,22 +9,23 @@ import { DeveloperError } from './DeveloperError';
 
 import { BaseObject } from './BaseObject';
 
-import { CNumber } from './CNumber/CNumber';
-import { CArray } from './CArray/CArray';
-import { CString } from './CString/CString';
-import { CFormat } from './CFormat/CFormat';
-import { CStorage } from './CStorage/CStorage';
-import { CCookie } from './CCookie/CCookie';
-import { CRegular } from './CRegular/CRegular';
-import { CUrl } from './CUrl/CUrl';
-import { CDevice } from './CDevice/CDevice';
-import { CBrowser } from './CBrowser/CBrowser';
-import { CDataTime } from './CDataTime/CDataTime';
+import { CObject } from './CObject';
+import { CNumber } from './CNumber';
+import { CArray } from './CArray';
+import { CString } from './CString';
+import { CFormat } from './CFormat';
+import { CStorage } from './CStorage';
+import { CCookie } from './CCookie';
+import { CRegular } from './CRegular';
+import { CUrl } from './CUrl';
+import { CDevice } from './CDevice';
+import { CBrowser } from './CBrowser';
+import { CDataTime } from './CDataTime';
 import { CMath3D } from './CMath3D/CMath3D';
-import { CFile } from './CFile/CFile';
-import { COther } from './COther/COther';
-import { CNetwork } from './CNetwork/CNetwork';
-import { CEvent } from './CEvent/CEvent';
+import { CFile } from './CFile';
+import { COther } from './COther';
+import { CNetwork } from './CNetwork';
+import { CEvent } from './CEvent';
 
 /**
  * @type {JSC}
@@ -39,9 +40,10 @@ const JSC = {
     defined: defined,
     defaultValue: defaultValue,
     DeveloperError: DeveloperError,
-    
+
     BaseObject: BaseObject,
 
+    CObject: CObject,
     CNumber: CNumber,
     CArray: CArray,
     CString: CString,
@@ -56,8 +58,8 @@ const JSC = {
     CMath3D: CMath3D,
     CFile: CFile,
     COther: COther,
-    CNetwork:CNetwork,
-    CEvent:CEvent,
+    CNetwork: CNetwork,
+    CEvent: CEvent,
 }
 
 export default JSC;
@@ -69,19 +71,20 @@ export { DeveloperError } from './DeveloperError';
 
 export { BaseObject } from './BaseObject';
 
-export { CNumber } from './CNumber/CNumber';
-export { CArray } from './CArray/CArray';
-export { CString } from './CString/CString';
-export { CFormat } from './CFormat/CFormat';
-export { CStorage } from './CStorage/CStorage';
-export { CCookie } from './CCookie/CCookie';
-export { CRegular } from './CRegular/CRegular';
-export { CUrl } from './CUrl/CUrl';
-export { CDevice } from './CDevice/CDevice';
-export { CBrowser } from './CBrowser/CBrowser';
-export { CDataTime } from './CDataTime/CDataTime';
+export { CObject } from './CObject';
+export { CNumber } from './CNumber';
+export { CArray } from './CArray';
+export { CString } from './CString';
+export { CFormat } from './CFormat';
+export { CStorage } from './CStorage';
+export { CCookie } from './CCookie';
+export { CRegular } from './CRegular';
+export { CUrl } from './CUrl';
+export { CDevice } from './CDevice';
+export { CBrowser } from './CBrowser';
+export { CDataTime } from './CDataTime';
 export * from './CMath3D/CMath3D';
-export { CFile } from './CFile/CFile';
-export { COther } from './COther/COther';
-export { CNetwork } from './CNetwork/CNetwork';
-export { CEvent } from './CEvent/CEvent';
+export { CFile } from './CFile';
+export { COther } from './COther';
+export { CNetwork } from './CNetwork';
+export { CEvent } from './CEvent';
