@@ -23,5 +23,9 @@ export declare class CBrowser extends BaseObject {
     static myChildren: (e: HTMLElement) => ChildNode[];
     static hasChildren: (e: HTMLElement) => boolean;
     static getElementsByClassName: (className: string) => Element[];
+    static hasClass: (el: HTMLElement, className: string) => boolean;
+    static addClass: (el: HTMLElement, className: string) => void;
+    static removeClass: (el: HTMLElement, className: string) => void;
+    static elementIsVisibleInViewport: (el: HTMLElement, partiallyVisible?: boolean) => boolean;
 }
 //# sourceMappingURL=CBrowser.d.ts.map

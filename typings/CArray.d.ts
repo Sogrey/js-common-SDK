@@ -9,5 +9,10 @@ export declare class CArray extends BaseObject {
     static bubbleSort: (arr: Array<number>) => Array<number>;
     static isNotEmpty: (arr: any) => boolean;
     static merge: (a: Array<any>, b: Array<any>) => Array<any>;
+    static union: (a: Array<any>, b: Array<any>) => any[];
+    static intersect: (a: Array<any>, b: Array<any>) => any[];
+    static remove: (arr: Array<any>, ele: any) => any[];
+    static max: (arr: Array<number>) => number;
+    static min: (arr: Array<number>) => number;
 }
 //# sourceMappingURL=CArray.d.ts.map

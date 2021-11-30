@@ -122,4 +122,31 @@ CBrowser.getElementsByClassName = function (className) {
     }
     return lastDomArray;
 };
+CBrowser.hasClass = (el, className) => {
+    let reg = new RegExp('(^|\\s)' + className + '(\\s|$)');
+    return reg.test(el.className);
+};
+CBrowser.addClass = (el, className) => {
+    if (CBrowser.hasClass(el, className)) {
+        return;
+    }
+    let newClass = el.className.split(' ');
+    newClass.push(className);
+    el.className = newClass.join(' ');
+};
+CBrowser.removeClass = (el, className) => {
+    if (!CBrowser.hasClass(el, className)) {
+        return;
+    }
+    let reg = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g');
+    el.className = el.className.replace(reg, ' ');
+};
+CBrowser.elementIsVisibleInViewport = (el, partiallyVisible = false) => {
+    const { top, left, bottom, right } = el.getBoundingClientRect();
+    const { innerHeight, innerWidth } = window;
+    return partiallyVisible
+        ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
+            ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+        : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+};
 //# sourceMappingURL=CBrowser.js.map

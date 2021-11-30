@@ -12,5 +12,6 @@ export declare class CObject extends BaseObject {
     getRawType: (value: any) => string;
     static isPlainObject: (obj: any) => boolean;
     isPlainObject: (obj: any) => boolean;
+    static isObjectEqual: (a: any, b: any) => boolean;
 }
 //# sourceMappingURL=CObject.d.ts.map

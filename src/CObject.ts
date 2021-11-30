@@ -7,7 +7,7 @@ import { BaseObject } from "./BaseObject";
  *
  * @module CObject
  */
- export class CObject extends BaseObject {
+export class CObject extends BaseObject {
 
     /**
      * 检测数据是不是除了symbol外的原始数据。
@@ -85,5 +85,29 @@ import { BaseObject } from "./BaseObject";
     }
 
     isPlainObject = CObject.isPlainObject;
+
+    /**
+     * 判断两个对象是否键值相同
+     * @param a 
+     * @param b 
+     * @returns 
+     */
+    static isObjectEqual = (a: any, b: any) => {
+        var aProps = Object.getOwnPropertyNames(a);
+        var bProps = Object.getOwnPropertyNames(b);
+
+        if (aProps.length !== bProps.length) {
+            return false;
+        }
+
+        for (var i = 0; i < aProps.length; i++) {
+            var propName = aProps[i];
+
+            if (a[propName] !== b[propName]) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

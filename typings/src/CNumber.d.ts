@@ -7,5 +7,7 @@ export declare class CNumber extends BaseObject {
     static average: (args: Array<number>) => number;
     static celsiusToFahrenheit: (celsius: number) => number;
     static fahrenheitToCelsius: (fahrenheit: number) => number;
+    static numberToChinese: (num: number) => string;
+    static numberToChinese2: (num: string) => string;
 }
 //# sourceMappingURL=CNumber.d.ts.map

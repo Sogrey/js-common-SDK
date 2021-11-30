@@ -19,5 +19,8 @@ export declare class CString extends BaseObject {
     };
     static firstAppear: (string: string) => string | undefined;
     static isPalindrome: (str: string) => boolean;
+    static trim: (str: string, type: number) => string;
+    static changeCase: (str: string, type: number) => string;
+    static checkPwd: (str: string) => number;
 }
 //# sourceMappingURL=CString.d.ts.map

@@ -277,4 +277,56 @@ export class CBrowser extends BaseObject {
         return lastDomArray;
     }
 
+    /**
+     * el是否包含某个class
+     * @param el html元素
+     * @param className class name
+     * @returns 
+     */
+    static hasClass = (el: HTMLElement, className: string) => {
+        let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
+        return reg.test(el.className)
+    }
+
+    /**
+     * el添加某个class
+     * @param el html元素
+     * @param className class name
+     * @returns 
+     */
+    static addClass = (el: HTMLElement, className: string) => {
+        if (CBrowser.hasClass(el, className)) {
+            return
+        }
+        let newClass = el.className.split(' ')
+        newClass.push(className)
+        el.className = newClass.join(' ')
+    }
+    /**
+     * el去除某个class
+     * @param el html元素
+     * @param className class name
+     * @returns 
+     */
+    static removeClass = (el: HTMLElement, className: string) => {
+        if (!CBrowser.hasClass(el, className)) {
+            return
+        }
+        let reg = new RegExp('(^|\\s)' + className + '(\\s|$)', 'g')
+        el.className = el.className.replace(reg, ' ')
+    }
+    /**
+     * el是否在视口范围内
+     * @param el html元素
+     * @param partiallyVisible 是否允许部分可视
+     * @returns 
+     */
+    static elementIsVisibleInViewport = (el: HTMLElement, partiallyVisible: boolean = false) => {
+        const { top, left, bottom, right } = el.getBoundingClientRect();
+        const { innerHeight, innerWidth } = window;
+        return partiallyVisible
+            ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
+            ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+            : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+    }
 }

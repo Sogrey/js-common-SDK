@@ -84,4 +84,30 @@ CArray.bubbleSort = function (arr) {
 };
 CArray.isNotEmpty = (arr) => Array.isArray(arr) && arr.length > 0;
 CArray.merge = (a, b) => [...a, ...b];
+CArray.union = (a, b) => {
+    var newArr = a.concat(b);
+    return CArray.uniqueArray(newArr);
+};
+CArray.intersect = (a, b) => {
+    a = CArray.uniqueArray(a);
+    function checkAdult(c) {
+        return c !== null;
+    }
+    return a.map((o) => {
+        return b.includes(o) ? o : null;
+    }).filter(checkAdult);
+};
+CArray.remove = (arr, ele) => {
+    var index = arr.indexOf(ele);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+};
+CArray.max = (arr) => {
+    return Math.max.apply(null, arr);
+};
+CArray.min = (arr) => {
+    return Math.min.apply(null, arr);
+};
 //# sourceMappingURL=CArray.js.map

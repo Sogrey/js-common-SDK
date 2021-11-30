@@ -18,6 +18,66 @@ export class CRegular extends BaseObject {
         let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
         return reg.test(value);
     };
+    /**
+     * 严格的身份证校验
+     * @param sId 身份证号码
+     * @returns 
+     */
+    static isCardID = (sId: string) => {
+        if (!/(^\d{15}$)|(^\d{17}(\d|X|x)$)/.test(sId)) {
+            console.log('你输入的身份证长度或格式错误')
+            return false
+        }
+
+        class City {
+            public index!: number;
+            public name!: string;
+        }
+
+        //身份证城市
+        var aCityMap: Map<number, string> = new Map();
+        aCityMap.set(11, "北京"); aCityMap.set(12, "天津"); aCityMap.set(13, "河北");
+        aCityMap.set(14, "山西"); aCityMap.set(15, "内蒙古"); aCityMap.set(21, "辽宁");
+        aCityMap.set(22, "吉林"); aCityMap.set(23, "黑龙江"); aCityMap.set(31, "上海");
+        aCityMap.set(32, "江苏"); aCityMap.set(33, "浙江"); aCityMap.set(34, "安徽");
+        aCityMap.set(35, "福建"); aCityMap.set(36, "江西"); aCityMap.set(37, "山东");
+        aCityMap.set(41, "河南"); aCityMap.set(42, "湖北"); aCityMap.set(43, "湖南");
+        aCityMap.set(44, "广东"); aCityMap.set(45, "广西"); aCityMap.set(46, "海南");
+        aCityMap.set(50, "重庆"); aCityMap.set(51, "四川"); aCityMap.set(52, "贵州");
+        aCityMap.set(53, "云南"); aCityMap.set(54, "西藏"); aCityMap.set(61, "陕西");
+        aCityMap.set(62, "甘肃"); aCityMap.set(63, "青海"); aCityMap.set(64, "宁夏");
+        aCityMap.set(65, "新疆"); aCityMap.set(71, "台湾"); aCityMap.set(81, "香港");
+        aCityMap.set(82, "澳门"); aCityMap.set(91, "国外");
+
+        var cityId = parseInt(sId.substr(0, 2));
+        if (!aCityMap.has(cityId) || !aCityMap.get(cityId)) {
+            console.log('你的身份证地区非法')
+            return false
+        }
+
+        // 出生日期验证
+        var sBirthday = (sId.substr(6, 4) + "-" + Number(sId.substr(10, 2)) + "-" + Number(sId.substr(12, 2))).replace(/-/g, "/"),
+            d = new Date(sBirthday)
+        if (sBirthday != (d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate())) {
+            console.log('身份证上的出生日期非法')
+            return false
+        }
+
+        // 身份证号码校验
+        var sum: number = 0,
+            weights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2],
+            codes = "10X98765432"
+        for (var i = 0; i < sId.length - 1; i++) {
+            sum += parseInt(sId.substr(i, 1)) * weights[i];
+        }
+        var last = codes[sum % 11]; //计算出来的最后一位身份证号码
+        if (sId[sId.length - 1] != last) {
+            console.log('你输入的身份证号非法')
+            return false
+        }
+
+        return true
+    }
 
     /**
      * 校验是否包含中文

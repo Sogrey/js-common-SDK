@@ -168,4 +168,63 @@ export class CArray extends BaseObject {
      * @returns 
      */
     static merge = (a: Array<any>, b: Array<any>): Array<any> => [...a, ...b];
+
+    /**
+     * 求两个集合的并集
+     * @param a 数组a
+     * @param b 数组b
+     * @returns 
+     */
+    static union = (a: Array<any>, b: Array<any>) => {
+        var newArr = a.concat(b);
+        return CArray.uniqueArray(newArr);
+    }
+
+    /**
+     * 求两个集合的交集
+     * @param a 数组a
+     * @param b 数组b
+     * @returns 
+     */
+    static intersect = (a: Array<any>, b: Array<any>) => {
+        a = CArray.uniqueArray(a);
+        function checkAdult(c: any) {
+            return c !== null;
+        }
+        return a.map((o) => {
+            return b.includes(o) ? o : null;
+        }).filter(checkAdult);
+    }
+
+    /**
+     * 删除其中一个元素
+     * @param arr 
+     * @param ele 
+     * @returns 
+     */
+    static remove = (arr: Array<any>, ele: any) => {
+        var index = arr.indexOf(ele);
+        if (index > -1) {
+            arr.splice(index, 1);
+        }
+        return arr;
+    }
+
+    /**
+     * 最大值
+     * @param arr 
+     * @returns 
+     */
+    static max = (arr: Array<number>) => {
+        return Math.max.apply(null, arr);
+    }
+
+    /**
+     * 最小值
+     * @param arr 
+     * @returns 
+     */
+    static min = (arr: Array<number>) => {
+        return Math.min.apply(null, arr);
+    }
 }
