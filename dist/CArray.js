@@ -1,5 +1,6 @@
 var _a;
 import { BaseObject } from "./BaseObject";
+import { CObject } from "./CObject";
 import { defaultValue } from "./defaultValue";
 export class CArray extends BaseObject {
     static arrayFill(array, value, start, end) {
@@ -23,6 +24,12 @@ export class CArray extends BaseObject {
     }
 }
 _a = CArray;
+CArray.isLength = (value) => {
+    return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER;
+};
+CArray.isArrayLike = (value) => {
+    return value != null && CArray.isLength(value.length) && !CObject.isFunction(value);
+};
 CArray.arrScrambling = (arr) => {
     for (let i = 0; i < arr.length; i++) {
         const randomIndex = Math.round(Math.random() * (arr.length - 1 - i)) + i;

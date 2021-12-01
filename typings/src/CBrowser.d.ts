@@ -1,5 +1,19 @@
 import { BaseObject } from "./BaseObject";
 export declare class CBrowser extends BaseObject {
+    static inBrowser: boolean;
+    static UA: string | false;
+    static isIE: boolean | "";
+    static isIE9: boolean | "";
+    static isEdge: boolean | "";
+    static isAndroid: boolean | "";
+    static isIOS: boolean | "";
+    static isChrome: boolean | "";
+    static getExplorerInfo: () => {
+        type: string;
+        version: number;
+    };
+    static isPCBroswer: () => boolean;
+    static isNative: (value: any) => boolean;
     static redirect: (url: string) => string;
     static showPrintDialog: () => void;
     static copyToClipboard: (text: string) => Promise<void>;

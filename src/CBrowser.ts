@@ -1,4 +1,5 @@
 import { BaseObject } from "./BaseObject";
+import { defined } from "./defined";
 
 /**
  * 浏览器操作
@@ -8,6 +9,76 @@ import { BaseObject } from "./BaseObject";
  * @module CBrowser
  */
 export class CBrowser extends BaseObject {
+
+    //运行环境是浏览器
+    static inBrowser = typeof window !== 'undefined';
+    //浏览器 UA 判断
+    static UA = CBrowser.inBrowser && window.navigator.userAgent.toLowerCase();
+    static isIE = CBrowser.UA && /msie|trident/.test(CBrowser.UA);
+    static isIE9 = CBrowser.UA && CBrowser.UA.indexOf('msie 9.0') > 0;
+    static isEdge = CBrowser.UA && CBrowser.UA.indexOf('edge/') > 0;
+    static isAndroid = (CBrowser.UA && CBrowser.UA.indexOf('android') > 0);
+    static isIOS = (CBrowser.UA && /iphone|ipad|ipod|ios/.test(CBrowser.UA));
+    static isChrome = CBrowser.UA && /chrome\/\d+/.test(CBrowser.UA) && !CBrowser.isEdge;
+
+    /**
+     * 获取浏览器信息
+     * @returns 
+     */
+    static getExplorerInfo = () => {
+        let t = navigator.userAgent.toLowerCase();
+        return 0 <= t.indexOf("msie") ? { //ie < 11
+            type: "IE",
+            version: Number(t.match(/msie ([\d]+)/)![1])
+        } : !!t.match(/trident\/.+?rv:(([\d.]+))/) ? { // ie 11
+            type: "IE",
+            version: 11
+        } : 0 <= t.indexOf("edge") ? {
+            type: "Edge",
+            version: Number(t.match(/edge\/([\d]+)/)![1])
+        } : 0 <= t.indexOf("firefox") ? {
+            type: "Firefox",
+            version: Number(t.match(/firefox\/([\d]+)/)![1])
+        } : 0 <= t.indexOf("chrome") ? {
+            type: "Chrome",
+            version: Number(t.match(/chrome\/([\d]+)/)![1])
+        } : 0 <= t.indexOf("opera") ? {
+            type: "Opera",
+            version: Number(t.match(/opera.([\d]+)/)![1])
+        } : 0 <= t.indexOf("Safari") ? {
+            type: "Safari",
+            version: Number(t.match(/version\/([\d]+)/)![1])
+        } : {
+            type: t,
+            version: -1
+        }
+    }
+
+    /**
+     * 检测是否为PC端浏览器模式
+     * @returns 
+     */
+    static isPCBroswer = () => {
+        let e = navigator.userAgent.toLowerCase(),
+            t = "ipad" == e.match(/ipad/i)!.toString(),
+            i = "iphone" == e.match(/iphone/i)!.toString(),
+            r = "midp" == e.match(/midp/i)!.toString(),
+            n = "rv:1.2.3.4" == e.match(/rv:1.2.3.4/i)!.toString(),
+            a = "ucweb" == e.match(/ucweb/i)!.toString(),
+            o = "android" == e.match(/android/i)!.toString(),
+            s = "windows ce" == e.match(/windows ce/i)!.toString(),
+            l = "windows mobile" == e.match(/windows mobile/i)!.toString();
+        return !(t || i || r || n || a || o || s || l)
+    }
+
+    /**
+     * 判断value是不是浏览器内置函数
+     * <br/>
+     * 内置函数toString后的主体代码块为[native code] ，而非内置函数则为相关代码，所以非内置函数可以进行拷贝（toString后掐头去尾再由Function转）
+     */
+    static isNative = (value: any) => {
+        return typeof value === 'function' && /native code/.test(value.toString())
+    }
 
     /**
      * 重定向到一个URL

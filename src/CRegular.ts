@@ -10,6 +10,15 @@ import { BaseObject } from "./BaseObject";
 export class CRegular extends BaseObject {
 
     /**
+     * 判断数据是不是正则对象
+     * @param value 
+     * @returns 
+     */
+    static isRegExp = (value: any) => {
+        return Object.prototype.toString.call(value) === '[object RegExp]'
+    }
+
+    /**
      * 校验身份证号码
      * @param value 身份证号码
      * @returns 返回校验结果

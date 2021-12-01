@@ -1,5 +1,6 @@
 import { BaseObject } from "./BaseObject";
 export declare class CRegular extends BaseObject {
+    static isRegExp: (value: any) => boolean;
     static checkID: (value: string) => boolean;
     static isCardID: (sId: string) => boolean;
     static haveCNChars: (value: string) => boolean;

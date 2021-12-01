@@ -1,5 +1,7 @@
 import { BaseObject } from "./BaseObject";
 export declare class CArray extends BaseObject {
+    static isLength: (value: number) => boolean;
+    static isArrayLike: (value: any) => boolean;
     static arrScrambling: (arr: Array<any>) => any[];
     static flatten: (arr: Array<any>) => any[];
     static sample: (arr: Array<any>) => any;

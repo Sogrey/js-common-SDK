@@ -1,6 +1,9 @@
 import { BaseObject } from "./BaseObject";
 export class CDataTime extends BaseObject {
 }
+CDataTime.isDate = (value) => {
+    return Object.prototype.toString.call(value) === '[object Date]';
+};
 CDataTime.nowTime = () => {
     const now = new Date();
     const year = now.getFullYear();

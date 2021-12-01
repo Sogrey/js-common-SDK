@@ -26,6 +26,7 @@ import { CFile } from './CFile';
 import { COther } from './COther';
 import { CNetwork } from './CNetwork';
 import { CEvent } from './CEvent';
+import { CEncrypt } from './CEncrypt';
 
 /**
  * @type {JSC}
@@ -60,6 +61,7 @@ const JSC = {
     COther: COther,
     CNetwork: CNetwork,
     CEvent: CEvent,
+    CEncrypt: CEncrypt,
 }
 
 export default JSC;
@@ -88,3 +90,4 @@ export { CFile } from './CFile';
 export { COther } from './COther';
 export { CNetwork } from './CNetwork';
 export { CEvent } from './CEvent';
+export { CEncrypt } from './CEncrypt';

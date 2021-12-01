@@ -10,6 +10,14 @@ import { BaseObject } from "./BaseObject";
 export class CDataTime extends BaseObject {
 
     /**
+     * 判断数据是不是时间对象
+     * @param value 
+     * @returns 
+     */
+    static isDate = (value: any) => {
+        return Object.prototype.toString.call(value) === '[object Date]'
+    }
+    /**
      * 获取当前时间
      * @returns 
      */

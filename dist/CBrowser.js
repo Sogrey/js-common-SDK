@@ -3,6 +3,49 @@ import { BaseObject } from "./BaseObject";
 export class CBrowser extends BaseObject {
 }
 _a = CBrowser;
+CBrowser.inBrowser = typeof window !== 'undefined';
+CBrowser.UA = CBrowser.inBrowser && window.navigator.userAgent.toLowerCase();
+CBrowser.isIE = CBrowser.UA && /msie|trident/.test(CBrowser.UA);
+CBrowser.isIE9 = CBrowser.UA && CBrowser.UA.indexOf('msie 9.0') > 0;
+CBrowser.isEdge = CBrowser.UA && CBrowser.UA.indexOf('edge/') > 0;
+CBrowser.isAndroid = (CBrowser.UA && CBrowser.UA.indexOf('android') > 0);
+CBrowser.isIOS = (CBrowser.UA && /iphone|ipad|ipod|ios/.test(CBrowser.UA));
+CBrowser.isChrome = CBrowser.UA && /chrome\/\d+/.test(CBrowser.UA) && !CBrowser.isEdge;
+CBrowser.getExplorerInfo = () => {
+    let t = navigator.userAgent.toLowerCase();
+    return 0 <= t.indexOf("msie") ? {
+        type: "IE",
+        version: Number(t.match(/msie ([\d]+)/)[1])
+    } : !!t.match(/trident\/.+?rv:(([\d.]+))/) ? {
+        type: "IE",
+        version: 11
+    } : 0 <= t.indexOf("edge") ? {
+        type: "Edge",
+        version: Number(t.match(/edge\/([\d]+)/)[1])
+    } : 0 <= t.indexOf("firefox") ? {
+        type: "Firefox",
+        version: Number(t.match(/firefox\/([\d]+)/)[1])
+    } : 0 <= t.indexOf("chrome") ? {
+        type: "Chrome",
+        version: Number(t.match(/chrome\/([\d]+)/)[1])
+    } : 0 <= t.indexOf("opera") ? {
+        type: "Opera",
+        version: Number(t.match(/opera.([\d]+)/)[1])
+    } : 0 <= t.indexOf("Safari") ? {
+        type: "Safari",
+        version: Number(t.match(/version\/([\d]+)/)[1])
+    } : {
+        type: t,
+        version: -1
+    };
+};
+CBrowser.isPCBroswer = () => {
+    let e = navigator.userAgent.toLowerCase(), t = "ipad" == e.match(/ipad/i).toString(), i = "iphone" == e.match(/iphone/i).toString(), r = "midp" == e.match(/midp/i).toString(), n = "rv:1.2.3.4" == e.match(/rv:1.2.3.4/i).toString(), a = "ucweb" == e.match(/ucweb/i).toString(), o = "android" == e.match(/android/i).toString(), s = "windows ce" == e.match(/windows ce/i).toString(), l = "windows mobile" == e.match(/windows mobile/i).toString();
+    return !(t || i || r || n || a || o || s || l);
+};
+CBrowser.isNative = (value) => {
+    return typeof value === 'function' && /native code/.test(value.toString());
+};
 CBrowser.redirect = (url) => location.href = url;
 CBrowser.showPrintDialog = () => window.print();
 CBrowser.copyToClipboard = (text) => navigator.clipboard.writeText(text);

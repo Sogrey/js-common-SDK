@@ -9,5 +9,6 @@ export declare class CNumber extends BaseObject {
     static fahrenheitToCelsius: (fahrenheit: number) => number;
     static numberToChinese: (num: number) => string;
     static numberToChinese2: (num: string) => string;
+    static _isNaN: (v: any) => boolean;
 }
 //# sourceMappingURL=CNumber.d.ts.map

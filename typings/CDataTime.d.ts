@@ -1,5 +1,6 @@
 import { BaseObject } from "./BaseObject";
 export declare class CDataTime extends BaseObject {
+    static isDate: (value: any) => boolean;
     static nowTime: () => string;
     static dateFormater: (formater: string, time: number) => string;
     static isDateValid: (val: string) => boolean;

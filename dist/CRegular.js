@@ -1,6 +1,9 @@
 import { BaseObject } from "./BaseObject";
 export class CRegular extends BaseObject {
 }
+CRegular.isRegExp = (value) => {
+    return Object.prototype.toString.call(value) === '[object RegExp]';
+};
 CRegular.checkID = (value) => {
     let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     return reg.test(value);

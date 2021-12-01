@@ -286,4 +286,14 @@ export class CNumber extends BaseObject {
         }
         return newchar;
     }
+
+    /**
+     * 检查数据是否是非数字值
+     * @param v 
+     * @returns 
+     */
+    static _isNaN = (v: any) => {
+        return !(typeof v === 'string' || typeof v === 'number') || isNaN(v as number)
+    }
+
 }

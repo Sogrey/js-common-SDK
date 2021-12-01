@@ -217,4 +217,7 @@ CNumber.numberToChinese2 = (num) => {
     }
     return newchar;
 };
+CNumber._isNaN = (v) => {
+    return !(typeof v === 'string' || typeof v === 'number') || isNaN(v);
+};
 //# sourceMappingURL=CNumber.js.map

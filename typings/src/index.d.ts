@@ -20,6 +20,7 @@ import { CFile } from './CFile';
 import { COther } from './COther';
 import { CNetwork } from './CNetwork';
 import { CEvent } from './CEvent';
+import { CEncrypt } from './CEncrypt';
 declare const JSC: {
     VERSION: string;
     test: () => void;
@@ -45,6 +46,7 @@ declare const JSC: {
     COther: typeof COther;
     CNetwork: typeof CNetwork;
     CEvent: typeof CEvent;
+    CEncrypt: typeof CEncrypt;
 };
 export default JSC;
 export { clone } from "./clone";
@@ -69,4 +71,5 @@ export { CFile } from './CFile';
 export { COther } from './COther';
 export { CNetwork } from './CNetwork';
 export { CEvent } from './CEvent';
+export { CEncrypt } from './CEncrypt';
 //# sourceMappingURL=index.d.ts.map

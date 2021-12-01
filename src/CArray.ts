@@ -1,4 +1,5 @@
 import { BaseObject } from "./BaseObject";
+import { CObject } from "./CObject";
 import { defaultValue } from "./defaultValue";
 import { defined } from "./defined";
 
@@ -10,6 +11,26 @@ import { defined } from "./defined";
  * @module CArray
  */
 export class CArray extends BaseObject {
+
+    /**
+     * 检查value是否为有效的类数组长度
+     * @param value 
+     * @returns 
+     */
+    static isLength = (value: number) => {
+        return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER;
+    }
+
+    /**
+     * 检查value是否是类数组
+     * <br/>
+     * 如果一个值被认为是类数组，那么它不是一个函数，并且value.length是个整数，大于等于0，小于或等于Number.MAX_SAFE_INTEGER。这里字符串也被当作类数组。
+     * @param value 
+     * @returns 
+     */
+    static isArrayLike = (value: any) => {
+        return value != null && CArray.isLength(value.length) && !CObject.isFunction(value);
+    }
 
     /**
      * 数组乱序
