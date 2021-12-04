@@ -248,4 +248,5 @@ export class CArray extends BaseObject {
     static min = (arr: Array<number>) => {
         return Math.min.apply(null, arr);
     }
+
 }

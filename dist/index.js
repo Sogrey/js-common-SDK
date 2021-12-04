@@ -6,6 +6,7 @@ import { BaseObject } from './BaseObject';
 import { CObject } from './CObject';
 import { CNumber } from './CNumber';
 import { CArray } from './CArray';
+import { CBuffer } from './CBuffer';
 import { CString } from './CString';
 import { CFormat } from './CFormat';
 import { CStorage } from './CStorage';
@@ -34,6 +35,7 @@ const JSC = {
     CObject: CObject,
     CNumber: CNumber,
     CArray: CArray,
+    CBuffer: CBuffer,
     CString: CString,
     CFormat: CFormat,
     CStorage: CStorage,
@@ -59,6 +61,7 @@ export { BaseObject } from './BaseObject';
 export { CObject } from './CObject';
 export { CNumber } from './CNumber';
 export { CArray } from './CArray';
+export { CBuffer } from './CBuffer';
 export { CString } from './CString';
 export { CFormat } from './CFormat';
 export { CStorage } from './CStorage';
