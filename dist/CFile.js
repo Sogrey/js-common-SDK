@@ -2,7 +2,7 @@ import { BaseObject } from "./BaseObject";
 import { DeveloperError } from "./DeveloperError";
 export class CFile extends BaseObject {
 }
-CFile.getExt = function (filename) {
+CFile.getFileExt = function (filename) {
     if (typeof filename == 'string') {
         return filename
             .split('.')

@@ -14,7 +14,7 @@ export class CFile extends BaseObject {
      * @param filename 
      * @returns 
      */
-    static getExt = function (filename: string): string {
+    static getFileExt = function (filename: string): string {
         if (typeof filename == 'string') {
             return filename
                 .split('.')
