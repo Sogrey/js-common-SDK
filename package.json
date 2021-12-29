@@ -33,7 +33,7 @@
     "url": "git+https://github.com/Sogrey/js-common-SDK.git"
   },
   "keywords": [
-    "TypeScript"
+    "TypeScript","SDK"
   ],
   "author": "Sogrey",
   "license": "MIT",
