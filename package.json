@@ -11,6 +11,7 @@
   "scripts": {
     "start": "npm run build && http-server -p 8000",
     "release": "npm run build && npm run docs",
+    "deploy": "bash deploy.sh",
     "build": "npm run clean && npm run compile && npm run bundle",
     "clean": "rm -rf bundles dist typings",
     "compile": "npx tsc --p tsconfig.json",
