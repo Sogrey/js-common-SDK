@@ -2,7 +2,7 @@ import { BaseObject } from "./BaseObject";
 export class CDevice extends BaseObject {
 }
 CDevice.isMobile = () => {
-    if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iOS|iPad|Backerry|WebOS|Symbian|Windows Phone|Phone)/i))) {
+    if ((navigator.userAgent.match(/(HarmonyOS|iPhone|iPod|Android|ios|iOS|iPad|Backerry|WebOS|Symbian|Windows Phone|Phone)/i))) {
         return 'mobile';
     }
     return 'desktop';
