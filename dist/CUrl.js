@@ -64,4 +64,21 @@ CUrl.replaceParamVal = (paramName, replaceWith, url) => {
     location.href = oUrl.replace(re, paramName + '=' + replaceWith);
     return location.href;
 };
+CUrl.isBlobUri = (uri) => {
+    var blobUriRegex = /^blob:/i;
+    return blobUriRegex.test(uri);
+};
+CUrl.isDataUri = (uri) => {
+    var dataUriRegex = /^data:/i;
+    return dataUriRegex.test(uri);
+};
+CUrl.isCrossOriginUrl = (url) => {
+    var a = document.createElement("a");
+    a.href = window.location.href;
+    var host = a.host;
+    var protocol = a.protocol;
+    a.href = url;
+    a.href = a.href;
+    return protocol !== a.protocol || host !== a.host;
+};
 //# sourceMappingURL=CUrl.js.map

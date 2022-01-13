@@ -7,5 +7,6 @@ export declare class CDataTime extends BaseObject {
     static dayDif: (date1: Date, date2: Date) => number;
     static dayOfYear: (date: Date) => number;
     static timeFromDate: (date: Date) => string;
+    static isLeapYear: (year: number) => boolean;
 }
 //# sourceMappingURL=CDataTime.d.ts.map

@@ -1,4 +1,6 @@
 import { BaseObject } from "./BaseObject";
+import { defined } from "./defined";
+import { DeveloperError } from "./DeveloperError";
 
 /**
  * 时间操作
@@ -104,6 +106,22 @@ export class CDataTime extends BaseObject {
      */
     static timeFromDate = (date: Date) => date.toTimeString().slice(0, 8);
 
+    /**
+     * Determines if a given date is a leap year.
+     *
+     * @param {Number} year The year to be tested.
+     * @returns {Boolean} True if <code>year</code> is a leap year.
+     *
+     * @example
+     * <pre><code>
+     * var leapYear = Cesium.isLeapYear(2000); // true
+     * </code></pre>
+     */
+    static isLeapYear = (year: number): boolean => {
+        if (!defined(year) || isNaN(year)) {
+            throw new DeveloperError("year is required and must be a number.");
+        }
 
-
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
 }

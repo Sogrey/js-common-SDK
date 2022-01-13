@@ -100,4 +100,55 @@ export class CUrl extends BaseObject {
         location.href = oUrl.replace(re, paramName + '=' + replaceWith);
         return location.href;
     }
+
+    /**
+     * Determines if the specified uri is a blob uri.
+     *
+     * @function isBlobUri
+     *
+     * @param {String} uri The uri to test.
+     * @returns {Boolean} true when the uri is a blob uri; otherwise, false.
+     *
+     */
+    static isBlobUri = (uri: string): boolean => {
+        var blobUriRegex = /^blob:/i;
+        return blobUriRegex.test(uri);
+    }
+
+    /**
+     * Determines if the specified uri is a data uri.
+     *
+     * @function isDataUri
+     *
+     * @param {String} uri The uri to test.
+     * @returns {Boolean} true when the uri is a data uri; otherwise, false.
+     *
+     */
+    static isDataUri = (uri: string): boolean => {
+        var dataUriRegex = /^data:/i;
+        return dataUriRegex.test(uri);
+    }
+    /**
+     * Given a URL, determine whether that URL is considered cross-origin to the current page.
+     *
+     */
+    static isCrossOriginUrl = (url: string): boolean => {
+
+        var a = document.createElement("a");
+
+        // copy window location into the anchor to get consistent results
+        // when the port is default for the protocol (e.g. 80 for HTTP)
+        a.href = window.location.href;
+
+        // host includes both hostname and port if the port is not standard
+        var host = a.host;
+        var protocol = a.protocol;
+
+        a.href = url;
+        // IE only absolutizes href on get, not set
+        // eslint-disable-next-line no-self-assign
+        a.href = a.href;
+
+        return protocol !== a.protocol || host !== a.host;
+    }
 }

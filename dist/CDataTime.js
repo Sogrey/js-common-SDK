@@ -1,4 +1,6 @@
 import { BaseObject } from "./BaseObject";
+import { defined } from "./defined";
+import { DeveloperError } from "./DeveloperError";
 export class CDataTime extends BaseObject {
 }
 CDataTime.isDate = (value) => {
@@ -28,4 +30,10 @@ CDataTime.isDateValid = (val) => !Number.isNaN(new Date(val).valueOf());
 CDataTime.dayDif = (date1, date2) => Math.ceil(Math.abs(date1.getTime() - date2.getTime()) / 86400000);
 CDataTime.dayOfYear = (date) => Math.floor((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 1000 / 60 / 60 / 24);
 CDataTime.timeFromDate = (date) => date.toTimeString().slice(0, 8);
+CDataTime.isLeapYear = (year) => {
+    if (!defined(year) || isNaN(year)) {
+        throw new DeveloperError("year is required and must be a number.");
+    }
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+};
 //# sourceMappingURL=CDataTime.js.map
