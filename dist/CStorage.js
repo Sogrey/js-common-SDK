@@ -1,4 +1,5 @@
 import { BaseObject } from "./BaseObject";
+import { CIndexDB } from "./CIndexDB";
 export class CStorage extends BaseObject {
 }
 CStorage.setLoalStorage = (key, value) => {
@@ -37,4 +38,6 @@ CStorage.removeSessionStorage = (key) => {
         return;
     window.sessionStorage.removeItem(key);
 };
+CStorage.CIndexDB = CIndexDB;
+export { CIndexDB } from "./CIndexDB";
 //# sourceMappingURL=CStorage.js.map

@@ -1,4 +1,5 @@
 import { BaseObject } from "./BaseObject";
+import { CIndexDB } from "./CIndexDB";
 
 /**
  * 操作存储
@@ -9,6 +10,7 @@ import { BaseObject } from "./BaseObject";
  */
 export class CStorage extends BaseObject {
 
+    static CIndexDB: typeof CIndexDB;
     /**
      * 存储loalStorage
      * @param key 键值
@@ -78,3 +80,6 @@ export class CStorage extends BaseObject {
     };
 
 }
+
+CStorage.CIndexDB = CIndexDB;
+export { CIndexDB } from "./CIndexDB"
