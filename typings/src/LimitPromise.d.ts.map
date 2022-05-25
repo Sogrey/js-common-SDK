@@ -1,0 +1,1 @@
+{"version":3,"file":"LimitPromise.d.ts","sourceRoot":"","sources":["../../src/LimitPromise.ts"],"names":[],"mappings":"AAKA,qBAAa,YAAY;IACrB,OAAO,CAAC,KAAK,CAAS;IACtB,OAAO,CAAC,KAAK,CAAS;IACtB,OAAO,CAAC,SAAS,CAAQ;gBAEb,KAAK,EAAE,MAAM;IAMzB,OAAO,CAAC,UAAU;IAsBX,IAAI,CAAC,OAAO,EAAE,QAAQ,EAAE,GAAG,IAAI,EAAE,GAAG,EAAE;CAUhD"}

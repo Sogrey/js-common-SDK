@@ -28,6 +28,7 @@ import { COther } from './COther';
 import { CNetwork } from './CNetwork';
 import { CEvent } from './CEvent';
 import { CEncrypt } from './CEncrypt';
+import { LimitPromise } from './LimitPromise';
 
 /**
  * @type {JSC}
@@ -64,6 +65,8 @@ const JSC = {
     CNetwork: CNetwork,
     CEvent: CEvent,
     CEncrypt: CEncrypt,
+
+    LimitPromise:LimitPromise,
 }
 
 export default JSC;
@@ -94,3 +97,4 @@ export { COther } from './COther';
 export { CNetwork } from './CNetwork';
 export { CEvent } from './CEvent';
 export { CEncrypt } from './CEncrypt';
+export { LimitPromise } from './LimitPromise';

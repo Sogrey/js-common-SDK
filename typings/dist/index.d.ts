@@ -23,6 +23,7 @@ export { COther } from "./COther";
 export { CNetwork } from "./CNetwork";
 export { CEvent } from "./CEvent";
 export { CEncrypt } from "./CEncrypt";
+export { LimitPromise } from "./LimitPromise";
 declare namespace JSC {
     export const VERSION: string;
     export function test(): void;
@@ -50,6 +51,7 @@ declare namespace JSC {
     export { CNetwork };
     export { CEvent };
     export { CEncrypt };
+    export { LimitPromise };
 }
 import { clone } from "./clone";
 import { defined } from "./defined";
@@ -75,4 +77,5 @@ import { COther } from "./COther";
 import { CNetwork } from "./CNetwork";
 import { CEvent } from "./CEvent";
 import { CEncrypt } from "./CEncrypt";
+import { LimitPromise } from "./LimitPromise";
 //# sourceMappingURL=index.d.ts.map

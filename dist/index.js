@@ -22,6 +22,7 @@ import { COther } from './COther';
 import { CNetwork } from './CNetwork';
 import { CEvent } from './CEvent';
 import { CEncrypt } from './CEncrypt';
+import { LimitPromise } from './LimitPromise';
 const JSC = {
     VERSION: "0.0.1",
     test: () => {
@@ -51,6 +52,7 @@ const JSC = {
     CNetwork: CNetwork,
     CEvent: CEvent,
     CEncrypt: CEncrypt,
+    LimitPromise: LimitPromise,
 };
 export default JSC;
 export { clone } from "./clone";
@@ -77,4 +79,5 @@ export { COther } from './COther';
 export { CNetwork } from './CNetwork';
 export { CEvent } from './CEvent';
 export { CEncrypt } from './CEncrypt';
+export { LimitPromise } from './LimitPromise';
 //# sourceMappingURL=index.js.map

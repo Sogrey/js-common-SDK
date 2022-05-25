@@ -22,6 +22,7 @@ import { COther } from './COther';
 import { CNetwork } from './CNetwork';
 import { CEvent } from './CEvent';
 import { CEncrypt } from './CEncrypt';
+import { LimitPromise } from './LimitPromise';
 declare const JSC: {
     VERSION: string;
     test: () => void;
@@ -49,6 +50,7 @@ declare const JSC: {
     CNetwork: typeof CNetwork;
     CEvent: typeof CEvent;
     CEncrypt: typeof CEncrypt;
+    LimitPromise: typeof LimitPromise;
 };
 export default JSC;
 export { clone } from "./clone";
@@ -75,4 +77,5 @@ export { COther } from './COther';
 export { CNetwork } from './CNetwork';
 export { CEvent } from './CEvent';
 export { CEncrypt } from './CEncrypt';
+export { LimitPromise } from './LimitPromise';
 //# sourceMappingURL=index.d.ts.map
