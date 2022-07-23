@@ -1,8 +1,6 @@
-var _a;
 import { BaseObject } from "./BaseObject";
 export class CBrowser extends BaseObject {
 }
-_a = CBrowser;
 CBrowser.inBrowser = typeof window !== 'undefined';
 CBrowser.UA = CBrowser.inBrowser && window.navigator.userAgent.toLowerCase();
 CBrowser.isIE = CBrowser.UA && /msie|trident/.test(CBrowser.UA);
@@ -53,7 +51,7 @@ CBrowser.getSelectedText = () => window.getSelection().toString();
 CBrowser.scrollToTop = () => {
     const height = document.documentElement.scrollTop || document.body.scrollTop;
     if (height > 0) {
-        window.requestAnimationFrame(_a.scrollToTop);
+        window.requestAnimationFrame(CBrowser.scrollToTop);
         window.scrollTo(0, height - height / 8);
     }
 };

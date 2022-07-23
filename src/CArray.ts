@@ -55,7 +55,7 @@ export class CArray extends BaseObject {
 
         for (let i = 0; i < arr.length; i++) {
             if (Array.isArray(arr[i])) {
-                result = result.concat(this.flatten(arr[i]));
+                result = result.concat(CArray.flatten(arr[i]));
             } else {
                 result.push(arr[i]);
             }

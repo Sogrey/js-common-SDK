@@ -106,15 +106,15 @@ export class CMath {
      * @type {Number}
      * @constant
      */
-    static RADIANS_PER_ARCSECOND: number = this.RADIANS_PER_DEGREE / 3600.0;
+    static RADIANS_PER_ARCSECOND: number = CMath.RADIANS_PER_DEGREE / 3600.0;
 
     /**
  * Converts degrees to radians.
  * @param {Number} degrees The angle to convert in degrees.
  * @returns {Number} The corresponding angle in radians.
  */
-    static toRadians = (degrees: number) => {
-        return degrees * this.RADIANS_PER_DEGREE;
+    static toRadians = (degrees: number): number => {
+        return degrees * CMath.RADIANS_PER_DEGREE;
     };
 
     /**
@@ -122,8 +122,8 @@ export class CMath {
      * @param {Number} radians The angle to convert in radians.
      * @returns {Number} The corresponding angle in degrees.
      */
-    static toDegrees = (radians: number) => {
-        return radians * this.DEGREES_PER_RADIAN;
+    static toDegrees = (radians: number): number => {
+        return radians * CMath.DEGREES_PER_RADIAN;
     };
     /**
      * Returns the sign of the value; 1 if the value is positive, -1 if the value is
@@ -150,7 +150,7 @@ export class CMath {
      * @param {Number} value The value to return the sign of.
      * @returns {Number} The sign of value.
      */
-    static signNotZero = function (value: number) {
+    static signNotZero = function (value: number): number {
         return value < 0.0 ? -1.0 : 1.0;
     };
     /**
@@ -160,7 +160,7 @@ export class CMath {
      * @param {Number} n The divisor.
      * @returns {Number} The remainder.
      */
-    static mod = (m: number, n: number) => {
+    static mod = (m: number, n: number): number => {
         if (!defined(m)) {
             throw new DeveloperError("m is required.");
         }
@@ -171,7 +171,7 @@ export class CMath {
             throw new DeveloperError("divisor cannot be 0.");
         }
 
-        if (this.sign(m) === this.sign(n) && Math.abs(m) < Math.abs(n)) {
+        if (CMath.sign(m) === CMath.sign(n) && Math.abs(m) < Math.abs(n)) {
             // Early exit if the input does not need to be modded. This avoids
             // unnecessary math which could introduce floating point error.
             return m;
@@ -187,7 +187,7 @@ export class CMath {
     * @param {Number} max The maximum value.
     * @returns {Number} The value clamped so that min <= value <= max.
     */
-    static clamp = function (value: number, min: number, max: number) {
+    static clamp = function (value: number, min: number, max: number): number {
 
         if (!defined(value)) {
             throw new DeveloperError("value is required");
@@ -209,7 +209,7 @@ export class CMath {
      * @returns {Number} The acos of the value if the value is in the range [-1.0, 1.0], or the acos of -1.0 or 1.0,
      *          whichever is closer, if the value is outside the range.
      */
-    static acosClamped = function (value: number) {
+    static acosClamped = function (value: number): number {
 
         if (!defined(value)) {
             throw new DeveloperError("value is required.");
@@ -228,7 +228,7 @@ export class CMath {
      * @example
      * var n = Cesium.Math.lerp(0.0, 2.0, 0.5); // returns 1.0
      */
-    static lerp = function (p: number, q: number, time: number) {
+    static lerp = function (p: number, q: number, time: number): number {
         return (1.0 - time) * p + time * q;
     };
 }

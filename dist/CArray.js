@@ -1,4 +1,3 @@
-var _a;
 import { BaseObject } from "./BaseObject";
 import { CObject } from "./CObject";
 import { defaultValue } from "./defaultValue";
@@ -23,7 +22,6 @@ export class CArray extends BaseObject {
         return array;
     }
 }
-_a = CArray;
 CArray.isLength = (value) => {
     return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= Number.MAX_SAFE_INTEGER;
 };
@@ -41,7 +39,7 @@ CArray.flatten = (arr) => {
     let result = [];
     for (let i = 0; i < arr.length; i++) {
         if (Array.isArray(arr[i])) {
-            result = result.concat(_a.flatten(arr[i]));
+            result = result.concat(CArray.flatten(arr[i]));
         }
         else {
             result.push(arr[i]);

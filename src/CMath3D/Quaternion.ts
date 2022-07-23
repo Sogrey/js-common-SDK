@@ -507,7 +507,7 @@ export class Quaternion {
         return result;
     };
 
-    static fromQuaternion = this.clone;
+    static fromQuaternion = Quaternion.clone;
     /**
      * Compares the provided quaternions componentwise and returns
      * <code>true</code> if they are equal, <code>false</code> otherwise.

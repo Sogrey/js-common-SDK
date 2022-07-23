@@ -14,7 +14,7 @@ export declare class CMath {
     static toRadians: (degrees: number) => number;
     static toDegrees: (radians: number) => number;
     static sign: any;
-    static signNotZero: (value: number) => 1 | -1;
+    static signNotZero: (value: number) => number;
     static mod: (m: number, n: number) => number;
     static clamp: (value: number, min: number, max: number) => number;
     static acosClamped: (value: number) => number;

@@ -1,4 +1,3 @@
-var _a;
 import { defined } from "../defined";
 import { defaultValue } from "../defaultValue";
 import { CMath } from "./CMath";
@@ -26,7 +25,6 @@ export class Quaternion {
         this.w = defaultValue(w, 0.0);
     }
 }
-_a = Quaternion;
 Quaternion.packedLength = 4;
 Quaternion.toArray = function (value, array, startingIndex) {
     startingIndex = defaultValue(startingIndex, 0);
@@ -220,7 +218,7 @@ Quaternion.clone = function (quaternion, result) {
     result.w = quaternion.w;
     return result;
 };
-Quaternion.fromQuaternion = _a.clone;
+Quaternion.fromQuaternion = Quaternion.clone;
 Quaternion.equals = function (left, right) {
     return (left === right ||
         (defined(left) &&

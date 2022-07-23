@@ -1,10 +1,8 @@
-var _a;
 import { defined } from "../defined";
 import { defaultValue } from "../defaultValue";
 import { DeveloperError } from "../DeveloperError";
 export class CMath {
 }
-_a = CMath;
 CMath.PI = Math.PI;
 CMath.ONE_OVER_PI = 1.0 / Math.PI;
 CMath.PI_OVER_TWO = Math.PI / 2.0;
@@ -16,12 +14,12 @@ CMath.TWO_PI = 2.0 * Math.PI;
 CMath.ONE_OVER_TWO_PI = 1.0 / (2.0 * Math.PI);
 CMath.RADIANS_PER_DEGREE = Math.PI / 180.0;
 CMath.DEGREES_PER_RADIAN = 180.0 / Math.PI;
-CMath.RADIANS_PER_ARCSECOND = _a.RADIANS_PER_DEGREE / 3600.0;
+CMath.RADIANS_PER_ARCSECOND = CMath.RADIANS_PER_DEGREE / 3600.0;
 CMath.toRadians = (degrees) => {
-    return degrees * _a.RADIANS_PER_DEGREE;
+    return degrees * CMath.RADIANS_PER_DEGREE;
 };
 CMath.toDegrees = (radians) => {
-    return radians * _a.DEGREES_PER_RADIAN;
+    return radians * CMath.DEGREES_PER_RADIAN;
 };
 CMath.sign = defaultValue(Math.sign, function sign(value) {
     value = +value;
@@ -43,7 +41,7 @@ CMath.mod = (m, n) => {
     if (n === 0.0) {
         throw new DeveloperError("divisor cannot be 0.");
     }
-    if (_a.sign(m) === _a.sign(n) && Math.abs(m) < Math.abs(n)) {
+    if (CMath.sign(m) === CMath.sign(n) && Math.abs(m) < Math.abs(n)) {
         return m;
     }
     return ((m % n) + n) % n;
