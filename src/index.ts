@@ -28,6 +28,7 @@ import { COther } from './COther';
 import { CNetwork } from './CNetwork';
 import { CEvent } from './CEvent';
 import { CEncrypt } from './CEncrypt';
+import { CIndexDB } from './CIndexDB';
 import { LimitPromise } from './LimitPromise';
 
 /**
@@ -65,8 +66,9 @@ const JSC = {
     CNetwork: CNetwork,
     CEvent: CEvent,
     CEncrypt: CEncrypt,
+    CIndexDB: CIndexDB,
 
-    LimitPromise:LimitPromise,
+    LimitPromise: LimitPromise,
 }
 
 export default JSC;
@@ -97,4 +99,5 @@ export { COther } from './COther';
 export { CNetwork } from './CNetwork';
 export { CEvent } from './CEvent';
 export { CEncrypt } from './CEncrypt';
+export { CIndexDB } from './CIndexDB';
 export { LimitPromise } from './LimitPromise';
